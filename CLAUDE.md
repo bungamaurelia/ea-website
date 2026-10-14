@@ -15,7 +15,7 @@ landing-pages/        THE ONLY FOLDER THAT GETS DEPLOYED
   images/home/*.webp    homepage photos
 process/              design-system.html (internal only, never deployed) + design-system-img/ + snippets/
 scripts/python/       capture.py · mobile_audit.py · ds_shots.py · build_preview.py · strips.py
-output/               backups/v1 … v34 and screenshots: local only, ignored by git
+output/               backups/v1 … v35 and screenshots: local only, ignored by git
 ```
 A new page would go in `landing-pages/<page-slug>/index.html`. Nothing else belongs at the root.
 
@@ -34,7 +34,7 @@ A new page would go in `landing-pages/<page-slug>/index.html`. Nothing else belo
 - Mobile: inputs 16px, tap targets at least 44px (arrow buttons 40), no sideways scrolling. Check 360, 390 and 768 with `mobile_audit.py`.
 - Links: Request a Quote, Contact / Contact Us and the service and country cards scroll to the homepage form section. The footer number, Find a Job / Apply for a Job and the WhatsApp buttons open WhatsApp +65 8956 5188 with a pre-filled message (employer or job seeker). Email: hello@employmentagencysingapore.com (form section and footer); the form-section phone number is still a placeholder. Change these at the top of `js/home.js`.
 - The form is the HubSpot embed (portal 242253439). Its fields, consent text and thank-you message are edited in HubSpot. Never submit test entries without asking: they create real leads. It can't load in the claude.ai preview, which shows a placeholder instead.
-- Images: WebP only (logo SVG), in `images/home/` named `hero-…`, `service-…`, `country-…`. `service-default.webp` (window cleaning) is the services photo shown while no service is open. Every `<img>` needs `alt`, `title`, `width` and `height`; below-the-fold photos use `loading="lazy"`. Country cards use worker photos, no flags.
+- Images: WebP only (logo SVG), in `images/home/` named `hero-…`, `service-…`, `country-…`. `service-default.webp` (worker treating new office cabinets, chosen by Crystal) is the services photo shown while no service is open. Every `<img>` needs `alt`, `title`, `width` and `height`; below-the-fold photos use `loading="lazy"`. Country cards use worker photos, no flags.
 - The blog section and Our Clients are hidden with the `hidden` attribute until real articles and client logos exist.
 - Git: commit and push only when asked. `output/` stays out of the repo.
 
