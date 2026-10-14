@@ -15,7 +15,7 @@ landing-pages/        THE ONLY FOLDER THAT GETS DEPLOYED
   images/home/*.webp    homepage photos
 process/              design-system.html (internal only, never deployed) + design-system-img/ + snippets/
 scripts/python/       capture.py · mobile_audit.py · ds_shots.py · build_preview.py · strips.py
-output/               backups/v1 … v39 and screenshots: local only, ignored by git
+output/               backups/v1 … v40 and screenshots: local only, ignored by git
 ```
 A new page would go in `landing-pages/<page-slug>/index.html`. Nothing else belongs at the root.
 
