@@ -1,10 +1,11 @@
 """
 Captures every homepage section at desktop 1440, tablet 768 and mobile 390
-as JPEGs for the design system page.
+as WebP images for the design system page (all images in the repo are WebP).
 Usage: python scripts/python/ds_shots.py [out-folder]   (default: process/design-system-img)
 """
-import sys
+import io, sys
 from pathlib import Path
+from PIL import Image
 from playwright.sync_api import sync_playwright
 
 OUT = Path(sys.argv[1] if len(sys.argv) > 1 else Path(__file__).resolve().parents[2] / "process" / "design-system-img"); OUT.mkdir(parents=True, exist_ok=True)
@@ -29,7 +30,7 @@ with sync_playwright() as p:
         pg.evaluate("document.getElementById('testi-pause') && document.getElementById('testi-pause').click()")
         for name, sel in SECTIONS:
             el = pg.locator(sel).first; el.scroll_into_view_if_needed(); pg.wait_for_timeout(150)
-            el.screenshot(path=str(OUT / f"{name}-{vname}.jpg"), type="jpeg", quality=72)
+            Image.open(io.BytesIO(el.screenshot(type="png"))).convert("RGB").save(OUT / f"{name}-{vname}.webp", "WEBP", quality=75, method=6)
         ctx.close()
     b.close()
-print("saved", len(list(OUT.glob("*.jpg"))), "images,", round(sum(f.stat().st_size for f in OUT.glob("*.jpg")) / 1e6, 1), "MB")
+print("saved", len(list(OUT.glob("*.webp"))), "images,", round(sum(f.stat().st_size for f in OUT.glob("*.webp")) / 1e6, 1), "MB")
