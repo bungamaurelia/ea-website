@@ -453,7 +453,7 @@ table.ds-table{width:100%;border-collapse:collapse;font-size:14px}
       <div class="x-svc open"><div class="x-svc-head"><span class="x-svc-ico"><svg width="24" height="24"><use href="#i-helmet"/></svg></span><span class="x-svc-t"><strong>Construction Worker Recruitment</strong><small>New and U-turn workers</small></span><span class="x-chev"><svg width="18" height="18"><use href="#i-chev"/></svg></span></div>
         <div class="x-svc-body"><p>New and U-turn workers from Bangladesh, India, Myanmar and PRC.</p><div style="display:flex;flex-wrap:wrap;gap:8px"><span class="x-chip">Bangladesh</span><span class="x-chip">India</span><span class="x-chip">Myanmar</span><span class="x-chip">PRC</span></div><a class="x-btn x-primary sm" href="#components" style="justify-self:start">Request a Quote</a></div></div>
     </div>
-    <ul class="state-list"><li>All rows closed on load; a click opens one and closes the others; clicking an open row closes it. No timer</li><li>Row header padding 20 × 24 desktop, 16 × 18 tablet, 14 × 16 mobile; icon tile 48 / 40 / hidden on mobile</li><li>The row's Request a Quote button scrolls to the homepage form with that service pre-selected</li></ul></div></div>
+    <ul class="state-list"><li>All rows closed on load; a click opens one and closes the others; clicking an open row closes it. No timer</li><li>Desktop photo panel: a default photo (<code>service-default.webp</code>) while no row is open; opening a row shows that service's photo; closing it brings the default back</li><li>Row header padding 20 × 24 desktop, 16 × 18 tablet, 14 × 16 mobile; icon tile 48 / 40 / hidden on mobile</li><li>The row's Request a Quote button scrolls to the homepage form with that service pre-selected</li></ul></div></div>
 
   <div class="ds-sub"><h3>3.4 FAQ row</h3>
     <div class="specimen x"><div class="demo-col">
@@ -564,7 +564,7 @@ table.ds-table{width:100%;border-collapse:collapse;font-size:14px}
     <div class="gallery"><figure class="shot"><div class="scroll"><img src="design-system-img/faq-desktop.webp" alt="FAQ, desktop" loading="lazy"></div><figcaption>Desktop 1440</figcaption></figure><figure class="shot"><div class="scroll"><img src="design-system-img/faq-tablet.webp" alt="FAQ, tablet" loading="lazy"></div><figcaption>Tablet 768</figcaption></figure><figure class="shot"><div class="scroll"><img src="design-system-img/faq-mobile.webp" alt="FAQ, mobile" loading="lazy"></div><figcaption>Mobile 390</figcaption></figure></div></div>
 
   <div class="block" id="b-form"><h4>4.12 Request Workers form</h4>
-    <p class="lead-note">Harbor band with dotted circles. Heading, one line of text and the licence line on the left; white form card on the right titled "Get Your Quote Today" (same words as the HubSpot button) holding the HubSpot form, with "Looking for a job? Apply here" (WhatsApp) under it. Every Request a Quote button on the homepage scrolls here. The HubSpot embed runs edge to edge inside the card because it brings its own side padding.</p>
+    <p class="lead-note">Harbor band with dotted circles. Heading, one line of text, email (hello@employmentagencysingapore.com, mailto link) and phone number with Glacier icons, then the licence line on the left; white form card on the right titled "Get Your Quote Today" (same words as the HubSpot button) holding the HubSpot form, with "Looking for a job? Apply here" (WhatsApp) under it. Every Request a Quote button on the homepage scrolls here. The HubSpot embed runs edge to edge inside the card because it brings its own side padding.</p>
     <div class="table-wrap bp-table"><table class="ds-table"><tr><th>Desktop</th><th>Tablet</th><th>Mobile</th></tr><tr><td>Two columns</td><td>Stacked</td><td>Stacked, centred heading</td></tr></table></div>
     <div class="gallery"><figure class="shot"><div class="scroll"><img src="design-system-img/form-desktop.webp" alt="Request Workers form, desktop" loading="lazy"></div><figcaption>Desktop 1440</figcaption></figure><figure class="shot"><div class="scroll"><img src="design-system-img/form-tablet.webp" alt="Request Workers form, tablet" loading="lazy"></div><figcaption>Tablet 768</figcaption></figure><figure class="shot"><div class="scroll"><img src="design-system-img/form-mobile.webp" alt="Request Workers form, mobile" loading="lazy"></div><figcaption>Mobile 390</figcaption></figure></div></div>
 
@@ -599,11 +599,12 @@ table.ds-table{width:100%;border-collapse:collapse;font-size:14px}
         <tr><td>13</td><td>Footer + floating WhatsApp</td><td>4.13 / 3.9</td><td>Depth</td></tr>
       </table></div></div>
     <div style="flex:1;min-width:300px"><h3 style="margin:0 0 10px;color:#030F18">One page only</h3>
-      <p style="margin:0 0 12px">There is no contact page. Quote requests go to the Request Workers form at the bottom of the homepage; Contact and job enquiries go to WhatsApp +65 8956 5188.</p>
+      <p style="margin:0 0 12px">There is no contact page. Quote requests and Contact go to the Request Workers form section at the bottom of the homepage; job enquiries go to WhatsApp +65 8956 5188.</p>
       <div class="table-wrap"><table class="ds-table">
         <tr><th>Link</th><th>Goes to</th></tr>
         <tr><td>Request a Quote (header, hero, fees, process)</td><td>Homepage form, same page</td></tr>
-        <tr><td>Contact (nav), Contact Us (footer)</td><td>WhatsApp with the employer message, new tab</td></tr>
+        <tr><td>Contact (nav), Contact Us (footer)</td><td>Request a Quote form section, same page</td></tr>
+        <tr><td>Footer WhatsApp number</td><td>WhatsApp with the employer message, new tab</td></tr>
         <tr><td>Service row Request a Quote</td><td>Homepage form, service pre-selected</td></tr>
         <tr><td>Hire … Workers (country cards)</td><td>Homepage form, country pre-selected</td></tr>
         <tr><td>Find a Job, Apply for a Job</td><td>WhatsApp with a job-seeker message, new tab</td></tr>

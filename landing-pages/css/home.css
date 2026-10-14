@@ -863,3 +863,12 @@ details[open] .faq-ico { transform: rotate(45deg); background: var(--frost); }
 .form-card .hs-form-frame { margin: 0 -32px; }
 @media (max-width: 900px) { .form-card .hs-form-frame { margin: 0 -24px; } }
 @media (max-width: 600px) { .form-card .hs-form-frame { margin: 0 -18px; } }
+/* Email and phone in the Request a Quote band */
+.cta-contact { display: grid; gap: 4px; }
+.cta-contact li { display: flex; align-items: center; gap: 10px; font-size: 15px; color: var(--white); }
+.cta-contact .ico { width: 18px; height: 18px; color: var(--glacier); }
+.cta-contact a { display: inline-flex; align-items: center; min-height: 44px; text-decoration: underline; text-underline-offset: 3px; text-decoration-color: rgba(114,163,191,.6); word-break: break-word; }
+.cta-contact a:hover { color: var(--glacier); }
+.cta-contact span { display: inline-flex; align-items: center; min-height: 44px; }
+@media (max-width: 900px) { .cta-contact li { font-size: 14px; } }
+@media (max-width: 600px) { .cta-contact { justify-items: center; } }

@@ -29,10 +29,10 @@ const MSG_JOB_SEEKER = [
 ].join('\n');
 
 // One page only: Request a Quote and the service/country cards go to the HubSpot form below.
-// Contact, Find a Job and the WhatsApp buttons open WhatsApp in a new tab.
+// Contact scrolls to the form section; Find a Job and the WhatsApp buttons open WhatsApp in a new tab.
 const LINKS = {
   requestWorkers: '#request-workers',
-  contact: waLink(MSG_EMPLOYER),
+  contact: '#request-workers',
   findJob: waLink(MSG_JOB_SEEKER),
   whatsapp: waLink(MSG_EMPLOYER),
 };
@@ -99,7 +99,8 @@ updateReviewBtns();
 
 /* ---------- Services accordion: opens and closes only when clicked ---------- */
 const svcItems = [...document.querySelectorAll('.svc-item')];
-const svcMedia = [...document.querySelectorAll('.svc-media .media-ph')];
+const svcMedia = [...document.querySelectorAll('.svc-media .media-ph:not(.media-default)')];
+const svcDefault = document.querySelector('.svc-media .media-default');
 let svcIndex = svcItems.findIndex((item) => item.classList.contains('is-open'));
 
 // i = -1 closes everything
@@ -111,7 +112,8 @@ const openService = (i) => {
     item.querySelector('.svc-head').setAttribute('aria-expanded', String(open));
   });
   // keep the last picture showing when everything is closed
-  if (i >= 0) svcMedia.forEach((m, n) => m.classList.toggle('is-active', n === i));
+  svcMedia.forEach((m, n) => m.classList.toggle('is-active', n === i));
+  if (svcDefault) svcDefault.classList.toggle('is-active', i < 0);
 };
 
 svcItems.forEach((item, i) => {
