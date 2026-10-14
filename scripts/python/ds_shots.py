@@ -1,0 +1,35 @@
+"""
+Captures every homepage section at desktop 1440, tablet 768 and mobile 390
+as JPEGs for the design system page.
+Usage: python scripts/python/ds_shots.py [out-folder]   (default: process/design-system-img)
+"""
+import sys
+from pathlib import Path
+from playwright.sync_api import sync_playwright
+
+OUT = Path(sys.argv[1] if len(sys.argv) > 1 else Path(__file__).resolve().parents[2] / "process" / "design-system-img"); OUT.mkdir(parents=True, exist_ok=True)
+BASE = "http://localhost:8000/landing-pages/"
+SECTIONS = [
+    ("header", ".site-header"), ("hero", ".hero"), ("reviews", ".reviews"), ("services", "#services"),
+    ("industries", "#industries"), ("why", "#why-us"), ("how", "#how-to-hire"), ("process", "#process"),
+    ("fees", "#fees"), ("testimonials", ".testimonials"), ("faq", "#faq"), ("form", "#request-workers"),
+    ("footer", ".site-footer"),
+]
+WIDTHS = [("desktop", 1440, False), ("tablet", 768, False), ("mobile", 390, True)]
+CLEAN = "html{scroll-behavior:auto!important}.site-header{position:static!important}.wa-float{display:none!important}*{animation:none!important;transition:none!important}"
+
+with sync_playwright() as p:
+    b = p.chromium.launch()
+    for vname, w, mob in WIDTHS:
+        ctx = b.new_context(viewport={"width": w, "height": 900}, is_mobile=mob, has_touch=mob, device_scale_factor=1 if w > 800 else 2)
+        pg = ctx.new_page(); pg.goto(BASE, wait_until="networkidle"); pg.wait_for_timeout(500)
+        pg.add_style_tag(content=CLEAN)
+        pg.click("#svc-tab-0"); pg.wait_for_timeout(300)                      # show one service open
+        pg.evaluate("document.querySelectorAll('.faq-list details')[0].open = true")
+        pg.evaluate("document.getElementById('testi-pause') && document.getElementById('testi-pause').click()")
+        for name, sel in SECTIONS:
+            el = pg.locator(sel).first; el.scroll_into_view_if_needed(); pg.wait_for_timeout(150)
+            el.screenshot(path=str(OUT / f"{name}-{vname}.jpg"), type="jpeg", quality=72)
+        ctx.close()
+    b.close()
+print("saved", len(list(OUT.glob("*.jpg"))), "images,", round(sum(f.stat().st_size for f in OUT.glob("*.jpg")) / 1e6, 1), "MB")

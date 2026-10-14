@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Employment Agency Singapore Design System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ---------- Doc chrome (same layout as the SuperClean SG design-system pages) ---------- */
+*{box-sizing:border-box}
+[id]{scroll-margin-top:64px}
+body{margin:0;font-family:Poppins,system-ui,sans-serif;color:#1d1d1d;background:#fff;-webkit-font-smoothing:antialiased}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.86em;background:#f2f4f4;padding:1px 5px;border-radius:4px}
+.ds-header{background:#1D4052;color:#fff}
+.ds-header-inner{max-width:1240px;margin:0 auto;padding:48px 24px 40px}
+.ds-kicker{margin:0 0 8px;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#72A3BF}
+.ds-header h1{margin:0 0 12px;font-size:40px;line-height:48px;font-weight:700;letter-spacing:-.02em}
+.lede{max-width:860px;margin:0 0 20px;font-size:16px;line-height:26px;color:#DCE7EC}
+.bp-pills{display:flex;flex-wrap:wrap;gap:8px}
+.bp-pills span{padding:6px 12px;border-radius:100px;font-size:13px;font-weight:600;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25)}
+.ds-nav{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid #e3e8e7}
+.ds-nav-inner{max-width:1240px;margin:0 auto;padding:0 24px;display:flex;gap:22px;overflow-x:auto}
+.ds-nav a{flex:none;padding:14px 0 12px;font-size:13px;font-weight:600;color:#333;text-decoration:none;border-bottom:2px solid transparent}
+.ds-nav a:hover{color:#030F18;border-bottom-color:#FF5B04}
+main{max-width:1240px;margin:0 auto;padding:24px 24px 80px}
+.ds-section{padding:40px 0 24px;border-top:1px solid #e3e8e7;margin-top:24px}
+.ds-section>h2{margin:0 0 8px;font-size:28px;line-height:36px;font-weight:700;color:#030F18;letter-spacing:-.01em}
+.section-note{margin:0 0 24px;max-width:880px;font-size:15px;line-height:24px;color:#555}
+.ds-sub{margin:28px 0}
+.ds-sub>h3{margin:0 0 14px;font-size:18px;font-weight:700;color:#030F18}
+.specimen{border:1px solid #e3e8e7;border-radius:12px;padding:24px;background:#fff}
+.spec-caption{margin:16px 0 0;font-size:14px;line-height:22px;color:#555;max-width:880px}
+.source-label{display:inline-block;margin-top:14px;padding:4px 10px;border-radius:100px;background:#f1f3f3;border:1px solid #e3e6e6;font-size:11px;font-weight:700;color:#555}
+.notice{margin:20px 0;padding:14px 18px;border-radius:10px;font-size:14px;line-height:22px}
+.notice.info{background:#EEF4F6;border:1px solid #CFE0E7;color:#1D4052}
+.notice.todo{background:#FFF3EC;border:1px solid #FFD3BA;color:#7A2E00}
+table.ds-table{width:100%;border-collapse:collapse;font-size:14px}
+.ds-table th,.ds-table td{text-align:left;padding:10px 12px;border-bottom:1px solid #eee;vertical-align:top}
+.ds-table th{font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:#666;background:#fafafa}
+.ds-table td:first-child{font-weight:600;color:#030F18}
+.table-wrap{overflow-x:auto}
+.vlabel{font-size:11px;font-weight:700;color:#8a9396;text-transform:uppercase;letter-spacing:.08em}
+.demo-row{display:flex;flex-wrap:wrap;gap:24px;align-items:flex-start}
+.demo-col{display:flex;flex-direction:column;gap:10px}
+.state-list{margin:16px 0 0;padding-left:18px;font-size:14px;line-height:22px;color:#444}
+.state-list li{margin:4px 0}
+/* swatches */
+.swatch-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px}
+.swatch{border:1px solid #e3e8e7;border-radius:10px;overflow:hidden}
+.swatch .sw{height:64px;border-bottom:1px solid #eee}
+.swatch .meta{padding:10px 12px}
+.swatch .name{margin:0;font-size:14px;font-weight:700}
+.swatch .hex{margin:2px 0 6px;font-family:ui-monospace,monospace;font-size:12px;color:#555}
+.swatch .note{margin:0;font-size:12px;line-height:18px;color:#666}
+/* type ramp */
+.ramp-row{display:grid;grid-template-columns:230px 1fr;gap:24px;padding:20px 0;border-bottom:1px solid #f0f0f0;align-items:start}
+.ramp-meta .role{display:block;font-weight:700;font-size:14px;color:#030F18}
+.ramp-meta .vals{display:block;margin-top:6px;font-size:12px;line-height:19px;color:#666}
+.ramp-meta .vals b{display:inline-block;width:18px;color:#1D4052}
+.ramp-samples{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1.1fr) minmax(0,.8fr);gap:20px}
+.ramp-samples>div{border-left:2px dashed #e0e5e4;padding-left:14px;min-width:0}
+.ramp-samples p{margin:6px 0 0}
+.ramp-samples .x-logo{white-space:normal;align-items:flex-start}
+.ramp-samples .x-mark{flex:none}
+/* spacing */
+.space-row{display:grid;grid-template-columns:64px 1fr 360px;gap:14px;align-items:center;padding:6px 0}
+.space-row .px{font-family:ui-monospace,monospace;font-size:13px;font-weight:700}
+.space-row .bar{height:14px;background:#1D4052;border-radius:3px}
+.space-row .use{font-size:13px;color:#555}
+/* radii + shadows */
+.radius-grid,.shadow-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:18px;text-align:center;font-size:12px;color:#555}
+.radius-item .box,.shadow-item .box{height:84px;border:2px solid #1D4052;margin-bottom:8px;background:#F3F6F5}
+.shadow-item .box{border:0;background:#fff;border-radius:16px}
+.val{display:block;font-family:ui-monospace,monospace;font-weight:700;color:#030F18;margin-bottom:2px}
+/* breakpoint frames */
+.frames{display:flex;flex-wrap:wrap;gap:20px;align-items:flex-end}
+.frame-box{border:1px solid #cfd8d6;border-radius:10px;position:relative;background:#fff;overflow:hidden}
+.frame-box .cols{position:absolute;inset:8px var(--g);display:grid;gap:var(--gap)}
+.frame-box .cols div{background:rgba(255,91,4,.14);border:1px dashed #FF5B04;border-radius:3px}
+.frame-box .gut{position:absolute;top:0;bottom:0;width:var(--g);background:rgba(29,64,82,.12)}
+.frame-cap{margin-top:8px;font-size:12px;line-height:18px;color:#555}
+.frame-cap b{color:#030F18}
+/* section block galleries */
+.block{padding:32px 0;border-bottom:1px solid #eee}
+.block h4{margin:0 0 6px;font-size:18px;color:#030F18}
+.block .lead-note{margin:0 0 14px;font-size:14px;line-height:22px;color:#444;max-width:900px}
+.bp-table{margin:0 0 16px}
+.gallery{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(0,1.05fr) minmax(0,.6fr);gap:16px;align-items:start}
+.shot{margin:0;border:1px solid #d9e0de;border-radius:10px;overflow:hidden;background:#f6f8f8}
+.shot .scroll{max-height:460px;overflow-y:auto}
+.shot img{display:block;width:100%;height:auto}
+.shot figcaption{padding:6px 10px;font-size:11px;font-weight:700;color:#555;border-top:1px solid #e3e8e7;background:#fff;text-transform:uppercase;letter-spacing:.06em}
+@media (max-width:900px){.ramp-row{grid-template-columns:1fr}.ramp-samples{grid-template-columns:1fr}.gallery{grid-template-columns:1fr}.space-row{grid-template-columns:52px 1fr}.space-row .use{grid-column:1/-1}}
+
+/* =================================================================
+   SITE TOKENS (copied from landing-pages/css/design-system.css :root)
+   ================================================================= */
+:root{
+  --depth:#030f18; --harbor:#1d4052; --marine:#446e87; --glacier:#72a3bf; --frost:#e0e8e6; --sea:#075056; --orange:#ff5b04; --white:#fff;
+  --orange-hover:#e84f00; --frost-soft:#f3f6f5; --frost-line:#d3dedb; --star:#f5b400; --wa:#25d366;
+  --radius-sm:10px; --radius:16px; --radius-lg:24px;
+  --shadow:0 10px 30px -12px rgba(3,15,24,.18); --shadow-lg:0 24px 60px -20px rgba(3,15,24,.28);
+}
+/* ---------- Specimens: built with the site tokens ---------- */
+.x{font-family:Poppins,sans-serif;color:var(--depth)}
+.x p{margin:0}
+.x-h1{font-weight:700;letter-spacing:-.02em;color:var(--depth);line-height:1.15}
+.x-h2{font-weight:700;letter-spacing:-.02em;color:var(--depth);line-height:1.15}
+.x-h3{font-weight:600;color:var(--depth);line-height:1.35}
+.x-accent{color:var(--sea);display:block}
+.x-eyebrow{font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--marine)}
+.x-small{color:var(--marine)}
+.x-btn{white-space:nowrap;display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:999px;font:600 16px/1 Poppins,sans-serif;border:2px solid transparent;padding:0 26px;min-height:48px;text-decoration:none;cursor:pointer;transition:background .2s,color .2s,transform .2s}
+.x-btn:hover{transform:translateY(-1px)}
+.x-btn:focus-visible{outline:3px solid var(--glacier);outline-offset:3px}
+.x-btn.lg{min-height:56px;padding:0 32px;font-size:17px}
+.x-btn.sm{min-height:42px;padding:0 20px;font-size:15px}
+.x-btn.m{min-height:46px;font-size:15px;width:100%}
+.x-primary{background:var(--orange);color:#fff;box-shadow:0 8px 20px -8px rgba(255,91,4,.6)}
+.x-primary:hover,.x-primary.is-hover{background:var(--orange-hover)}
+.x-secondary{background:#fff;color:var(--harbor);border-color:var(--harbor)}
+.x-secondary:hover,.x-secondary.is-hover{background:var(--harbor);color:#fff}
+.x-light{background:var(--frost);color:var(--depth)}
+.x-wa{background:var(--wa);color:#fff}
+.x-link{display:inline-flex;align-items:center;gap:6px;font-weight:600;color:var(--sea);text-decoration:none;font-size:15px}
+.x-round{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:#fff;color:var(--harbor);border:1px solid var(--frost-line)}
+.x-round.dark{background:transparent;color:#fff;border-color:rgba(114,163,191,.4)}
+.x-field{display:grid;gap:6px;width:300px;max-width:100%}
+.x-field label{font-size:14px;font-weight:600}
+.x-field .req{color:var(--orange)}
+.x-input{width:100%;font:400 16px Poppins,sans-serif;padding:12px 14px;border:1px solid var(--frost-line);border-radius:10px;background:var(--frost-soft);color:var(--depth)}
+.x-input.focus{outline:none;border-color:var(--sea);background:#fff;box-shadow:0 0 0 3px rgba(7,80,86,.12)}
+.x-phone{display:flex}.x-phone span{display:grid;place-items:center;padding:0 12px;border:1px solid var(--frost-line);border-right:0;border-radius:10px 0 0 10px;background:var(--frost);font-size:15px;font-weight:500}
+.x-phone .x-input{border-radius:0 10px 10px 0}
+.x-consent{display:flex;gap:10px;font-size:13px;line-height:1.5;max-width:420px;opacity:.85}
+.x-consent input{width:18px;height:18px;accent-color:var(--sea);flex:none}
+.x-chip{display:inline-block;font-size:13px;padding:5px 12px;border-radius:999px;background:var(--frost-soft);border:1px solid var(--frost);color:var(--harbor)}
+.x-svc{width:420px;max-width:100%;border:1px solid var(--frost-line);border-radius:16px;background:rgba(255,255,255,.55)}
+.x-svc.open{background:#fff;box-shadow:var(--shadow)}
+.x-svc-head{display:flex;align-items:center;gap:16px;padding:20px 24px}
+.x-svc-ico{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;background:var(--frost);color:var(--harbor);flex:none}
+.x-svc.open .x-svc-ico{background:var(--harbor);color:#fff}
+.x-svc-t strong{display:block;font-size:19px;font-weight:600}.x-svc-t small{display:block;font-size:14px;color:var(--marine)}
+.x-chev{margin-left:auto;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--frost-line);background:#fff;color:var(--harbor)}
+.x-svc.open .x-chev{transform:rotate(180deg);background:var(--frost);border-color:transparent}
+.x-svc-body{padding:0 24px 24px 88px;display:grid;gap:14px;font-size:15px}
+.x-faq{width:520px;max-width:100%;border:1px solid var(--frost);border-radius:10px;background:#fff}
+.x-faq.open{border-color:var(--frost-line);box-shadow:var(--shadow)}
+.x-faq-q{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:18px 22px;font-weight:600}
+.x-faq-ico{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;color:var(--harbor)}
+.x-faq.open .x-faq-ico{transform:rotate(45deg);background:var(--frost)}
+.x-faq-a{padding:0 22px 20px;font-size:15px;opacity:.85}
+.x-country{width:300px;max-width:100%;border:1px solid var(--frost-line);border-radius:24px;overflow:hidden;background:#fff}
+.x-country .ph{aspect-ratio:16/10;position:relative;display:flex;align-items:flex-end;padding:16px;background:linear-gradient(to top,rgba(3,15,24,.85),rgba(3,15,24,.05) 65%),linear-gradient(135deg,var(--marine),var(--glacier))}
+.x-country .code{position:absolute;top:14px;left:14px;font-size:12px;font-weight:700;background:rgba(255,255,255,.92);color:var(--harbor);padding:4px 10px;border-radius:999px}
+.x-country h5{margin:0;color:#fff;font-size:18px;font-weight:600}
+.x-country dl{margin:0;padding:16px 18px 4px;display:grid;gap:8px;font-size:13px}
+.x-country dl div{display:grid;grid-template-columns:76px 1fr;gap:8px}.x-country dt{color:var(--marine)}.x-country dd{margin:0}
+.x-country .x-link{margin:10px 18px 18px;font-size:14px}
+.x-rating-d{width:300px;min-height:260px;border-radius:24px;background:var(--frost-soft);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px}
+.x-rating-d .t{font-size:15px;font-weight:500;display:flex;flex-direction:column;align-items:center;gap:10px}
+.x-rating-d .s{display:flex;align-items:center;gap:10px;font-size:52px;font-weight:700;letter-spacing:-.02em;line-height:1}
+.x-rating-m{width:358px;max-width:100%;border-radius:24px;background:#fff;border:1px solid var(--frost);box-shadow:var(--shadow);padding:18px 16px;display:flex;flex-direction:column;align-items:center;gap:10px}
+.x-rating-m .t{display:flex;align-items:center;gap:10px;font-size:18px;font-weight:600}
+.x-rating-m .s{display:flex;align-items:center;gap:10px;font-size:18px;font-weight:600}
+.x-stars{display:flex;gap:2px;color:var(--star)}
+.x-review{width:290px;max-width:100%;border:1px solid var(--frost-line);border-radius:24px;background:#fff;padding:24px;display:flex;flex-direction:column;gap:12px}
+.x-review header{display:flex;align-items:center;gap:12px;min-height:46px}
+.x-review strong{display:block;font-size:16px}.x-review small{display:block;font-size:13px;color:var(--marine)}
+.x-avatar{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font-weight:600;color:#fff;flex:none}
+.x-step{display:flex;align-items:center;gap:12px}
+.x-step b{font-size:88px;font-weight:700;font-style:italic;line-height:1;color:var(--sea)}
+.x-pnum{font-size:40px;font-weight:500;letter-spacing:-.02em;color:var(--sea);line-height:1}
+.x-fee{width:640px;max-width:100%;border:1px solid var(--frost-line);border-radius:24px;overflow:hidden;font-size:15px}
+.x-fee table{width:100%;border-collapse:collapse}
+.x-fee th,.x-fee td{padding:16px 20px;text-align:left;vertical-align:top;border-top:1px solid var(--frost)}
+.x-fee thead th{background:var(--harbor);color:#fff;font-size:15px;border-top:0}
+.x-fee td:nth-child(2){color:var(--sea);font-weight:600}
+.x-pill{white-space:nowrap;display:inline-block;background:var(--sea);color:#fff;font-size:13px;padding:3px 12px;border-radius:999px}
+.x-header{display:flex;align-items:center;gap:20px;overflow-x:auto;height:76px;padding:0 24px;background:#fff;border:1px solid var(--frost-line);border-radius:12px}
+.x-logo{display:inline-flex;align-items:center;gap:10px;font-weight:700;font-size:19px;white-space:nowrap}
+.x-mark{width:28px;height:28px;border-radius:50%;background:conic-gradient(from 200deg,var(--sea) 0 55%,var(--orange) 55% 70%,var(--harbor) 70% 100%);-webkit-mask:radial-gradient(circle,transparent 6.5px,#000 7px);mask:radial-gradient(circle,transparent 6.5px,#000 7px)}
+.x-nav{display:flex;gap:18px;margin-left:auto;font-size:14px;font-weight:500;white-space:nowrap}
+.x-nav span:first-child{border-bottom:2px solid var(--orange);padding-bottom:4px}
+.x-seg{display:grid;grid-template-columns:1fr 1fr;gap:4px;padding:4px;border-radius:999px;background:var(--frost);width:360px;max-width:100%}
+.x-seg span{min-height:44px;border-radius:999px;display:grid;place-items:center;font-size:14px;font-weight:600;color:var(--harbor)}
+.x-seg span.on{background:#fff;color:var(--depth);box-shadow:0 2px 10px -4px rgba(3,15,24,.3)}
+.x-banner{width:100%;max-width:820px;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:24px 28px;border-radius:24px;background:var(--frost)}
+.x-banner h5{margin:0 0 4px;font-size:20px;font-weight:600}
+.x-banner p{font-size:14px;opacity:.85}
+.x-waf{width:60px;height:60px;border-radius:50%;background:var(--wa);display:grid;place-items:center;color:#fff;box-shadow:0 10px 28px -6px rgba(37,211,102,.55)}
+.dark-stage{background:var(--harbor);padding:20px;border-radius:12px}
+.depth-stage{background:var(--depth);padding:20px;border-radius:12px}
+</style>
+</head>
+<body>
+
+<!-- Icon set used on the page specimens (same drawings as the site's sprite) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-left" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-right" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 2.8l2.8 5.8 6.3.9-4.6 4.4 1.1 6.3L12 17.2l-5.6 3 1.1-6.3L2.9 9.5l6.3-.9z" fill="currentColor"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="i-helmet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17h18v2H3z"/><path d="M5 17v-3a7 7 0 0114 0v3"/><path d="M10 7.3V5h4v2.3"/><path d="M12 7v5"/></g></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.6-3.6 3.2-5.5 6.5-5.5s5.9 1.9 6.5 5.5"/><path d="M15.5 4.8a3.5 3.5 0 010 6.4M18 14.8c1.9.7 3.2 2.4 3.5 5.2"/></g></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 01-11.6 7.1L4 20l1-4.1A8 8 0 1120 12z"/><path d="M8.5 11h.01M12 11h.01M15.5 11h.01" stroke-width="2.6"/></g></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7.5 3v5.5c0 4.6-3.2 8.3-7.5 9.5-4.3-1.2-7.5-4.9-7.5-9.5V6z"/><path d="M8.8 12.2l2.2 2.2 4.3-4.4"/></g></symbol>
+  <symbol id="i-whatsapp" viewBox="0 0 24 24"><path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></symbol>
+  <symbol id="i-google" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></symbol>
+</defs></svg>
+
+<header class="ds-header">
+  <div class="ds-header-inner">
+    <p class="ds-kicker">Employment Agency Singapore · One-page site · v1.1 (14 Oct 2026)</p>
+    <h1>Website Design System</h1>
+    <p class="lede">Design system for employmentagencysingapore.com across desktop, tablet and mobile. Every size on this page was measured on the built site at 1440px, 768px and 390px. The code in <code>landing-pages/css/design-system.css</code> and <code>home.css</code> is the source of truth; where this page and the code disagree, the code wins.</p>
+    <div class="bp-pills"><span>Desktop ≥ 901px · design width 1440</span><span>Tablet 601–900px · design width 768</span><span>Mobile ≤ 600px · design width 390</span></div>
+  </div>
+</header>
+
+<nav class="ds-nav">
+  <div class="ds-nav-inner">
+    <a href="#color">2.1 Color</a>
+    <a href="#type">2.2 Type</a>
+    <a href="#spacing">2.3 Spacing</a>
+    <a href="#grid">2.4 Grid</a>
+    <a href="#radii">2.5 Radii + Shadows</a>
+    <a href="#components">3 Components</a>
+    <a href="#patterns">4 Section blocks</a>
+    <a href="#recipes">5 Page recipes</a>
+    <a href="#imagery">6 Imagery</a>
+    <a href="#code">7 Where to set this</a>
+  </div>
+</nav>
+
+<main>
+
+<div class="notice todo"><strong>Still placeholders on the live build:</strong> client logos, contact details and the Privacy Policy link. Photos and the logo mark are in (14 Oct 2026). The full list is in the EA Website Launch Checklist doc.</div>
+
+<!-- ============================== 2.1 COLOR ============================== -->
+<section class="ds-section" id="color">
+  <h2>2.1 Color</h2>
+  <p class="section-note">One palette for all three breakpoints. Brand colours are the tokens at the top of the stylesheet; supporting colours are used for one component each.</p>
+  <div class="ds-sub"><h3>Brand colours</h3><div class="swatch-grid">
+<div class="swatch"><div class="sw" style="background:#030F18"></div><div class="meta"><p class="name">Depth</p><p class="hex">#030F18 · --depth</p><p class="note">H1, H2, body text, testimonials band, footer</p></div></div>
+<div class="swatch"><div class="sw" style="background:#1D4052"></div><div class="meta"><p class="name">Harbor</p><p class="hex">#1D4052 · --harbor</p><p class="note">Icons, secondary button, fee table header, Request Workers form band</p></div></div>
+<div class="swatch"><div class="sw" style="background:#075056"></div><div class="meta"><p class="name">Deep Sea Green</p><p class="hex">#075056 · --sea</p><p class="note">Highlighted line of every H2 on light, step numbers, text links, prices, focus border</p></div></div>
+<div class="swatch"><div class="sw" style="background:#446E87"></div><div class="meta"><p class="name">Marine</p><p class="hex">#446E87 · --marine</p><p class="note">Eyebrow label, job titles, captions, licence line, card labels</p></div></div>
+<div class="swatch"><div class="sw" style="background:#72A3BF"></div><div class="meta"><p class="name">Glacier</p><p class="hex">#72A3BF · --glacier</p><p class="note">Highlighted H2 line on dark, dotted patterns, focus ring, carousel dots</p></div></div>
+<div class="swatch"><div class="sw" style="background:#E0E8E6"></div><div class="meta"><p class="name">Frost</p><p class="hex">#E0E8E6 · --frost</p><p class="note">Banners (Looking for work, Still have questions), icon tiles, chips, Find a Job on dark</p></div></div>
+<div class="swatch"><div class="sw" style="background:#FF5B04"></div><div class="meta"><p class="name">Blaze Orange</p><p class="hex">#FF5B04 · --orange</p><p class="note">Request a Quote button only (the main conversion), required-field asterisks, nav underline</p></div></div>
+<div class="swatch"><div class="sw" style="background:#FFFFFF"></div><div class="meta"><p class="name">White</p><p class="hex">#FFFFFF · --white</p><p class="note">Base surface, cards, form card, Find a Job button on light</p></div></div>
+  </div></div>
+  <div class="ds-sub"><h3>Supporting colours</h3><div class="swatch-grid">
+<div class="swatch"><div class="sw" style="background:#F3F6F5"></div><div class="meta"><p class="name">Frost Soft</p><p class="hex">#F3F6F5 · --frost-soft</p><p class="note">Alternating section background, input fill, desktop Google rating card</p></div></div>
+<div class="swatch"><div class="sw" style="background:#D3DEDB"></div><div class="meta"><p class="name">Frost Line</p><p class="hex">#D3DEDB · --frost-line</p><p class="note">Card and input borders, header bottom line, dividers</p></div></div>
+<div class="swatch"><div class="sw" style="background:#E84F00"></div><div class="meta"><p class="name">Orange Hover</p><p class="hex">#E84F00 · --orange-hover</p><p class="note">Request a Quote hover state</p></div></div>
+<div class="swatch"><div class="sw" style="background:#F5B400"></div><div class="meta"><p class="name">Star Yellow</p><p class="hex">#F5B400</p><p class="note">Every star rating, including the big desktop star</p></div></div>
+<div class="swatch"><div class="sw" style="background:#25D366"></div><div class="meta"><p class="name">WhatsApp Green</p><p class="hex">#25D366</p><p class="note">Floating WhatsApp button and Chat on WhatsApp button only</p></div></div>
+  </div></div>
+  <div class="ds-sub">
+    <h3>Colour roles</h3>
+    <div class="table-wrap"><table class="ds-table">
+      <tr><th>Role</th><th>Colour</th></tr>
+      <tr><td>Section background rhythm</td><td>White → Frost Soft → White, with three dark bands: testimonials on Depth, Request Workers form on Harbor, footer on Depth</td></tr>
+      <tr><td>H1 and H2</td><td><code>#030F18</code> first line; highlighted second line <code>#075056</code> on light, <code>#72A3BF</code> on dark</td></tr>
+      <tr><td>Body text</td><td><code>#030F18</code> at 82–85% opacity for paragraphs; white at 80–85% on dark</td></tr>
+      <tr><td>Primary button (Request a Quote)</td><td><code>#FF5B04</code> fill, white text, hover <code>#E84F00</code></td></tr>
+      <tr><td>Secondary button (Find a Job)</td><td>White fill, <code>#1D4052</code> 2px outline and text; hover fills Harbor. On dark: Frost fill, Depth text</td></tr>
+      <tr><td>Text links</td><td><code>#075056</code>, 600 weight, arrow icon; on dark <code>#E0E8E6</code></td></tr>
+      <tr><td>Icons</td><td><code>#1D4052</code>; inside an active tile, white on Harbor</td></tr>
+      <tr><td>Name initials (avatars)</td><td>Rotate <code>#075056</code>, <code>#FF5B04</code>, <code>#446E87</code> with white letters</td></tr>
+      <tr><td>Focus</td><td>Keyboard ring 3px <code>#72A3BF</code>; form fields border <code>#075056</code> + 3px ring at 12%</td></tr>
+    </table></div>
+  </div>
+  <p class="spec-caption"><strong>Not used:</strong> orange for headings or highlights (it competes with the Request a Quote button and fails contrast on light grey); pure black; any colour outside this list.</p>
+  <span class="source-label">landing-pages/css/design-system.css :root tokens</span>
+</section>
+
+<!-- ============================== 2.2 TYPE ============================== -->
+<section class="ds-section" id="type">
+  <h2>2.2 Typography</h2>
+  <p class="section-note">Poppins for all text, weights 400, 500, 600 and 700. Each role has one size per breakpoint. Samples are shown at the real size: <b>D</b> desktop 1440, <b>T</b> tablet 768, <b>M</b> mobile 390. Sizes marked ≈ are fluid (they scale with screen width between the limits shown).</p>
+  <div class="specimen x">
+    <div class="ramp-row"><div class="ramp-meta"><span class="role">H1 hero</span><span class="vals"><b>D</b>56 / 64, 700, −0.02em<br><b>T</b>≈35 / 41 (30–38)<br><b>M</b>≈28 / 32 (26–30)</span></div>
+      <div class="ramp-samples"><div><span class="vlabel">Desktop</span><p class="x-h1" style="font-size:56px">Employment Agency <span class="x-accent" style="display:inline">Foreign</span></p></div><div><span class="vlabel">Tablet</span><p class="x-h1" style="font-size:35px">Employment Agency Singapore</p></div><div><span class="vlabel">Mobile</span><p class="x-h1" style="font-size:28px">Employment Agency Singapore</p></div></div></div>
+    <div class="ramp-row"><div class="ramp-meta"><span class="role">H2 section</span><span class="vals"><b>D</b>44 / 51, 700, −0.02em<br><b>T</b>≈29 / 34 (24–30)<br><b>M</b>≈23 / 27 (22–25)</span></div>
+      <div class="ramp-samples"><div><span class="vlabel">Desktop</span><p class="x-h2" style="font-size:44px">How to Hire<span class="x-accent">Foreign Workers</span></p></div><div><span class="vlabel">Tablet</span><p class="x-h2" style="font-size:29px">How to Hire<span class="x-accent">Foreign Workers</span></p></div><div><span class="vlabel">Mobile</span><p class="x-h2" style="font-size:23px">How to Hire<span class="x-accent">Foreign Workers</span></p></div></div></div>
+    <div class="ramp-row"><div class="ramp-meta"><span class="role">H3 card / item title</span><span class="vals"><b>D</b>20 / 27, 600<br><b>T</b>17 / 23<br><b>M</b>16 / 22 (Why Choose items 14.5)</span></div>
+      <div class="ramp-samples"><div><span class="vlabel">Desktop</span><p class="x-h3" style="font-size:20px">Backed by SuperClean SG</p></div><div><span class="vlabel">Tablet</span><p class="x-h3" style="font-size:17px">Backed by SuperClean SG</p></div><div><span class="vlabel">Mobile</span><p class="x-h3" style="font-size:16px">Backed by SuperClean SG</p></div></div></div>
+    <div class="ramp-row"><div class="ramp-meta"><span class="role">Lead (under H2)</span><span class="vals"><b>D</b>18 / 30, 400<br><b>T</b>16 / 26<br><b>M</b>15 / 25</span></div>
+      <div class="ramp-samples"><div><span class="vlabel">Desktop</span><p style="font-size:18px;line-height:30px;opacity:.85">From your first message to workers on site, we keep it simple.</p></div><div><span class="vlabel">Tablet</span><p style="font-size:16px;line-height:26px;opacity:.85">From your first message to workers on site, we keep it simple.</p></div><div><span class="vlabel">Mobile</span><p style="font-size:15px;line-height:25px;opacity:.85">From your first message to workers on site.</p></div></div></div>
+    <div class="ramp-row"><div class="ramp-meta"><span class="role">Body</span><span class="vals"><b>D</b>16 / 26, 400<br><b>T</b>15 / 25<br><b>M</b>14.5 / 24 (cards 12.5–13.5)</span></div>
+      <div class="ramp-samples"><div><span class="vlabel">Desktop</span><p style="font-size:16px;line-height:26px;opacity:.85">As cleaning operators, we screen every candidate against our own hiring standards.</p></div><div><span class="vlabel">Tablet</span><p style="font-size:15px;line-height:25px;opacity:.85">As cleaning operators, we screen every candidate against our own hiring standards.</p></div><div><span class="vlabel">Mobile</span><p style="font-size:14.5px;line-height:24px;opacity:.85">We screen every candidate against our own standards.</p></div></div></div>
+    <div class="ramp-row"><div class="ramp-meta"><span class="role">Eyebrow (hero only)</span><span class="vals"><b>D</b>13, 600, +0.12em, uppercase<br><b>T</b>13<br><b>M</b>11</span></div>
+      <div class="ramp-samples"><div><span class="vlabel">Desktop</span><p class="x-eyebrow" style="font-size:13px">MOM-licensed employment agency</p></div><div><span class="vlabel">Tablet</span><p class="x-eyebrow" style="font-size:13px">MOM-licensed employment agency</p></div><div><span class="vlabel">Mobile</span><p class="x-eyebrow" style="font-size:11px">MOM-licensed employment agency</p></div></div></div>
+    <div class="ramp-row"><div class="ramp-meta"><span class="role">Small / licence line</span><span class="vals"><b>D</b>13, 400, Marine<br><b>T</b>12<br><b>M</b>11.5</span></div>
+      <div class="ramp-samples"><div><span class="vlabel">Desktop</span><p class="x-small" style="font-size:13px">Part of SuperClean SG · NEA Licensed Company</p></div><div><span class="vlabel">Tablet</span><p class="x-small" style="font-size:12px">Part of SuperClean SG · NEA Licensed Company</p></div><div><span class="vlabel">Mobile</span><p class="x-small" style="font-size:11.5px">Part of SuperClean SG · NEA Licensed Company</p></div></div></div>
+    <div class="ramp-row"><div class="ramp-meta"><span class="role">Button</span><span class="vals"><b>D</b>16, 600 (large 17, header 15)<br><b>T</b>15 (large 16)<br><b>M</b>15</span></div>
+      <div class="ramp-samples"><div><span class="vlabel">Desktop</span><p style="font-size:17px;font-weight:600">Request a Quote</p></div><div><span class="vlabel">Tablet</span><p style="font-size:16px;font-weight:600">Request a Quote</p></div><div><span class="vlabel">Mobile</span><p style="font-size:15px;font-weight:600">Request a Quote</p></div></div></div>
+    <div class="ramp-row"><div class="ramp-meta"><span class="role">Accordion / FAQ question</span><span class="vals"><b>D</b>16 / 26, 600 (service title 19)<br><b>T</b>15 (service 16)<br><b>M</b>14 (service 15)</span></div>
+      <div class="ramp-samples"><div><span class="vlabel">Desktop</span><p style="font-size:16px;font-weight:600">How long does it take to hire a foreign worker?</p></div><div><span class="vlabel">Tablet</span><p style="font-size:15px;font-weight:600">How long does it take to hire a foreign worker?</p></div><div><span class="vlabel">Mobile</span><p style="font-size:14px;font-weight:600">How long does it take to hire?</p></div></div></div>
+    <div class="ramp-row"><div class="ramp-meta"><span class="role">Form label / input</span><span class="vals">Label <b>D</b>14 <b>T</b>13 <b>M</b>12.5, 600<br>Input text 16 at every size (stops iPhones zooming in)</span></div>
+      <div class="ramp-samples"><div><span class="vlabel">Desktop</span><p style="font-size:14px;font-weight:600">Company name <span style="color:#ff5b04">*</span></p></div><div><span class="vlabel">Tablet</span><p style="font-size:13px;font-weight:600">Company name <span style="color:#ff5b04">*</span></p></div><div><span class="vlabel">Mobile</span><p style="font-size:12.5px;font-weight:600">Company name <span style="color:#ff5b04">*</span></p></div></div></div>
+    <div class="ramp-row"><div class="ramp-meta"><span class="role">Step numbers</span><span class="vals">How to Hire <b>D</b>88 <b>T</b>60 <b>M</b>44, 700 italic<br>Process <b>D</b>40 <b>T</b>28 <b>M</b>22, 500</span></div>
+      <div class="ramp-samples"><div><span class="vlabel">Desktop</span><p style="display:flex;gap:24px;align-items:center"><b style="font-size:88px;font-style:italic;color:#075056;line-height:1">1</b><span class="x-pnum">01</span></p></div><div><span class="vlabel">Tablet</span><p style="display:flex;gap:20px;align-items:center"><b style="font-size:60px;font-style:italic;color:#075056;line-height:1">1</b><span class="x-pnum" style="font-size:28px">01</span></p></div><div><span class="vlabel">Mobile</span><p style="display:flex;gap:16px;align-items:center"><b style="font-size:44px;font-style:italic;color:#075056;line-height:1">1</b><span class="x-pnum" style="font-size:22px">01</span></p></div></div></div>
+    <div class="ramp-row"><div class="ramp-meta"><span class="role">Logo wordmark</span><span class="vals"><b>D</b>19, 700 (16 between 901–1280)<br><b>T</b>17<br><b>M</b>15</span></div>
+      <div class="ramp-samples"><div><span class="vlabel">Desktop</span><p class="x-logo"><span class="x-mark"></span>Employment Agency Singapore</p></div><div><span class="vlabel">Tablet</span><p class="x-logo" style="font-size:17px"><span class="x-mark" style="width:26px;height:26px"></span>Employment Agency Singapore</p></div><div><span class="vlabel">Mobile</span><p class="x-logo" style="font-size:15px"><span class="x-mark" style="width:22px;height:22px"></span>Employment Agency Singapore</p></div></div></div>
+  </div>
+  <p class="spec-caption"><strong>Heading rules:</strong> in every two-colour H2 the highlighted phrase sits on its own second line at every size (except one-line headings like "Our Clients"). H2s are centred on all sizes, except the recruitment process and the Request Workers form, which sit left of their content on desktop and tablet. On mobile every H2 is centred. Nothing smaller than 11.5px; form inputs always 16px.</p>
+  <span class="source-label">Measured on the built site at 1440 / 768 / 390, 13 Oct 2026</span>
+</section>
+
+<!-- ============================== 2.3 SPACING ============================== -->
+<section class="ds-section" id="spacing">
+  <h2>2.3 Spacing</h2>
+  <p class="section-note">A 4- and 8-based scale. Larger steps are only used for section padding on desktop.</p>
+  <div class="specimen">
+    <div class="space-row"><span class="px">4px</span><div><div class="bar" style="width:4px"></div></div><span class="use">Label → input, stars gap</span></div>
+    <div class="space-row"><span class="px">8px</span><div><div class="bar" style="width:8px"></div></div><span class="use">Chip gap, checklist gap, icon → label</span></div>
+    <div class="space-row"><span class="px">12px</span><div><div class="bar" style="width:12px"></div></div><span class="use">Mobile card gap, FAQ item gap</span></div>
+    <div class="space-row"><span class="px">16px</span><div><div class="bar" style="width:16px"></div></div><span class="use">Mobile side gutter, tablet card gap, mobile card padding</span></div>
+    <div class="space-row"><span class="px">24px</span><div><div class="bar" style="width:24px"></div></div><span class="use">Desktop and tablet side gutter, desktop card gap, card padding</span></div>
+    <div class="space-row"><span class="px">32px</span><div><div class="bar" style="width:32px"></div></div><span class="use">Tablet heading → content, form card padding</span></div>
+    <div class="space-row"><span class="px">48px</span><div><div class="bar" style="width:48px"></div></div><span class="use">Mobile section padding (top / bottom)</span></div>
+    <div class="space-row"><span class="px">56px</span><div><div class="bar" style="width:56px"></div></div><span class="use">Desktop heading → content</span></div>
+    <div class="space-row"><span class="px">64px</span><div><div class="bar" style="width:64px"></div></div><span class="use">Tablet section padding, desktop column gap</span></div>
+    <div class="space-row"><span class="px">112px</span><div><div class="bar" style="width:112px"></div></div><span class="use">Desktop section padding (form band 104px)</span></div>
+  </div>
+  <div class="ds-sub"><h3>Spacing rules</h3>
+    <div class="table-wrap"><table class="ds-table">
+      <tr><th>Token</th><th>Desktop</th><th>Tablet</th><th>Mobile</th></tr>
+      <tr><td>Section padding (top / bottom)</td><td><code>112px</code></td><td><code>64px</code></td><td><code>48px</code></td></tr>
+      <tr><td>Request Workers form band</td><td><code>104px</code></td><td><code>64px</code></td><td><code>48px</code></td></tr>
+      <tr><td>Side gutter</td><td><code>24px</code></td><td><code>24px</code></td><td><code>16px</code></td></tr>
+      <tr><td>Heading → content</td><td><code>56px</code></td><td><code>32px</code></td><td><code>24px</code></td></tr>
+      <tr><td>Card gap</td><td><code>24px</code></td><td><code>16px</code></td><td><code>12px</code></td></tr>
+      <tr><td>Card padding</td><td><code>24–32px</code></td><td><code>20–24px</code></td><td><code>16–18px</code></td></tr>
+      <tr><td>Between sections</td><td colspan="3">0, separated by a background change</td></tr>
+    </table></div>
+  </div>
+</section>
+
+<!-- ============================== 2.4 GRID ============================== -->
+<section class="ds-section" id="grid">
+  <h2>2.4 Grid and breakpoints</h2>
+  <p class="section-note">Content is 1200px wide at most, centred. Tablet keeps two or three columns where it helps; mobile is one column with swipe rows for cards.</p>
+  <div class="frames">
+    <div><div class="frame-box" style="width:432px;height:150px;--g:7px;--gap:7px"><div class="gut" style="left:0"></div><div class="gut" style="right:0"></div><div class="cols" style="grid-template-columns:repeat(3,1fr)"><div></div><div></div><div></div></div></div>
+      <p class="frame-cap"><b>Desktop 1440</b> · content 1200 · gutter 24 · 3 cards × 384 + 24 gap</p></div>
+    <div><div class="frame-box" style="width:230px;height:150px;--g:7px;--gap:5px"><div class="gut" style="left:0"></div><div class="gut" style="right:0"></div><div class="cols" style="grid-template-columns:repeat(3,1fr)"><div></div><div></div><div></div></div></div>
+      <p class="frame-cap"><b>Tablet 768</b> · content 720 · gutter 24 · 3 × 229 + 16</p></div>
+    <div><div class="frame-box" style="width:117px;height:150px;--g:5px;--gap:4px"><div class="gut" style="left:0"></div><div class="gut" style="right:0"></div><div class="cols" style="grid-template-columns:1fr"><div></div></div></div>
+      <p class="frame-cap"><b>Mobile 390</b> · content 358<br>gutter 16 · 1 column</p></div>
+  </div>
+  <div class="ds-sub"><h3>Breakpoints</h3>
+    <div class="table-wrap"><table class="ds-table">
+      <tr><th>Width</th><th>What changes</th></tr>
+      <tr><td>≥ 1281px</td><td>Full desktop: logo 19px, menu 15px, both header buttons</td></tr>
+      <tr><td>1181–1280px</td><td>Logo 16px, menu 14px with 16px gaps</td></tr>
+      <tr><td>901–1180px</td><td>Google reviews show 2 cards next to the rating card instead of 3</td></tr>
+      <tr><td>≤ 1080px</td><td>Find a Job leaves the header (it stays in the hero, banner, menu and footer)</td></tr>
+      <tr><td>≤ 900px · tablet</td><td>Menu button replaces the menu; compact type scale; sections stack where needed</td></tr>
+      <tr><td>601–900px</td><td>Tablet-only layout: hero two columns, country cards 3 + 2, Why Choose 2 × 2, How to Hire 3 across, process two columns</td></tr>
+      <tr><td>≤ 600px · mobile</td><td>One column, swipe rows, hero picture hidden, fee rows stacked, 16px gutter</td></tr>
+    </table></div>
+  </div>
+  <div class="ds-sub"><h3>Columns per section</h3>
+    <div class="table-wrap"><table class="ds-table">
+      <tr><th>Section</th><th>Desktop</th><th>Tablet</th><th>Mobile</th></tr>
+      <tr><td>Hero</td><td>2 columns (text 1.05 : picture 1)</td><td>2 columns (1.25 : 0.75), picture 300px</td><td>1 column, picture hidden</td></tr>
+      <tr><td>Our Clients logos</td><td>5 × 2</td><td>3 × 2</td><td>2 × 2</td></tr>
+      <tr><td>Google reviews</td><td>Rating card 300px + 3 cards (2 at 901–1180)</td><td>Rating card above, 2 cards per view</td><td>Rating card above, 1 card per view (90%)</td></tr>
+      <tr><td>Services</td><td>Accordion + sticky photo</td><td>Accordion, photo inside the open item</td><td>Accordion, no photo</td></tr>
+      <tr><td>Industries</td><td>3 + 2 centred</td><td>3 + 2 centred</td><td>Swipe row, card 78%</td></tr>
+      <tr><td>Why Choose</td><td>2 × 2, icon left</td><td>2 × 2, icon left</td><td>2 × 2, icon on top</td></tr>
+      <tr><td>How to Hire</td><td>3 across with curved arrows</td><td>3 across, no arrows</td><td>List, number left</td></tr>
+      <tr><td>Recruitment process</td><td>Heading left (sticky) + list right</td><td>Same, 0.9 : 1.1</td><td>1 column, centred heading</td></tr>
+      <tr><td>Fees</td><td>3-column table</td><td>3-column table</td><td>Stacked rows: service + price, what's included below</td></tr>
+      <tr><td>Testimonials</td><td>Centred card 720px</td><td>Card 660px</td><td>Card 335px</td></tr>
+      <tr><td>FAQ</td><td>One centred column, 880px</td><td>Same</td><td>Full width</td></tr>
+      <tr><td>Request Workers form</td><td>Heading left, form right</td><td>Stacked</td><td>Stacked, centred heading</td></tr>
+      <tr><td>Footer</td><td>4 columns</td><td>2 columns</td><td>2 columns, On This Page hidden</td></tr>
+    </table></div>
+  </div>
+</section>
+
+<!-- ============================== 2.5 RADII ============================== -->
+<section class="ds-section" id="radii">
+  <h2>2.5 Radii and shadows</h2>
+  <p class="section-note">One radius per element type, the same at every breakpoint unless noted.</p>
+  <div class="radius-grid">
+    <div class="radius-item"><div class="box" style="border-radius:100px;height:48px;margin-top:18px"></div><span class="val">999px</span>Buttons, chips, switch, pills</div>
+    <div class="radius-item"><div class="box" style="border-radius:24px"></div><span class="val">24px</span>Cards, banners, rating card, form card (18px on mobile), fee table</div>
+    <div class="radius-item"><div class="box" style="border-radius:16px"></div><span class="val">16px</span>Service rows, Why Choose icon tile (13 tablet, 11 mobile)</div>
+    <div class="radius-item"><div class="box" style="border-radius:12px"></div><span class="val">12px</span>Client logo tiles, blog images</div>
+    <div class="radius-item"><div class="box" style="border-radius:10px"></div><span class="val">10px</span>Inputs, FAQ rows</div>
+    <div class="radius-item"><div class="box" style="border-radius:50%;width:84px;margin:0 auto 8px"></div><span class="val">50%</span>Avatars, arrow buttons, hero portraits, WhatsApp button</div>
+  </div>
+  <div class="ds-sub"><h3>Shadows</h3>
+    <div class="shadow-grid">
+      <div class="shadow-item"><div class="box" style="border:1px solid #D3DEDB"></div><span class="val">none + 1px border</span>Cards at rest (default, flat)</div>
+      <div class="shadow-item"><div class="box" style="box-shadow:var(--shadow)"></div><span class="val">--shadow</span>0 10 30 −12 · 18%: open service, open FAQ, form card, mobile rating card</div>
+      <div class="shadow-item"><div class="box" style="box-shadow:var(--shadow-lg)"></div><span class="val">--shadow-lg</span>0 24 60 −20 · 28%: card hover (desktop)</div>
+      <div class="shadow-item"><div class="box" style="box-shadow:0 8px 20px -8px rgba(255,91,4,.6)"></div><span class="val">orange glow</span>Request a Quote button</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== 3 COMPONENTS ============================== -->
+<section class="ds-section" id="components">
+  <h2>3 Components</h2>
+  <p class="section-note">Live specimens built with the site tokens. Desktop size is shown first; the table under each gives the tablet and mobile sizes. All tap targets are at least 44px on mobile, except the 40px arrow buttons and 38px footer links.</p>
+
+  <div class="ds-sub"><h3>3.1 Buttons and links</h3>
+    <div class="specimen x">
+      <div class="demo-row">
+        <div class="demo-col"><span class="vlabel">Primary · Request a Quote</span><a class="x-btn x-primary lg" href="#components">Request a Quote</a><a class="x-btn x-primary lg is-hover" href="#components">Hover</a></div>
+        <div class="demo-col"><span class="vlabel">Secondary · Find a Job</span><a class="x-btn x-secondary lg" href="#components">Find a Job</a><a class="x-btn x-secondary lg is-hover" href="#components">Hover</a></div>
+        <div class="demo-col dark-stage"><span class="vlabel" style="color:#B9CDD8">On dark</span><a class="x-btn x-light lg" href="#components">Find a Job</a><a class="x-btn x-wa" href="#components"><svg width="20" height="20"><use href="#i-whatsapp"/></svg>Chat on WhatsApp</a></div>
+        <div class="demo-col"><span class="vlabel">Text link · arrow buttons</span><a class="x-link" href="#components">Hire Indian Workers <svg width="18" height="18"><use href="#i-arrow"/></svg></a><div style="display:flex;gap:10px"><span class="x-round"><svg width="20" height="20"><use href="#i-left"/></svg></span><span class="x-round"><svg width="20" height="20"><use href="#i-right"/></svg></span></div></div>
+        <div class="demo-col" style="width:300px"><span class="vlabel">Mobile · full width</span><a class="x-btn x-primary m" href="#components">Request a Quote</a><a class="x-btn x-secondary m" href="#components">Find a Job</a></div>
+      </div>
+      <div class="table-wrap" style="margin-top:18px"><table class="ds-table">
+        <tr><th>Button</th><th>Desktop</th><th>Tablet</th><th>Mobile</th></tr>
+        <tr><td>Large (hero, fees, form)</td><td>56px, 17px, padding 32</td><td>48px, 16px, padding 24</td><td>46px, 15px, full width in the hero</td></tr>
+        <tr><td>Default</td><td>48px, 16px</td><td>44px, 15px</td><td>44px, 15px</td></tr>
+        <tr><td>Header</td><td>42px, 15px</td><td colspan="2">Moves into the menu panel</td></tr>
+        <tr><td>Arrow buttons</td><td>48px</td><td>42px</td><td>40px</td></tr>
+      </table></div>
+      <ul class="state-list"><li>Pill shape, 600 weight. Hover lifts 1px; primary darkens to <code>#E84F00</code>, secondary fills Harbor</li><li>Keyboard focus: 3px Glacier ring, 3px offset</li><li>Only Request a Quote is orange. Every other action uses the secondary, light, WhatsApp or text-link style</li></ul>
+    </div></div>
+
+  <div class="ds-sub"><h3>3.2 Form fields (HubSpot)</h3>
+    <div class="specimen x">
+      <div class="demo-row">
+        <div class="x-field"><label>Full name <span class="req">*</span></label><input class="x-input" placeholder=""></div>
+        <div class="x-field"><label>Contact number (focus) <span class="req">*</span></label><div class="x-phone"><span>+65</span><input class="x-input focus" value="9123 4567"></div></div>
+        <div class="x-field"><label>Source country</label><select class="x-input"><option>Any</option><option>Malaysia</option></select></div>
+        <label class="x-consent"><input type="checkbox" checked> <span>I agree that Employment Agency Singapore may collect and use my personal data to contact me about this enquiry, in line with the PDPA and the Privacy Policy.</span></label>
+      </div>
+      <ul class="state-list"><li><strong>The live form is the HubSpot embed.</strong> Its fields are styled in HubSpot's form editor; match them to this spec there (Poppins, Frost Soft fill, Deep Sea focus, orange button)</li><li>Inputs: Frost Soft fill, 1px Frost Line border, radius 10, text 16px; padding 12 × 14 desktop, 10 × 12 tablet, 9 × 12 mobile</li><li>Focus: white fill, Deep Sea border, 3px ring at 12%</li><li>Two fields per row on desktop and tablet; on mobile one per row, except the short pair Workers needed + Source country</li><li>Required fields marked with an orange asterisk; the submit button uses the primary style, full width</li></ul>
+    </div></div>
+
+  <div class="ds-sub"><h3>3.3 Service accordion row</h3>
+    <div class="specimen x"><div class="demo-row">
+      <div class="x-svc"><div class="x-svc-head"><span class="x-svc-ico"><svg width="24" height="24"><use href="#i-users"/></svg></span><span class="x-svc-t"><strong>Cleaning Manpower Outsourcing</strong><small>On our payroll, at your site</small></span><span class="x-chev"><svg width="18" height="18"><use href="#i-chev"/></svg></span></div></div>
+      <div class="x-svc open"><div class="x-svc-head"><span class="x-svc-ico"><svg width="24" height="24"><use href="#i-helmet"/></svg></span><span class="x-svc-t"><strong>Construction Worker Recruitment</strong><small>New and U-turn workers</small></span><span class="x-chev"><svg width="18" height="18"><use href="#i-chev"/></svg></span></div>
+        <div class="x-svc-body"><p>New and U-turn workers from Bangladesh, India, Myanmar and PRC.</p><div style="display:flex;flex-wrap:wrap;gap:8px"><span class="x-chip">Bangladesh</span><span class="x-chip">India</span><span class="x-chip">Myanmar</span><span class="x-chip">PRC</span></div><a class="x-btn x-primary sm" href="#components" style="justify-self:start">Request a Quote</a></div></div>
+    </div>
+    <ul class="state-list"><li>All rows closed on load; a click opens one and closes the others; clicking an open row closes it. No timer</li><li>Row header padding 20 × 24 desktop, 16 × 18 tablet, 14 × 16 mobile; icon tile 48 / 40 / hidden on mobile</li><li>The row's Request a Quote button scrolls to the homepage form with that service pre-selected</li></ul></div></div>
+
+  <div class="ds-sub"><h3>3.4 FAQ row</h3>
+    <div class="specimen x"><div class="demo-col">
+      <div class="x-faq"><div class="x-faq-q">Can you supply cleaners on a contract basis?<span class="x-faq-ico"><svg width="18" height="18"><use href="#i-plus"/></svg></span></div></div>
+      <div class="x-faq open"><div class="x-faq-q">How long does it take to hire a foreign worker?<span class="x-faq-ico"><svg width="18" height="18"><use href="#i-plus"/></svg></span></div><div class="x-faq-a">Usually 4 to 10 weeks, depending on the source country and Work Permit approval.</div></div>
+    </div>
+    <ul class="state-list"><li>One open at a time; the plus turns 45° into a cross on a Frost circle</li><li>Question padding 18 × 22 desktop, 14 × 18 tablet, 12 × 14 mobile</li></ul></div></div>
+
+  <div class="ds-sub"><h3>3.5 Country card and job banner</h3>
+    <div class="specimen x"><div class="demo-row" style="align-items:center">
+      <div class="x-country"><div class="ph"><span class="code">IN</span><h5>Indian Workers for Cleaning &amp; Construction</h5></div>
+        <dl><div><dt>Sectors</dt><dd>Cleaning, construction</dd></div><div><dt>Roles</dt><dd>Cleaners, general construction workers</dd></div><div><dt>Lead time</dt><dd>6–10 weeks</dd></div></dl>
+        <a class="x-link" href="#components">Hire Indian Workers <svg width="18" height="18"><use href="#i-arrow"/></svg></a></div>
+      <div class="x-banner"><div><h5>Looking for work in Singapore?</h5><p>Send us your details and we'll contact you when a cleaning or construction role matches.</p></div><a class="x-btn x-secondary" href="#components">Apply for a Job</a></div>
+    </div>
+    <ul class="state-list"><li>Photo 16:10 on desktop, 16:9 on tablet and mobile, with a dark fade for the title; country code pill top-left</li><li>Tablet stacks each label above its value; mobile shows the cards in a swipe row at 78% width</li><li>Hire link scrolls to the homepage form with the country pre-selected</li><li>The banner (also used for "Still have questions?") is Frost, max 960px, centred; stacks on mobile</li></ul></div></div>
+
+  <div class="ds-sub"><h3>3.6 Google rating card</h3>
+    <div class="specimen x"><div class="demo-row" style="align-items:center">
+      <div class="demo-col"><span class="vlabel">Desktop (≥ 901px)</span><div class="x-rating-d"><span class="t"><svg width="32" height="32"><use href="#i-google"/></svg>Trusted on Google</span><span class="s"><svg width="46" height="46" style="color:#F5B400"><use href="#i-star"/></svg>5.0</span></div></div>
+      <div class="demo-col"><span class="vlabel">Tablet and mobile</span><div class="x-rating-m"><span class="t"><svg width="24" height="24"><use href="#i-google"/></svg>Trusted on Google</span><span class="s">5.0 <span class="x-stars"><svg width="18" height="18"><use href="#i-star"/></svg><svg width="18" height="18"><use href="#i-star"/></svg><svg width="18" height="18"><use href="#i-star"/></svg><svg width="18" height="18"><use href="#i-star"/></svg><svg width="18" height="18"><use href="#i-star"/></svg></span></span></div></div>
+    </div>
+    <ul class="state-list"><li>Desktop follows superclean.sg: Frost Soft square, no border or shadow, as tall as the review cards (top and bottom aligned)</li><li>Tablet and mobile: white card with --shadow, max 460px, centred above the reviews</li><li>No H2 above the reviews section</li></ul></div></div>
+
+  <div class="ds-sub"><h3>3.7 Review card, testimonial card and avatars</h3>
+    <div class="specimen x"><div class="demo-row" style="align-items:flex-start">
+      <div class="x-review"><header><span class="x-avatar" style="background:#075056">J</span><div><strong>Jason Tan</strong><small>Operations Manager</small></div></header><span class="x-stars"><svg width="18" height="18"><use href="#i-star"/></svg><svg width="18" height="18"><use href="#i-star"/></svg><svg width="18" height="18"><use href="#i-star"/></svg><svg width="18" height="18"><use href="#i-star"/></svg><svg width="18" height="18"><use href="#i-star"/></svg></span><p style="font-size:15px">"We needed 6 cleaners for a new condo contract within a month."</p></div>
+      <div class="depth-stage" style="width:460px;max-width:100%"><div class="x-review" style="width:100%;border:0"><header><span class="x-avatar" style="background:#FF5B04;width:56px;height:56px">S</span><div><strong>Siti Rahmah</strong><small>Housekeeping Manager</small></div><span class="x-stars" style="margin-left:auto"><svg width="18" height="18"><use href="#i-star"/></svg><svg width="18" height="18"><use href="#i-star"/></svg><svg width="18" height="18"><use href="#i-star"/></svg><svg width="18" height="18"><use href="#i-star"/></svg><svg width="18" height="18"><use href="#i-star"/></svg></span></header><p style="font-size:18px;line-height:1.6">"Their cleaners arrive trained and know the job."</p></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:16px"><span class="x-round dark"><svg width="20" height="20"><use href="#i-left"/></svg></span><span style="display:flex;gap:8px;align-items:center"><i style="width:10px;height:10px;border-radius:9px;background:rgba(114,163,191,.4)"></i><i style="width:28px;height:10px;border-radius:9px;background:#72A3BF"></i><i style="width:10px;height:10px;border-radius:9px;background:rgba(114,163,191,.4)"></i></span><span class="x-round dark"><svg width="20" height="20"><use href="#i-right"/></svg></span></div></div>
+      <div class="demo-col"><span class="vlabel">Avatar colours</span><div style="display:flex;gap:8px"><span class="x-avatar" style="background:#075056">J</span><span class="x-avatar" style="background:#FF5B04">M</span><span class="x-avatar" style="background:#446E87">A</span></div></div>
+    </div>
+    <ul class="state-list"><li>Review cards: name block a fixed 46px tall so stars line up across cards; long names cut with an ellipsis</li><li>Testimonials: auto-advance every 6s, pause on hover, on focus, when the tab is hidden, or with the pause button; side cards blurred at 35% opacity</li><li>Avatar 44px desktop, 38px tablet and mobile; testimonial avatar 56 / 44 / 38</li></ul></div></div>
+
+  <div class="ds-sub"><h3>3.8 Step markers and fee row</h3>
+    <div class="specimen x"><div class="demo-row" style="align-items:center">
+      <div class="x-step"><b>2</b><svg width="44" height="44" style="color:#1D4052"><use href="#i-chat"/></svg></div>
+      <div style="display:grid;grid-template-columns:76px 1fr;align-items:baseline;width:340px;border-bottom:1px solid #D3DEDB;padding:16px 0"><span class="x-pnum">04</span><span style="font-size:19px;font-weight:500">Work Permit (IPA) application</span></div>
+      <div class="x-fee"><table><thead><tr><th>Service</th><th>Fee (S$)</th><th>What's included</th></tr></thead><tbody><tr><th style="font-weight:600">Replacement</th><td><span class="x-pill">Free within 3 months</span></td><td>One replacement if the worker leaves</td></tr></tbody></table></div>
+    </div>
+    <ul class="state-list"><li>How to Hire: big italic Deep Sea number + Harbor icon; curved dashed arrows between steps on desktop only</li><li>Process: 01–06 numbers in a column, divider between rows</li><li>Fee table header Harbor with white 16px text (14 tablet); on mobile each row becomes service + price on one line, what's included underneath at 75% opacity</li></ul></div></div>
+
+  <div class="ds-sub"><h3>3.9 Header and floating WhatsApp</h3>
+    <div class="specimen x">
+      <div class="x-header"><span class="x-logo"><span class="x-mark"></span>Employment Agency Singapore</span><span class="x-nav"><span>Services</span><span>Industries</span><span>How to Hire</span><span>Fees</span><span>FAQ</span><span>Contact</span></span><a class="x-btn x-secondary sm" href="#components">Find a Job</a><a class="x-btn x-primary sm" href="#components">Request a Quote</a></div>
+      <div class="demo-row" style="margin-top:16px;align-items:center">
+        <div class="x-header" style="width:390px;height:58px;padding:0 16px"><span class="x-logo" style="font-size:15px"><span class="x-mark" style="width:22px;height:22px"></span>Employment Agency Singapore</span><svg width="26" height="26" style="margin-left:auto"><use href="#i-menu"/></svg></div>
+        <span class="x-waf"><svg width="32" height="32"><use href="#i-whatsapp"/></svg></span>
+      </div>
+      <ul class="state-list"><li>Sticky, white at 96% with blur; a thin Frost Line border and soft shadow appear after scrolling</li><li>Height 76 desktop, 64 tablet, 58 mobile. Active menu link gets an orange underline</li><li>Floating WhatsApp: 60px desktop, 52 tablet, 50 mobile, 16–24px from the bottom right, on every page</li></ul>
+    </div></div>
+</section>
+
+<!-- ============================== 4 SECTION BLOCKS ============================== -->
+<section class="ds-section" id="patterns">
+  <h2>4 Section blocks</h2>
+  <p class="section-note">Every section of the homepage, captured from the built site at desktop 1440, tablet 768 and mobile 390. Scroll inside a tall screenshot to see all of it.</p>
+
+  <div class="block" id="b-header"><h4>4.1 Header</h4>
+    <p class="lead-note">Logo, six menu links, Find a Job and Request a Quote. Below 900px the links and buttons move into a drop-down menu.</p>
+    <div class="gallery"><figure class="shot"><div class="scroll"><img src="design-system-img/header-desktop.jpg" alt="Header, desktop" loading="lazy"></div><figcaption>Desktop 1440</figcaption></figure><figure class="shot"><div class="scroll"><img src="design-system-img/header-tablet.jpg" alt="Header, tablet" loading="lazy"></div><figcaption>Tablet 768</figcaption></figure><figure class="shot"><div class="scroll"><img src="design-system-img/header-mobile.jpg" alt="Header, mobile" loading="lazy"></div><figcaption>Mobile 390</figcaption></figure></div></div>
+
+  <div class="block" id="b-hero"><h4>4.2 Hero + Our Clients</h4>
+    <p class="lead-note">Eyebrow, H1 with the highlighted second half, three-item checklist, Request a Quote + Find a Job, licence line. Picture: dotted globe with five country portraits, Myanmar in the centre. Our Clients follows in the same band. <strong>Our Clients is hidden for now</strong> (the <code>hidden</code> attribute in index.html) until real client logos exist; while it is hidden, the Google reviews sit 48px below the hero on desktop.</p>
+    <div class="table-wrap bp-table"><table class="ds-table"><tr><th>Desktop</th><th>Tablet</th><th>Mobile</th></tr><tr><td>Two columns; logos 5 × 2</td><td>Two columns, picture 300px; logos 3 × 2</td><td>Text and buttons only, buttons full width; logos 2 × 2</td></tr></table></div>
+    <div class="gallery"><figure class="shot"><div class="scroll"><img src="design-system-img/hero-desktop.jpg" alt="Hero, desktop" loading="lazy"></div><figcaption>Desktop 1440</figcaption></figure><figure class="shot"><div class="scroll"><img src="design-system-img/hero-tablet.jpg" alt="Hero, tablet" loading="lazy"></div><figcaption>Tablet 768</figcaption></figure><figure class="shot"><div class="scroll"><img src="design-system-img/hero-mobile.jpg" alt="Hero, mobile" loading="lazy"></div><figcaption>Mobile 390</figcaption></figure></div></div>
+
+  <div class="block" id="b-reviews"><h4>4.3 Google reviews</h4>
+    <p class="lead-note">No heading. Rating card plus three review cards with arrow buttons on their own row underneath.</p>
+    <div class="table-wrap bp-table"><table class="ds-table"><tr><th>Desktop</th><th>Tablet</th><th>Mobile</th></tr><tr><td>Tinted rating square left, cards right; review cards white</td><td>Rating card centred on top, 2 cards per view</td><td>Rating card on top, 1 card per view</td></tr></table></div>
+    <div class="gallery"><figure class="shot"><div class="scroll"><img src="design-system-img/reviews-desktop.jpg" alt="Reviews, desktop" loading="lazy"></div><figcaption>Desktop 1440</figcaption></figure><figure class="shot"><div class="scroll"><img src="design-system-img/reviews-tablet.jpg" alt="Reviews, tablet" loading="lazy"></div><figcaption>Tablet 768</figcaption></figure><figure class="shot"><div class="scroll"><img src="design-system-img/reviews-mobile.jpg" alt="Reviews, mobile" loading="lazy"></div><figcaption>Mobile 390</figcaption></figure></div></div>
+
+  <div class="block" id="b-services"><h4>4.4 Services</h4>
+    <p class="lead-note">Frost Soft band. Four accordion rows (component 3.3), all closed on load. Shown here with the first row open.</p>
+    <div class="table-wrap bp-table"><table class="ds-table"><tr><th>Desktop</th><th>Tablet</th><th>Mobile</th></tr><tr><td>Rows left, sticky photo panel right</td><td>One column, photo inside the open row</td><td>One column, no photo, no icon tiles</td></tr></table></div>
+    <div class="gallery"><figure class="shot"><div class="scroll"><img src="design-system-img/services-desktop.jpg" alt="Services, desktop" loading="lazy"></div><figcaption>Desktop 1440</figcaption></figure><figure class="shot"><div class="scroll"><img src="design-system-img/services-tablet.jpg" alt="Services, tablet" loading="lazy"></div><figcaption>Tablet 768</figcaption></figure><figure class="shot"><div class="scroll"><img src="design-system-img/services-mobile.jpg" alt="Services, mobile" loading="lazy"></div><figcaption>Mobile 390</figcaption></figure></div></div>
+
+  <div class="block" id="b-industries"><h4>4.5 Industries + Looking for work</h4>
+    <p class="lead-note">Five country cards (component 3.5) and the job seeker banner.</p>
+    <div class="table-wrap bp-table"><table class="ds-table"><tr><th>Desktop</th><th>Tablet</th><th>Mobile</th></tr><tr><td>3 + 2, second row centred</td><td>3 + 2, labels stacked</td><td>Swipe row, 78% cards; banner stacked</td></tr></table></div>
+    <div class="gallery"><figure class="shot"><div class="scroll"><img src="design-system-img/industries-desktop.jpg" alt="Industries, desktop" loading="lazy"></div><figcaption>Desktop 1440</figcaption></figure><figure class="shot"><div class="scroll"><img src="design-system-img/industries-tablet.jpg" alt="Industries, tablet" loading="lazy"></div><figcaption>Tablet 768</figcaption></figure><figure class="shot"><div class="scroll"><img src="design-system-img/industries-mobile.jpg" alt="Industries, mobile" loading="lazy"></div><figcaption>Mobile 390</figcaption></figure></div></div>
+
+  <div class="block" id="b-why"><h4>4.6 Why Employers Choose Employment Agency Singapore</h4>
+    <p class="lead-note">Frost Soft band, four reasons with icon tiles and an orange dot.</p>
+    <div class="table-wrap bp-table"><table class="ds-table"><tr><th>Desktop</th><th>Tablet</th><th>Mobile</th></tr><tr><td>2 × 2, icon left</td><td>2 × 2, icon left</td><td>2 × 2, icon on top, 12.5px text</td></tr></table></div>
+    <div class="gallery"><figure class="shot"><div class="scroll"><img src="design-system-img/why-desktop.jpg" alt="Why choose, desktop" loading="lazy"></div><figcaption>Desktop 1440</figcaption></figure><figure class="shot"><div class="scroll"><img src="design-system-img/why-tablet.jpg" alt="Why choose, tablet" loading="lazy"></div><figcaption>Tablet 768</figcaption></figure><figure class="shot"><div class="scroll"><img src="design-system-img/why-mobile.jpg" alt="Why choose, mobile" loading="lazy"></div><figcaption>Mobile 390</figcaption></figure></div></div>
+
+  <div class="block" id="b-how"><h4>4.7 How to Hire Foreign Workers</h4>
+    <p class="lead-note">Three steps (component 3.8) and a one-line job seeker note with an Apply for a Job link. No button.</p>
+    <div class="table-wrap bp-table"><table class="ds-table"><tr><th>Desktop</th><th>Tablet</th><th>Mobile</th></tr><tr><td>3 across, curved dashed arrows</td><td>3 across, no arrows</td><td>List: number + icon left, text right</td></tr></table></div>
+    <div class="gallery"><figure class="shot"><div class="scroll"><img src="design-system-img/how-desktop.jpg" alt="How to hire, desktop" loading="lazy"></div><figcaption>Desktop 1440</figcaption></figure><figure class="shot"><div class="scroll"><img src="design-system-img/how-tablet.jpg" alt="How to hire, tablet" loading="lazy"></div><figcaption>Tablet 768</figcaption></figure><figure class="shot"><div class="scroll"><img src="design-system-img/how-mobile.jpg" alt="How to hire, mobile" loading="lazy"></div><figcaption>Mobile 390</figcaption></figure></div></div>
+
+  <div class="block" id="b-process"><h4>4.8 Our Foreign Workers Recruitment Process</h4>
+    <p class="lead-note">Frost Soft band. Heading and Request a Quote on the left, six numbered steps on the right. The one section with a left-aligned H2.</p>
+    <div class="table-wrap bp-table"><table class="ds-table"><tr><th>Desktop</th><th>Tablet</th><th>Mobile</th></tr><tr><td>Two columns, heading sticky</td><td>Two columns</td><td>One column, centred heading, no button</td></tr></table></div>
+    <div class="gallery"><figure class="shot"><div class="scroll"><img src="design-system-img/process-desktop.jpg" alt="Process, desktop" loading="lazy"></div><figcaption>Desktop 1440</figcaption></figure><figure class="shot"><div class="scroll"><img src="design-system-img/process-tablet.jpg" alt="Process, tablet" loading="lazy"></div><figcaption>Tablet 768</figcaption></figure><figure class="shot"><div class="scroll"><img src="design-system-img/process-mobile.jpg" alt="Process, mobile" loading="lazy"></div><figcaption>Mobile 390</figcaption></figure></div></div>
+
+  <div class="block" id="b-fees"><h4>4.9 Clear Fees. No Hidden Charges.</h4>
+    <p class="lead-note">Seven fee rows and a centred Request a Quote button.</p>
+    <div class="table-wrap bp-table"><table class="ds-table"><tr><th>Desktop</th><th>Tablet</th><th>Mobile</th></tr><tr><td>Three-column table</td><td>Same, tighter padding</td><td>Rows: service + price, included text below; no header row</td></tr></table></div>
+    <div class="gallery"><figure class="shot"><div class="scroll"><img src="design-system-img/fees-desktop.jpg" alt="Fees, desktop" loading="lazy"></div><figcaption>Desktop 1440</figcaption></figure><figure class="shot"><div class="scroll"><img src="design-system-img/fees-tablet.jpg" alt="Fees, tablet" loading="lazy"></div><figcaption>Tablet 768</figcaption></figure><figure class="shot"><div class="scroll"><img src="design-system-img/fees-mobile.jpg" alt="Fees, mobile" loading="lazy"></div><figcaption>Mobile 390</figcaption></figure></div></div>
+
+  <div class="block" id="b-testimonials"><h4>4.10 What Singapore Employers Say About Us</h4>
+    <p class="lead-note">Depth band. Auto-playing carousel of three testimonials (component 3.7) with arrows, dots and a pause button.</p>
+    <div class="gallery"><figure class="shot"><div class="scroll"><img src="design-system-img/testimonials-desktop.jpg" alt="Testimonials, desktop" loading="lazy"></div><figcaption>Desktop 1440</figcaption></figure><figure class="shot"><div class="scroll"><img src="design-system-img/testimonials-tablet.jpg" alt="Testimonials, tablet" loading="lazy"></div><figcaption>Tablet 768</figcaption></figure><figure class="shot"><div class="scroll"><img src="design-system-img/testimonials-mobile.jpg" alt="Testimonials, mobile" loading="lazy"></div><figcaption>Mobile 390</figcaption></figure></div></div>
+
+  <div class="block" id="b-faq"><h4>4.11 FAQ + Still have questions?</h4>
+    <p class="lead-note">Frost Soft band, eight questions in one centred column (component 3.4), then the Still have questions banner with Chat on WhatsApp.</p>
+    <div class="gallery"><figure class="shot"><div class="scroll"><img src="design-system-img/faq-desktop.jpg" alt="FAQ, desktop" loading="lazy"></div><figcaption>Desktop 1440</figcaption></figure><figure class="shot"><div class="scroll"><img src="design-system-img/faq-tablet.jpg" alt="FAQ, tablet" loading="lazy"></div><figcaption>Tablet 768</figcaption></figure><figure class="shot"><div class="scroll"><img src="design-system-img/faq-mobile.jpg" alt="FAQ, mobile" loading="lazy"></div><figcaption>Mobile 390</figcaption></figure></div></div>
+
+  <div class="block" id="b-form"><h4>4.12 Request Workers form</h4>
+    <p class="lead-note">Harbor band with dotted circles. Heading, one line of text and the licence line on the left; white form card on the right holding the HubSpot form, with "Looking for a job? Apply here" (WhatsApp) under it. Every Request a Quote button on the homepage scrolls here. The HubSpot embed runs edge to edge inside the card because it brings its own side padding.</p>
+    <div class="table-wrap bp-table"><table class="ds-table"><tr><th>Desktop</th><th>Tablet</th><th>Mobile</th></tr><tr><td>Two columns</td><td>Stacked</td><td>Stacked, centred heading</td></tr></table></div>
+    <div class="gallery"><figure class="shot"><div class="scroll"><img src="design-system-img/form-desktop.jpg" alt="Request Workers form, desktop" loading="lazy"></div><figcaption>Desktop 1440</figcaption></figure><figure class="shot"><div class="scroll"><img src="design-system-img/form-tablet.jpg" alt="Request Workers form, tablet" loading="lazy"></div><figcaption>Tablet 768</figcaption></figure><figure class="shot"><div class="scroll"><img src="design-system-img/form-mobile.jpg" alt="Request Workers form, mobile" loading="lazy"></div><figcaption>Mobile 390</figcaption></figure></div></div>
+
+  <div class="block" id="b-footer"><h4>4.13 Footer</h4>
+    <p class="lead-note">Depth band: brand and licence, On This Page links, Get Started links, contact details, copyright.</p>
+    <div class="table-wrap bp-table"><table class="ds-table"><tr><th>Desktop</th><th>Tablet</th><th>Mobile</th></tr><tr><td>4 columns</td><td>Brand full width, then 2 columns</td><td>On This Page hidden; extra bottom space for the WhatsApp button</td></tr></table></div>
+    <div class="gallery"><figure class="shot"><div class="scroll"><img src="design-system-img/footer-desktop.jpg" alt="Footer, desktop" loading="lazy"></div><figcaption>Desktop 1440</figcaption></figure><figure class="shot"><div class="scroll"><img src="design-system-img/footer-tablet.jpg" alt="Footer, tablet" loading="lazy"></div><figcaption>Tablet 768</figcaption></figure><figure class="shot"><div class="scroll"><img src="design-system-img/footer-mobile.jpg" alt="Footer, mobile" loading="lazy"></div><figcaption>Mobile 390</figcaption></figure></div></div>
+
+  <div class="notice info"><strong>Hidden for now:</strong> Further Resources on Hiring Foreign Workers (three blog cards and View all guides). It is in the code with the <code>hidden</code> attribute and comes back once real articles exist.</div>
+</section>
+
+<!-- ============================== 5 RECIPES ============================== -->
+<section class="ds-section" id="recipes">
+  <h2>5 Page recipes</h2>
+  <div class="demo-row">
+    <div style="flex:1.4;min-width:340px"><h3 style="margin:0 0 10px;color:#030F18">Homepage · /</h3>
+      <div class="table-wrap"><table class="ds-table">
+        <tr><th>#</th><th>Section</th><th>Block</th><th>Background</th></tr>
+        <tr><td>1</td><td>Header</td><td>4.1</td><td>White, sticky</td></tr>
+        <tr><td>2</td><td>Hero + Our Clients (clients hidden for now)</td><td>4.2</td><td>White</td></tr>
+        <tr><td>3</td><td>Google reviews</td><td>4.3</td><td>White</td></tr>
+        <tr><td>4</td><td>Foreign Worker Services</td><td>4.4</td><td>Frost Soft</td></tr>
+        <tr><td>5</td><td>Industries + Looking for work</td><td>4.5</td><td>White</td></tr>
+        <tr><td>6</td><td>Why Employers Choose</td><td>4.6</td><td>Frost Soft</td></tr>
+        <tr><td>7</td><td>How to Hire</td><td>4.7</td><td>White</td></tr>
+        <tr><td>8</td><td>Recruitment Process</td><td>4.8</td><td>Frost Soft</td></tr>
+        <tr><td>9</td><td>Clear Fees</td><td>4.9</td><td>White</td></tr>
+        <tr><td>10</td><td>Testimonials</td><td>4.10</td><td>Depth</td></tr>
+        <tr><td>11</td><td>FAQ + Still have questions</td><td>4.11</td><td>Frost Soft</td></tr>
+        <tr><td>–</td><td>Further Resources (hidden)</td><td>–</td><td>White</td></tr>
+        <tr><td>12</td><td>Request Workers form</td><td>4.12</td><td>Harbor</td></tr>
+        <tr><td>13</td><td>Footer + floating WhatsApp</td><td>4.13 / 3.9</td><td>Depth</td></tr>
+      </table></div></div>
+    <div style="flex:1;min-width:300px"><h3 style="margin:0 0 10px;color:#030F18">One page only</h3>
+      <p style="margin:0 0 12px">There is no contact page. Quote requests go to the Request Workers form at the bottom of the homepage; Contact and job enquiries go to WhatsApp +65 8956 5188.</p>
+      <div class="table-wrap"><table class="ds-table">
+        <tr><th>Link</th><th>Goes to</th></tr>
+        <tr><td>Request a Quote (header, hero, fees, process)</td><td>Homepage form, same page</td></tr>
+        <tr><td>Contact (nav), Contact Us (footer)</td><td>WhatsApp with the employer message, new tab</td></tr>
+        <tr><td>Service row Request a Quote</td><td>Homepage form, service pre-selected</td></tr>
+        <tr><td>Hire … Workers (country cards)</td><td>Homepage form, country pre-selected</td></tr>
+        <tr><td>Find a Job, Apply for a Job</td><td>WhatsApp with a job-seeker message, new tab</td></tr>
+        <tr><td>WhatsApp buttons (FAQ, floating)</td><td>WhatsApp with the employer message, new tab</td></tr>
+      </table></div></div>
+  </div>
+</section>
+
+<!-- ============================== 6 IMAGERY ============================== -->
+<section class="ds-section" id="imagery">
+  <h2>6 Imagery and icons</h2>
+  <div class="table-wrap"><table class="ds-table">
+    <tr><th>Slot</th><th>Ratio and size</th><th>Count</th><th>Notes</th></tr>
+    <tr><td>Hero portraits</td><td>Square 600 × 600, shown in circles: 32% / 18% / 14–16% of the picture</td><td>5</td><td>Head and shoulders on a plain light wall, smiling at the camera. Cleaners in the green SuperClean SG polo, construction workers in a yellow hard hat and orange vest. Hidden on mobile</td></tr>
+    <tr><td>Client logos</td><td>Tile 64px tall desktop, 52 tablet, 44 mobile</td><td>10</td><td>Logo centred, max 70% of the tile; grey or full colour, one style for all</td></tr>
+    <tr><td>Service photos</td><td>1200 × 960 (5:4) panel on desktop, cropped to 16:9 inside the row on tablet</td><td>4</td><td>The work itself: dishwashing, office cleaning, rebar work, documents. Not shown on mobile</td></tr>
+    <tr><td>Country photos</td><td>1200 × 750 (16:10) desktop, 16:9 tablet and mobile</td><td>5</td><td>A worker on the job for that country's main sector. No flags. Bottom 70% darkened (Depth 92% → 0) so the white title reads on any photo</td></tr>
+    <tr><td>Blog thumbnails</td><td>16:10, radius 12</td><td>3</td><td>Section hidden for now</td></tr>
+  </table></div>
+  <ul class="state-list">
+    <li>Photos are WebP (quality 80) in <code>landing-pages/images/home/</code>, named <code>hero-…</code>, <code>service-…</code>, <code>country-…</code>, and use <code>object-fit: cover</code>. Every image has alt text and a title; below-the-fold photos load lazily</li>
+    <li>Logo mark: <code>landing-pages/images/ea-logo.svg</code>, a ring in Deep Sea 55%, Blaze Orange 15% and Harbor 30%. Also the browser-tab icon</li>
+    <li>Icons: one inline SVG set, 1.8–2px stroke, rounded ends, Harbor colour; 20px in text, 24–28px in tiles, 44px in How to Hire steps</li>
+    <li>Icon tiles: 56px desktop, 46 tablet, 36–40 mobile, white with a Frost border; Why Choose tiles carry a small orange dot</li>
+    <li>Decorative dots (hero globe, form band circles): Glacier dots on a 15px grid, faded at the edges</li>
+  </ul>
+</section>
+
+<!-- ============================== 7 CODE ============================== -->
+<section class="ds-section" id="code">
+  <h2>7 Where to set this in code</h2>
+  <p class="section-note">The site is plain HTML, CSS and JavaScript. Only <code>landing-pages/</code> is deployed; this design system stays outside it. Change a value in one place and every page follows.</p>
+  <div class="table-wrap"><table class="ds-table">
+    <tr><th>Setting</th><th>Where</th><th>Notes</th></tr>
+    <tr><td>Colours, fonts, radii, shadows</td><td><code>landing-pages/css/design-system.css</code> → <code>:root</code></td><td>Tokens listed in 2.1 and 2.5. Shared by every page; loads first</td></tr>
+    <tr><td>Base, type scale, buttons, links</td><td><code>landing-pages/css/design-system.css</code></td><td>Includes the tablet and phone sizes for these</td></tr>
+    <tr><td>Homepage sections</td><td><code>landing-pages/css/home.css</code> sections 1–13</td><td>One block per section in page order; the tablet and phone blocks come after so they override the desktop rules</td></tr>
+    <tr><td>WhatsApp number, messages, button destinations</td><td><code>landing-pages/js/home.js</code> → part 1, Links</td><td>One setting per link type</td></tr>
+    <tr><td>Request a Quote form</td><td>HubSpot (portal 242253439, form e3c92672…)</td><td>Fields, consent text, button and thank-you message are edited in HubSpot, not in the code</td></tr>
+    <tr><td>Accordion, carousels, menu</td><td><code>landing-pages/js/home.js</code> → part 2, Interactions</td><td>Testimonial timing: 6 seconds</td></tr>
+    <tr><td>Images</td><td><code>landing-pages/images/</code></td><td><code>ea-logo.svg</code> and <code>home/*.webp</code></td></tr>
+    <tr><td>Browser cache</td><td><code>?v=</code> number on every CSS and JS link</td><td>Raise it after each change so browsers load the new files</td></tr>
+    <tr><td>Shareable preview</td><td><code>python scripts/python/build_preview.py</code></td><td>Builds the copy for the claude.ai preview link (the HubSpot form shows as a placeholder there)</td></tr>
+    <tr><td>Screenshots on this page</td><td><code>python scripts/python/ds_shots.py</code></td><td>Recaptures every section at 1440 / 768 / 390 (needs the local server running)</td></tr>
+    <tr><td>Mobile checks</td><td><code>python scripts/python/mobile_audit.py http://localhost:8000/landing-pages/</code></td><td>Sideways scrolling, small tap targets, tiny text, zooming inputs</td></tr>
+  </table></div>
+</section>
+
+</main>
+</body>
+</html>

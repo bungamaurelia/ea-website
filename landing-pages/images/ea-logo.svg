@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" width="30" height="30">
+  <title>Employment Agency Singapore</title>
+  <!-- Ring in three brand colours: Deep Sea 55%, Blaze Orange 15%, Harbor 30% (starts at 200deg, clockwise) -->
+  <g fill="none" stroke-width="7.75" transform="rotate(110 15 15)">
+    <circle cx="15" cy="15" r="11.125" pathLength="100" stroke="#075056" stroke-dasharray="55 45"/>
+    <circle cx="15" cy="15" r="11.125" pathLength="100" stroke="#ff5b04" stroke-dasharray="15 85" stroke-dashoffset="-55"/>
+    <circle cx="15" cy="15" r="11.125" pathLength="100" stroke="#1d4052" stroke-dasharray="30 70" stroke-dashoffset="-70"/>
+  </g>
+</svg>
