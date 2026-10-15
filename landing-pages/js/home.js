@@ -201,3 +201,25 @@ faqs.forEach((d) => d.addEventListener('toggle', () => {
 
 /* ---------- Footer year ---------- */
 document.getElementById('year').textContent = new Date().getFullYear();
+
+/* ---------- Phone: "See all" buttons and the bottom action bar ---------- */
+document.querySelectorAll('[data-expand]').forEach((btn) => {
+  const section = document.getElementById(btn.dataset.expand);
+  btn.addEventListener('click', () => {
+    const open = section.classList.toggle('is-expanded');
+    btn.setAttribute('aria-expanded', String(open));
+    btn.textContent = open ? btn.dataset.less : btn.dataset.more;
+  });
+});
+
+// The bar shows once the hero buttons have scrolled away, and hides while the form is on screen
+const mobileCta = document.querySelector('.mobile-cta');
+const heroButtons = document.querySelector('.hero .btn-row');
+const formSection = document.getElementById('request-workers');
+if (mobileCta && heroButtons && formSection) {
+  let pastHero = false;
+  let formInView = false;
+  const updateBar = () => mobileCta.classList.toggle('is-hidden', !pastHero || formInView);
+  new IntersectionObserver(([e]) => { pastHero = !e.isIntersecting && e.boundingClientRect.top < 0; updateBar(); }).observe(heroButtons);
+  new IntersectionObserver(([e]) => { formInView = e.isIntersecting; updateBar(); }).observe(formSection);
+}

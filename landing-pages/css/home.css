@@ -881,3 +881,36 @@ details[open] .faq-ico { transform: rotate(45deg); background: var(--frost); }
   .hero-visual { display: block; max-width: 300px; margin: 28px auto 0; justify-self: center; }
   .svc-media-mobile.has-photo { display: block !important; aspect-ratio: 16 / 9; border-radius: var(--radius); }
 }
+/* =========================================================
+   Phone (max 600px): shorter page and an action bar
+   ========================================================= */
+.show-more, .mobile-cta { display: none; }
+@media (max-width: 600px) {
+  /* "How to Hire" already covers the steps on phones */
+  #process { display: none; }
+
+  /* Fees and FAQ: first rows only, the rest behind a button */
+  .fee-table tr.fee-extra { display: none !important; }            /* rows are display: grid !important above */
+  .fees.is-expanded .fee-table tr.fee-extra { display: grid !important; }
+  .faq-list details.faq-extra { display: none; }
+  .faq.is-expanded .faq-list details.faq-extra { display: block; }
+  .show-more { display: flex; margin: 16px auto 0; min-width: 200px; }
+  .faq .show-more { margin-bottom: 4px; }
+
+  /* Form band: the sub line says it already */
+  .cta-copy .lead { display: none; }
+
+  /* Action bar replaces the floating WhatsApp button */
+  .wa-float { display: none; }
+  .mobile-cta {
+    display: flex; gap: 10px; position: fixed; left: 0; right: 0; bottom: 0; z-index: 60;
+    padding: 10px 16px calc(10px + env(safe-area-inset-bottom, 0px));
+    background: rgba(255, 255, 255, .97); border-top: 1px solid var(--frost-line);
+    box-shadow: 0 -8px 24px -16px rgba(3, 15, 24, .35);
+    transition: transform .25s ease;
+  }
+  .mobile-cta .btn { min-height: 48px; }
+  .mobile-cta .btn-primary { flex: 1; }
+  .mobile-cta .btn-whatsapp { flex: none; padding: 0 16px; gap: 6px; }
+  .mobile-cta.is-hidden, body:has(.main-nav.is-open) .mobile-cta { transform: translateY(110%); }
+}

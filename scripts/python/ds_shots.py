@@ -29,7 +29,10 @@ with sync_playwright() as p:
         pg.evaluate("document.querySelectorAll('.faq-list details')[0].open = true")
         pg.evaluate("document.getElementById('testi-pause') && document.getElementById('testi-pause').click()")
         for name, sel in SECTIONS:
-            el = pg.locator(sel).first; el.scroll_into_view_if_needed(); pg.wait_for_timeout(150)
+            el = pg.locator(sel).first
+            if not el.is_visible():                      # e.g. sections hidden on phones
+                (OUT / f"{name}-{vname}.webp").unlink(missing_ok=True); continue
+            el.scroll_into_view_if_needed(); pg.wait_for_timeout(150)
             Image.open(io.BytesIO(el.screenshot(type="png"))).convert("RGB").save(OUT / f"{name}-{vname}.webp", "WEBP", quality=75, method=6)
         ctx.close()
     b.close()

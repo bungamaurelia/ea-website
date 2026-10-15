@@ -10,8 +10,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="icon" type="image/svg+xml" href="images/ea-logo.svg">
-  <link rel="stylesheet" href="css/design-system.css?v=43">
-  <link rel="stylesheet" href="css/home.css?v=43">
+  <link rel="stylesheet" href="css/design-system.css?v=45">
+  <link rel="stylesheet" href="css/home.css?v=45">
 </head>
 <body>
 
@@ -267,7 +267,7 @@
         <a class="text-link" data-link="hireForm" data-country="PRC" href="#request-workers">Hire PRC Workers <svg class="ico"><use href="#i-arrow"/></svg></a>
       </article>
       <article class="country-card">
-        <div class="country-photo has-photo"><img src="images/home/country-bangladesh.webp" width="1200" height="750" alt="Smiling construction worker in a yellow hard hat and orange safety vest drilling into steel rebar on a building site" title="Bangladeshi workers for construction" loading="lazy" decoding="async"><span class="code">BD</span><h3>Bangladeshi Workers for Construction</h3></div>
+        <div class="country-photo has-photo"><img src="images/home/country-bangladesh.webp" width="1200" height="750" alt="Construction worker in a hard hat, safety glasses and orange vest cutting steel rebar with a power saw on site" title="Bangladeshi workers for construction" loading="lazy" decoding="async"><span class="code">BD</span><h3>Bangladeshi Workers for Construction</h3></div>
         <dl>
           <div><dt>Sector</dt><dd>Construction</dd></div>
           <div><dt>Roles</dt><dd>General construction workers, new or U-turn</dd></div>
@@ -276,7 +276,7 @@
         <a class="text-link" data-link="hireForm" data-country="Bangladesh" href="#request-workers">Hire Bangladeshi Workers <svg class="ico"><use href="#i-arrow"/></svg></a>
       </article>
       <article class="country-card">
-        <div class="country-photo has-photo"><img src="images/home/country-india.webp" width="1200" height="750" alt="Smiling construction worker in a hard hat and safety vest pushing a wheelbarrow at a building site" title="Indian workers for construction" loading="lazy" decoding="async"><span class="code">IN</span><h3>Indian Workers for Construction</h3></div>
+        <div class="country-photo has-photo"><img src="images/home/country-india.webp" width="1200" height="750" alt="Smiling construction worker in a yellow hard hat and orange safety vest drilling into steel rebar on a building site" title="Indian workers for construction" loading="lazy" decoding="async"><span class="code">IN</span><h3>Indian Workers for Construction</h3></div>
         <dl>
           <div><dt>Sector</dt><dd>Construction</dd></div>
           <div><dt>Roles</dt><dd>General construction workers, new or U-turn</dd></div>
@@ -390,13 +390,14 @@
           <tr><th scope="row">Foreign cleaner placement (Malaysia, Myanmar, PRC)</th><td data-label="Fee (S$)">1,200 per worker</td><td data-label="What's included">Sourcing, screening, interview, Work Permit (IPA) application, medical check-up booking</td></tr>
           <tr><th scope="row">Cleaning manpower outsourcing</th><td data-label="Fee (S$)">From 2,400 per worker per month</td><td data-label="What's included">Cleaner on our payroll, deployed to your site, levy and insurance included</td></tr>
           <tr><th scope="row">Construction worker placement <small>(additional service)</small></th><td data-label="Fee (S$)">1,500 per worker</td><td data-label="What's included">Sourcing from Bangladesh, India or PRC, IPA, Settling-in Programme booking</td></tr>
-          <tr><th scope="row">Work Permit application only</th><td data-label="Fee (S$)">250 per application</td><td data-label="What's included">For workers you have already found</td></tr>
-          <tr><th scope="row">Work Permit renewal</th><td data-label="Fee (S$)">150 per renewal</td><td data-label="What's included">Renewal submission and expiry reminders</td></tr>
-          <tr><th scope="row">Replacement</th><td data-label="Fee (S$)"><span class="pill-free">Free within 3 months</span></td><td data-label="What's included">One replacement if the worker leaves or is unsuitable</td></tr>
-          <tr><th scope="row">Government charges <small>(levy, security bond, insurance)</small></th><td data-label="Fee (S$)">At cost</td><td data-label="What's included">Paid to MOM or the insurer; not agency fees</td></tr>
+          <tr class="fee-extra"><th scope="row">Work Permit application only</th><td data-label="Fee (S$)">250 per application</td><td data-label="What's included">For workers you have already found</td></tr>
+          <tr class="fee-extra"><th scope="row">Work Permit renewal</th><td data-label="Fee (S$)">150 per renewal</td><td data-label="What's included">Renewal submission and expiry reminders</td></tr>
+          <tr class="fee-extra"><th scope="row">Replacement</th><td data-label="Fee (S$)"><span class="pill-free">Free within 3 months</span></td><td data-label="What's included">One replacement if the worker leaves or is unsuitable</td></tr>
+          <tr class="fee-extra"><th scope="row">Government charges <small>(levy, security bond, insurance)</small></th><td data-label="Fee (S$)">At cost</td><td data-label="What's included">Paid to MOM or the insurer; not agency fees</td></tr>
         </tbody>
       </table>
     </div>
+    <button class="btn btn-secondary btn-sm show-more" type="button" data-expand="fees" data-more="See all fees" data-less="Show fewer fees" aria-expanded="false">See all fees</button>
     <div class="center-cta"><a class="btn btn-primary btn-lg" data-link="requestWorkers" href="#request-workers">Request a Quote</a></div>
   </div>
 </section>
@@ -464,19 +465,20 @@
         <summary>Can you supply cleaners on a contract basis?<span class="faq-ico"><svg class="ico"><use href="#i-plus"/></svg></span></summary>
         <div class="faq-a"><p>Yes. With manpower outsourcing, cleaners stay on our payroll and we deploy them to your site, covering levy, insurance and replacements.</p></div>
       </details>
-      <details name="faq">
+      <details name="faq" class="faq-extra">
         <summary>Do you handle Work Permit applications and renewals?<span class="faq-ico"><svg class="ico"><use href="#i-plus"/></svg></span></summary>
         <div class="faq-a"><p>Yes. We handle IPA applications, medical check-up bookings, issuance, renewals and cancellations, including for workers you found yourself.</p></div>
       </details>
-      <details name="faq">
+      <details name="faq" class="faq-extra">
         <summary>Which employment agency is the best in Singapore?<span class="faq-ico"><svg class="ico"><use href="#i-plus"/></svg></span></summary>
         <div class="faq-a"><p>Look for an agency that is MOM-licensed, clear about fees and experienced in your sector. Check its licence on MOM's EA Directory and read its Google reviews.</p></div>
       </details>
-      <details name="faq">
+      <details name="faq" class="faq-extra">
         <summary>Is it better to go through a recruitment agency?<span class="faq-ico"><svg class="ico"><use href="#i-plus"/></svg></span></summary>
         <div class="faq-a"><p>For foreign workers, usually yes. An agency handles sourcing, screening and Work Permit paperwork, which saves time and lowers the risk of a rejected application.</p></div>
       </details>
     </div>
+    <button class="btn btn-secondary btn-sm show-more" type="button" data-expand="faq" data-more="More questions" data-less="Fewer questions" aria-expanded="false">More questions</button>
     <div class="ask-card">
       <div>
         <h3>Still have questions?</h3>
@@ -579,6 +581,12 @@
   <svg><use href="#i-whatsapp"/></svg>
 </a>
 
-<script src="js/home.js?v=43"></script>
+<!-- Phone only: action bar at the bottom of the screen (shows after the hero buttons, hides at the form) -->
+<div class="mobile-cta is-hidden" role="region" aria-label="Quick contact">
+  <a class="btn btn-primary" data-link="requestWorkers" href="#request-workers">Request a Quote</a>
+  <a class="btn btn-whatsapp" data-link="whatsapp" href="#" target="_blank" rel="noopener"><svg class="ico"><use href="#i-whatsapp"/></svg>WhatsApp</a>
+</div>
+
+<script src="js/home.js?v=45"></script>
 </body>
 </html>
