@@ -872,3 +872,12 @@ details[open] .faq-ico { transform: rotate(45deg); background: var(--frost); }
 .cta-contact span { display: inline-flex; align-items: center; min-height: 44px; }
 @media (max-width: 900px) { .cta-contact li { font-size: 14px; } }
 @media (max-width: 600px) { .cta-contact { justify-items: center; } }
+
+/* =========================================================
+   Phone (max 600px): show the hero bubbles and the service photos
+   (they were hidden on phones at first to keep the page short)
+   ========================================================= */
+@media (max-width: 600px) {
+  .hero-visual { display: block; max-width: 300px; margin: 28px auto 0; justify-self: center; }
+  .svc-media-mobile.has-photo { display: block !important; aspect-ratio: 16 / 9; border-radius: var(--radius); }
+}
