@@ -914,3 +914,16 @@ details[open] .faq-ico { transform: rotate(45deg); background: var(--frost); }
   .mobile-cta .btn-whatsapp { flex: none; padding: 0 16px; gap: 6px; }
   .mobile-cta.is-hidden, body:has(.main-nav.is-open) .mobile-cta { transform: translateY(110%); }
 }
+
+/* =========================================================
+   Tablet and phone (max 900px): default services photo above the list
+   (the desktop side panel doesn't fit; each open row still shows its own photo)
+   ========================================================= */
+@media (max-width: 900px) {
+  .svc-grid { gap: 16px; }
+  .svc-media { display: block; position: static; order: -1; }
+  .svc-media-frame { aspect-ratio: 16 / 9; border-radius: var(--radius); box-shadow: var(--shadow); }
+  .svc-media .media-ph:not(.media-default) { display: none; }
+  .svc-media .media-ph.media-default { opacity: 1; }
+  .svc-media .media-default img { object-position: center 55%; }
+}

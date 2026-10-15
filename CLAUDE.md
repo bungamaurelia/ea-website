@@ -15,7 +15,7 @@ landing-pages/        THE ONLY FOLDER THAT GETS DEPLOYED
   images/home/*.webp    homepage photos
 process/              design-system.html (internal only, never deployed) + design-system-img/ + snippets/
 scripts/python/       capture.py · mobile_audit.py · ds_shots.py · build_preview.py · strips.py
-output/               backups/v1 … v42 and screenshots: local only, ignored by git
+output/               backups/v1 … v43 and screenshots: local only, ignored by git
 ```
 A new page would go in `landing-pages/<page-slug>/index.html`. Nothing else belongs at the root.
 
@@ -36,7 +36,7 @@ A new page would go in `landing-pages/<page-slug>/index.html`. Nothing else belo
 - Phones (max 600px) only: the Recruitment Process section is hidden (How to Hire covers it); Fees show 3 rows and FAQ 5 questions, the rest behind "See all fees" / "More questions"; a bottom bar (Request a Quote + WhatsApp) replaces the floating WhatsApp button, shows after the hero buttons and hides at the form. Tablet and desktop show everything.
 - Links: Request a Quote, Contact / Contact Us and the service and country cards scroll to the homepage form section. Find a Job / Apply for a Job and the WhatsApp buttons open WhatsApp +65 8956 5188 with a pre-filled message (employer or job seeker). Email: hello@employmentagencysingapore.com (form section and footer); the phone number in the form section and the footer is still a placeholder ("+65 [phone number]"). Change these at the top of `js/home.js`.
 - The form is the HubSpot embed (portal 242253439). Its fields, consent text and thank-you message are edited in HubSpot. Never submit test entries without asking: they create real leads. It can't load in the claude.ai preview, which shows a placeholder instead.
-- Images: WebP only (logo SVG), in `images/home/` named `hero-…`, `service-…`, `country-…`. `service-default.webp` (worker treating new office cabinets, chosen by Crystal) is the services photo shown while no service is open. Every `<img>` needs `alt`, `title`, `width` and `height`; below-the-fold photos use `loading="lazy"`. Country cards use worker photos, no flags.
+- Images: WebP only (logo SVG), in `images/home/` named `hero-…`, `service-…`, `country-…`. `service-default.webp` (worker treating new office cabinets, chosen by Crystal) is the services photo shown while no service is open (desktop side panel); on tablet and phone it sits above the list. Every `<img>` needs `alt`, `title`, `width` and `height`; below-the-fold photos use `loading="lazy"`. Country cards use worker photos, no flags.
 - The blog section and Our Clients are hidden with the `hidden` attribute until real articles and client logos exist.
 - Git: commit and push only when asked. `output/` stays out of the repo.
 
