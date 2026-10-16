@@ -8,6 +8,9 @@
 /* ---------- Colour system ----------
    Change a colour here and it updates everywhere.            */
 :root {
+  /* Light only: stops Android browsers' auto dark mode recolouring the page */
+  color-scheme: only light;
+
   /* Palette */
   --depth:   #030f18;  /* H1 + H2, body text, dark sections, footer     */
   --harbor:  #1d4052;  /* icons, secondary button, dark panels          */
