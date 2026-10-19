@@ -16,7 +16,7 @@ landing-pages/        THE ONLY FOLDER THAT GETS DEPLOYED
   sitemap.xml · robots.txt  search engines (update lastmod in sitemap.xml when the page changes)
 process/              design-system.html (internal only, never deployed) + design-system-img/ + snippets/
 scripts/python/       capture.py · mobile_audit.py · ds_shots.py · build_preview.py · strips.py
-output/               backups/v1 … v45 and screenshots: local only, ignored by git
+output/               backups/v1 … v46 and screenshots: local only, ignored by git
 ```
 A new page would go in `landing-pages/<page-slug>/index.html`. Nothing else belongs at the root.
 
@@ -34,6 +34,8 @@ A new page would go in `landing-pages/<page-slug>/index.html`. Nothing else belo
 - Source countries (decided with Crystal): Myanmar and Malaysia are cleaning only, and their cards match (Sector: Cleaning, same roles); Bangladesh and India are construction only, and their cards match; PRC is cleaning and construction. No other countries ("North Asia" was removed). Cards show no week ranges: one line under the cards and the FAQ say "Lead time depends on the source country and the Work Permit approval process." Keep the hero, country cards, Services, Fees and FAQ in step when this changes.
 - Licence: "MOM-licensed employment agency · EA licence no. [licence number]" in the hero label and the footer, and the number in the first FAQ answer. No replacement guarantee anywhere (terms under review).
 - Mobile: inputs 16px, tap targets at least 44px (arrow buttons 40), no sideways scrolling. Check 360, 390 and 768 with `mobile_audit.py`.
+- Menu: the menu button shows up to 1024px wide (the full menu shows from 1025px). The open menu is never taller than the screen and scrolls on its own; the floating WhatsApp button and the phone bottom bar hide while it is open (`body.menu-open`, set in `js/home.js`).
+- Services: closed panels are `inert` and hidden, so the keyboard never lands on their buttons; `js/home.js` keeps the tapped heading where it was while the panel above closes.
 - Phones (max 600px) only: the Recruitment Process section is hidden (How to Hire covers it); Fees show 3 rows and FAQ 5 questions, the rest behind "See all fees" / "More questions"; a bottom bar (Request a Quote + WhatsApp) replaces the floating WhatsApp button, shows after the hero buttons and hides at the form. Tablet and desktop show everything.
 - Links: Request a Quote, Contact Us (same label in menu and footer) and the service and country cards scroll to the homepage form section. Find a Job / Apply for a Job and the WhatsApp buttons open WhatsApp +65 8956 5188 with a pre-filled message (employer or job seeker). Email: hello@employmentagencysingapore.com (form section and footer); the phone number in the form section and the footer is still a placeholder ("+65 [phone number]"). Change these at the top of `js/home.js`.
 - The form is the HubSpot embed (portal 242253439). Its fields, consent text and thank-you message are edited in HubSpot. Never submit test entries without asking: they create real leads. It can't load in the claude.ai preview, which shows a placeholder instead.

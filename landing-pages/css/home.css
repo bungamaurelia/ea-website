@@ -499,7 +499,8 @@ details[open] .faq-ico { transform: rotate(45deg); background: var(--frost); }
 /* ---------- Tablet and below (max 900px) ---------- */
 @media (max-width: 900px) {
   .header-inner { height: 64px; }
-  .main-nav { inset: 64px 0 auto 0; }
+  /* Menu never taller than the screen (phones held sideways): it scrolls on its own */
+  .main-nav { inset: 64px 0 auto 0; max-height: calc(100vh - 64px); max-height: calc(100dvh - 64px); overflow-y: auto; overscroll-behavior: contain; }
   .logo { font-size: 20px; }
   .logo-mark { width: 26px; height: 26px; }
   .hero { padding: 32px 0 24px; }
@@ -603,7 +604,7 @@ details[open] .faq-ico { transform: rotate(45deg); background: var(--frost); }
 /* ---------- Phone (max 600px) ---------- */
 @media (max-width: 600px) {
   .header-inner { height: 58px; }
-  .main-nav { inset: 58px 0 auto 0; max-height: calc(100vh - 58px); }
+  .main-nav { inset: 58px 0 auto 0; max-height: calc(100vh - 58px); max-height: calc(100dvh - 58px); }
   .main-nav > a { padding: 12px 0; font-size: 15px; }
   .logo { font-size: 18px; gap: 8px; }
   .logo-mark { width: 24px; height: 24px; }
@@ -917,7 +918,7 @@ details[open] .faq-ico { transform: rotate(45deg); background: var(--frost); }
   .mobile-cta .btn { min-height: 48px; }
   .mobile-cta .btn-primary { flex: 1; }
   .mobile-cta .btn-whatsapp { flex: none; padding: 0 16px; gap: 6px; }
-  .mobile-cta.is-hidden, body:has(.main-nav.is-open) .mobile-cta { transform: translateY(110%); }
+  .mobile-cta.is-hidden, .menu-open .mobile-cta { transform: translateY(110%); }
 }
 
 /* =========================================================
@@ -932,3 +933,39 @@ details[open] .faq-ico { transform: rotate(45deg); background: var(--frost); }
   .svc-media .media-ph.media-default { opacity: 1; }
   .svc-media .media-default img { object-position: center 55%; }
 }
+
+/* =========================================================
+   Alex's review, step 2: menu and services fixes
+   ========================================================= */
+/* Floating WhatsApp button steps aside while the menu is open */
+.wa-float { transition: transform .2s, opacity .2s, visibility .2s; }
+.menu-open .wa-float { opacity: 0; visibility: hidden; pointer-events: none; }
+
+/* Closed service panels can't be reached with the keyboard (home.js also marks them inert).
+   Visibility switches off only after the closing animation. */
+.svc-body { visibility: hidden; transition: max-height .4s ease, padding .4s ease, visibility 0s linear .4s; }
+.svc-item.is-open .svc-body { visibility: visible; transition-delay: 0s; }
+/* home.js keeps the tapped heading in place itself, so the browser's own scroll anchoring stays out of it */
+.svc-list { overflow-anchor: none; }
+
+/* Menu button up to 1024px wide (Android held sideways is 915px): the full desktop menu
+   doesn't fit there. Same open menu as tablet, capped to the screen and scrolling on its own. */
+@media (min-width: 901px) and (max-width: 1024px) {
+  .nav-toggle { display: grid; margin-left: auto; }
+  .header-ctas { display: none; }
+  .main-nav {
+    position: fixed; inset: 76px 0 auto 0; flex-direction: column; gap: 0; margin: 0; padding: 12px var(--gutter) 24px;
+    background: var(--white); border-bottom: 1px solid var(--frost-line); box-shadow: var(--shadow-lg);
+    transform: translateY(-8px); opacity: 0; visibility: hidden; transition: opacity .2s, transform .2s, visibility .2s;
+    max-height: calc(100vh - 76px); max-height: calc(100dvh - 76px); overflow-y: auto; overscroll-behavior: contain;
+  }
+  .main-nav.is-open { opacity: 1; visibility: visible; transform: none; }
+  .main-nav > a { padding: 14px 0; border-bottom: 1px solid var(--frost); font-size: 16px; }
+  .main-nav > a::after { display: none; }
+  .nav-ctas-mobile { display: grid; gap: 10px; margin-top: 18px; }
+}
+
+/* Footer columns may shrink below their content: the long email address wraps instead of
+   pushing the page sideways (seen at 901 to 920px, e.g. Android held sideways) */
+.footer-grid > * { min-width: 0; }
+.contact-list a { overflow-wrap: anywhere; }

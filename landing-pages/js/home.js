@@ -63,6 +63,7 @@ const toggle = document.querySelector('.nav-toggle');
 const nav = document.getElementById('main-nav');
 const setMenu = (open) => {
   nav.classList.toggle('is-open', open);
+  document.body.classList.toggle('menu-open', open); // hides the floating WhatsApp button and the bottom bar
   toggle.setAttribute('aria-expanded', String(open));
   toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
   toggle.querySelector('use').setAttribute('href', open ? '#i-close' : '#i-menu');
@@ -101,6 +102,7 @@ updateReviewBtns();
 const svcItems = [...document.querySelectorAll('.svc-item')];
 const svcMedia = [...document.querySelectorAll('.svc-media .media-ph:not(.media-default)')];
 const svcDefault = document.querySelector('.svc-media .media-default');
+const svcBodies = svcItems.map((item) => item.querySelector('.svc-body'));
 let svcIndex = svcItems.findIndex((item) => item.classList.contains('is-open'));
 
 // i = -1 closes everything
@@ -110,16 +112,44 @@ const openService = (i) => {
     const open = n === i;
     item.classList.toggle('is-open', open);
     item.querySelector('.svc-head').setAttribute('aria-expanded', String(open));
+    svcBodies[n].toggleAttribute('inert', !open); // closed panels: no hidden keyboard stops
   });
   // keep the last picture showing when everything is closed
   svcMedia.forEach((m, n) => m.classList.toggle('is-active', n === i));
   if (svcDefault) svcDefault.classList.toggle('is-active', i < 0);
 };
 
+/* Opening a service while one ABOVE it is open would pull the tapped heading up out of view.
+   So that upper panel closes at once (no animation) and the page shifts by the same amount
+   in the same moment: the heading stays exactly where it was tapped. One correction, no loop,
+   so it can't fight the browser's own scrolling (Safari, phones, the preview frame). */
+const scrollInstant = (y) => {
+  const root = document.documentElement;
+  root.style.scrollBehavior = 'auto';
+  window.scrollTo(0, y);
+  root.style.scrollBehavior = '';
+};
+
 svcItems.forEach((item, i) => {
   // clicking an open service closes it; clicking a closed one opens it
-  item.querySelector('.svc-head').addEventListener('click', () => openService(svcIndex === i ? -1 : i));
+  const head = item.querySelector('.svc-head');
+  head.addEventListener('click', () => {
+    const next = svcIndex === i ? -1 : i;
+    const above = svcIndex >= 0 && svcIndex < i ? svcBodies[svcIndex] : null;
+    const before = head.getBoundingClientRect().top;
+    if (above) above.style.transition = 'none';
+    openService(next);
+    if (above) {
+      const delta = head.getBoundingClientRect().top - before;   // reading it applies the instant close
+      if (Math.abs(delta) > 0.5) scrollInstant(window.scrollY + delta);
+      requestAnimationFrame(() => requestAnimationFrame(() => { above.style.transition = ''; }));
+    }
+    // never leave the heading under the sticky header
+    const under = header.offsetHeight + 8 - head.getBoundingClientRect().top;
+    if (under > 0) scrollInstant(window.scrollY - under);
+  });
 });
+openService(svcIndex); // marks the closed panels inert on load
 
 /* ---------- Testimonials carousel (Omnipresent style) ---------- */
 const testiTrack = document.getElementById('testi-track');
