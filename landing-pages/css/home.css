@@ -931,7 +931,7 @@ details[open] .faq-ico { transform: rotate(45deg); background: var(--frost); }
   .svc-media-frame { aspect-ratio: 16 / 9; border-radius: var(--radius); box-shadow: var(--shadow); }
   .svc-media .media-ph:not(.media-default) { display: none; }
   .svc-media .media-ph.media-default { opacity: 1; }
-  .svc-media .media-default img { object-position: center 55%; }
+  .svc-media .media-default img { object-position: center top; }   /* keeps the cleaner's head in the wider tablet/phone frame */
 }
 
 /* =========================================================
