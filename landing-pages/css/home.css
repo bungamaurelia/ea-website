@@ -1012,6 +1012,7 @@ html.menu-open { overflow: hidden; }       /* html only: locking body too would 
 }
 /* Links inside a sentence: a taller tap area without moving the text */
 .faq-a a, .form-alt a { padding: 12px 0; margin: -12px 0; }
+.how-note .text-link { min-height: 0; padding: 12px 0; margin: -12px 0; }   /* in a sentence: no tall line */
 .pause-btn, .dots button { min-width: 44px; min-height: 44px; }
 .pause-btn { width: 44px; height: 44px; }
 
@@ -1066,3 +1067,134 @@ html.menu-open { overflow: hidden; }       /* html only: locking body too would 
 
 /* The open menu is visible at once (only the fade runs), so keyboard focus can move straight into it */
 .main-nav.is-open { transition: opacity .2s, transform .2s; }
+
+/* =========================================================
+   Alex's review, step 4: animations (section 6)
+   Only position (transform) and fade (opacity) move, so nothing pushes the layout around;
+   150-300ms for taps and hovers, 400-600ms for things appearing; ease-out for things coming in.
+   The reduced-motion rule in design-system.css switches all of it off. Anything that starts
+   hidden needs html.js-anim (set by home.js only when motion is allowed), so without
+   JavaScript or with reduced motion everything is simply shown.
+   ========================================================= */
+
+/* 1. Services panels: smooth height (grid-row method, works in Chrome, Safari and Firefox) */
+.svc-body {
+  display: grid; grid-template-rows: 0fr; max-height: none;
+  transition: grid-template-rows .3s ease-out, padding .3s ease-out, visibility 0s linear .3s;
+}
+.svc-item.is-open .svc-body { grid-template-rows: 1fr; max-height: none; transition-delay: 0s; }
+.svc-inner { min-height: 0; overflow: hidden; display: grid; gap: inherit; }
+.svc-body .svc-inner .btn { justify-self: start; }
+.svc-item.is-settled .svc-inner { overflow: visible; }   /* once open, focus outlines aren't clipped */
+
+/* 1. FAQ: same smooth height; the plus turns into a minus */
+.js .faq-a { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .3s ease-out, padding-bottom .3s ease-out; }
+.js .faq-list details:not(.is-open) .faq-a { padding-bottom: 0; }
+.js .faq-list details.is-open .faq-a { grid-template-rows: 1fr; }
+.js .faq-a > p { min-height: 0; overflow: hidden; }
+.js .faq-list details.is-settled .faq-a > p { overflow: visible; }
+.faq-ico::before, .faq-ico::after {
+  content: ""; grid-area: 1 / 1; width: 14px; height: 2px; border-radius: 2px; background: currentColor;
+  transition: transform .3s ease-out;
+}
+.faq-ico::after { transform: rotate(90deg); }
+details[open] .faq-ico { transform: none; }
+.faq-list details.is-open .faq-ico::after, html:not(.js) details[open] .faq-ico::after { transform: rotate(0deg); }
+
+/* 2. Phone and tablet menu: links slide in one after another (200ms, 30ms apart) */
+@media (max-width: 1024px) {
+  .main-nav > a, .nav-ctas-mobile { opacity: 0; transform: translateY(-6px); transition: opacity .2s ease-out, transform .2s ease-out; }
+  .main-nav.is-open > a, .main-nav.is-open .nav-ctas-mobile { opacity: 1; transform: none; }
+  .main-nav.is-open > a:nth-child(2) { transition-delay: 30ms; }
+  .main-nav.is-open > a:nth-child(3) { transition-delay: 60ms; }
+  .main-nav.is-open > a:nth-child(4) { transition-delay: 90ms; }
+  .main-nav.is-open > a:nth-child(5) { transition-delay: 120ms; }
+  .main-nav.is-open > a:nth-child(6) { transition-delay: 150ms; }
+  .main-nav.is-open .nav-ctas-mobile { transition-delay: 180ms; }
+}
+
+/* 3. Quote form fades in once HubSpot has loaded (300ms) */
+.hs-form-frame { transition: opacity .3s ease-out; }
+.form-frame-wrap.is-loading .hs-form-frame { opacity: 0; }
+
+/* 4. Testimonials settle after a swipe (the card follows the finger in home.js) */
+.testi-track { transition: transform .35s ease-out; }
+
+/* 5. Recruitment process: a thin teal line fills down the steps as you scroll; numbers turn teal when reached */
+.process-list { position: relative; --line-x: -32px; }
+.js .process-list::before, .js .process-list::after {
+  content: ""; position: absolute; left: var(--line-x); top: 6px; bottom: 6px; width: 2px; border-radius: 2px;
+}
+.js .process-list::before { background: var(--frost-line); }
+.js .process-list::after { background: var(--sea); transform-origin: top; transform: scaleY(var(--progress, 0)); }
+.js .pnum { color: var(--marine); transition: color .3s ease-out; }
+.js .process-list > li.is-reached .pnum { color: var(--sea); }
+@media (max-width: 900px) { .process-list { --line-x: -20px; } }
+
+/* 6. How to Hire: in view, the dashed arrows draw left to right and the steps light up in order */
+.js-anim .how-steps li { opacity: .35; transition: opacity .4s ease-out; }
+.js-anim .how-steps li + li::before { clip-path: inset(0 100% 0 0); transition: clip-path .6s ease-out; }
+.js-anim .how-steps.is-in li { opacity: 1; }
+.js-anim .how-steps.is-in li + li::before { clip-path: inset(0 0 0 0); }
+.js-anim .how-steps.is-in li:nth-child(2) { transition-delay: 150ms; }
+.js-anim .how-steps.is-in li:nth-child(3) { transition-delay: 300ms; }
+.js-anim .how-steps.is-in li:nth-child(3)::before { transition-delay: 150ms; }
+
+/* 7. Industries cards, "Why employers choose" cards and fee rows rise 16px and fade in, once, 60ms apart */
+@keyframes rise { from { opacity: 0; transform: translateY(16px); } }
+.js-anim [data-reveal="items"]:not(.is-in) > *, .js-anim [data-reveal="cells"]:not(.is-in) > tr > * { opacity: 0; }
+.js-anim [data-reveal="items"].is-in > *, .js-anim [data-reveal="cells"].is-in > tr > * {
+  animation: rise .45s ease-out backwards; animation-delay: calc(var(--i, 0) * 60ms);
+}
+@media print { [data-reveal] > *, [data-reveal] > tr > * { opacity: 1 !important; animation: none !important; } }
+
+/* 8. Header: after 80px it slides up to 64px tall with a slightly smaller logo (moved, not resized,
+   so the page never jumps). On phones it hides while scrolling down and returns on the first scroll up. */
+.site-header { transition: transform .2s ease-out, border-color .2s, box-shadow .2s; }
+.header-inner, .site-header .logo { transition: transform .2s ease-out; }
+.site-header .logo { transform-origin: left center; }
+@media (min-width: 1025px) {   /* desktop header only: the tablet menu hangs under the header */
+  .site-header.is-compact { transform: translateY(-12px); }
+  .site-header.is-compact .header-inner { transform: translateY(6px); }
+  .site-header.is-compact .logo { transform: scale(.92); }
+}
+@media (max-width: 600px) {
+  .site-header.is-away { transform: translateY(-100%); }
+}
+
+/* 9. Hero: portraits appear one after another (400ms, 80ms apart), float once, then stop.
+   The heading is never animated: it shows from the start. */
+@keyframes pop { from { opacity: 0; transform: translateY(12px) scale(.96); } }
+.hero-visual .portrait { animation: pop .4s ease-out backwards, bob 6s ease-in-out 1; }
+.hero-visual .p1 { animation-delay: 0s, .4s; }
+.hero-visual .p2 { animation-delay: .08s, .48s; }
+.hero-visual .p3 { animation-delay: .16s, .56s; }
+.hero-visual .p4 { animation-delay: .24s, .64s; }
+.hero-visual .p5 { animation-delay: .32s, .72s; }
+
+/* 11. Industries photos zoom 5% on hover, mouse only (500ms) */
+.country-photo { overflow: hidden; }
+.country-photo img { transition: transform .5s ease-out; }
+@media (hover: hover) and (pointer: fine) {
+  .country-card:hover .country-photo img { transform: scale(1.05); }
+}
+
+/* 12. After a menu jump, the section heading's underline flashes once (600ms) */
+h2 { position: relative; }
+h2.is-flash::after {
+  content: ""; position: absolute; left: 50%; bottom: -12px; width: 64px; margin-left: -32px; height: 3px; border-radius: 3px;
+  background: var(--sea); animation: flash .6s ease-out forwards;
+}
+.final-cta h2.is-flash::after { background: var(--glacier); }
+.process-head h2.is-flash::after { left: 0; margin-left: 0; transform-origin: left center; }
+@media (min-width: 601px) { .cta-copy h2.is-flash::after { left: 0; margin-left: 0; transform-origin: left center; } }
+@keyframes flash {
+  0% { opacity: 0; transform: scaleX(.3); }
+  35% { opacity: 1; transform: scaleX(1); }
+  100% { opacity: 0; transform: scaleX(1); }
+}
+
+/* 13. Services photo: crossfade with a slight settle from 104% to 100% (500ms) */
+.svc-media .media-ph { transition: opacity .5s ease-out; }
+.svc-media .media-ph img { transform: scale(1.04); transition: transform .5s ease-out; }
+.svc-media .media-ph.is-active img { transform: none; }

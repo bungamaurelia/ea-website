@@ -18,10 +18,26 @@
 
 
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+// html.js: scripts run (the FAQ animates). html.js-anim: motion is allowed too, so things may start
+// hidden and appear on scroll. Without them (no JavaScript, or reduced motion) everything just shows.
+document.documentElement.classList.add('js');
+if (!reduceMotion) document.documentElement.classList.add('js-anim');
 
 /* ---------- Header: shadow on scroll + mobile menu ---------- */
 const header = document.querySelector('.site-header');
-const onScroll = () => header.classList.toggle('is-scrolled', window.scrollY > 8);
+const phoneWidth = window.matchMedia('(max-width: 600px)');
+let lastY = window.scrollY;
+const onScroll = () => {
+  const y = window.scrollY;
+  header.classList.toggle('is-scrolled', y > 8);
+  header.classList.toggle('is-compact', y > 80);             // desktop: header slides up to 64px
+  // Phones: the header hides while scrolling down and comes back on the first scroll up
+  // (never while the menu is open or keyboard focus is in the header; a tap leaves no :focus-visible)
+  const keep = !phoneWidth.matches || document.documentElement.classList.contains('menu-open') || !!header.querySelector(':focus-visible'); // keyboard focus only
+  if (keep || y <= 120 || y < lastY - 4) header.classList.remove('is-away');
+  else if (y > lastY + 4) header.classList.add('is-away');
+  if (Math.abs(y - lastY) > 4) lastY = y;
+};
 window.addEventListener('scroll', onScroll, { passive: true });
 onScroll();
 
@@ -97,6 +113,8 @@ const openService = (i) => {
     item.classList.toggle('is-open', open);
     item.querySelector('.svc-head').setAttribute('aria-expanded', String(open));
     svcBodies[n].toggleAttribute('inert', !open); // closed panels: no hidden keyboard stops
+    item.classList.remove('is-settled');
+    if (open) setTimeout(() => { if (item.classList.contains('is-open')) item.classList.add('is-settled'); }, reduceMotion ? 0 : 320);
   });
   // keep the last picture showing when everything is closed
   svcMedia.forEach((m, n) => m.classList.toggle('is-active', n === i));
@@ -140,6 +158,7 @@ const testiTrack = document.getElementById('testi-track');
 const testiCards = [...testiTrack.children];
 const dotsWrap = document.getElementById('testi-dots');
 let testiIndex = 0;
+let testiOffset = 0;
 
 testiCards.forEach((_, i) => {
   const dot = document.createElement('button');
@@ -154,6 +173,7 @@ function goTesti(i) {
   const card = testiCards[testiIndex];
   const viewport = testiTrack.parentElement.offsetWidth;
   const offset = card.offsetLeft - (viewport - card.offsetWidth) / 2;
+  testiOffset = offset;
   testiTrack.style.transform = `translateX(${-offset}px)`;
   testiCards.forEach((c, n) => { c.classList.toggle('is-active', n === testiIndex); c.setAttribute('aria-hidden', String(n !== testiIndex)); });
   [...dotsWrap.children].forEach((d, n) => d.setAttribute('aria-selected', String(n === testiIndex)));
@@ -164,14 +184,30 @@ document.getElementById('testi-prev').addEventListener('click', () => goTesti(te
 document.getElementById('testi-next').addEventListener('click', () => goTesti(testiIndex + 1));
 window.addEventListener('resize', () => goTesti(testiIndex));
 
-// Swipe on touch screens
+// Swipe on touch screens: the card follows the finger, then settles on the nearest card (350ms)
 let touchX = null;
-testiTrack.addEventListener('touchstart', (e) => { touchX = e.touches[0].clientX; }, { passive: true });
+let touchY = null;
+let dragging = false;
+testiTrack.addEventListener('touchstart', (e) => {
+  touchX = e.touches[0].clientX; touchY = e.touches[0].clientY; dragging = false;
+}, { passive: true });
+testiTrack.addEventListener('touchmove', (e) => {
+  if (touchX === null) return;
+  const dx = e.touches[0].clientX - touchX;
+  const dy = e.touches[0].clientY - touchY;
+  if (!dragging && Math.abs(dx) > 8 && Math.abs(dx) > Math.abs(dy)) {
+    dragging = true;
+    testiTrack.style.transition = 'none';
+    testiHover = true; scheduleTesti();          // no auto-play while dragging
+  }
+  if (dragging) testiTrack.style.transform = `translateX(${-testiOffset + dx}px)`;
+}, { passive: true });
 testiTrack.addEventListener('touchend', (e) => {
   if (touchX === null) return;
   const dx = e.changedTouches[0].clientX - touchX;
-  if (Math.abs(dx) > 40) goTesti(testiIndex + (dx < 0 ? 1 : -1));
-  touchX = null;
+  testiTrack.style.transition = '';
+  if (dragging) { testiHover = false; goTesti(testiIndex + (Math.abs(dx) > 40 ? (dx < 0 ? 1 : -1) : 0)); }
+  touchX = null; dragging = false;
 });
 
 /* Auto-play: moves every 6 seconds while the section is on screen.
@@ -207,11 +243,47 @@ new IntersectionObserver((entries) => { testiInView = entries[0].isIntersecting;
 setPaused(testiUserPaused);
 goTesti(1); // start on the middle card so both sides show
 
-/* ---------- FAQ: one open at a time (fallback for browsers without <details name>) ---------- */
+/* ---------- FAQ: answers open and close smoothly (300ms), one at a time ----------
+   The <details> stays open until its closing animation ends, then closes for real. Like the services,
+   an open answer ABOVE the tapped question closes at once with the page shifting by the same amount,
+   so the tapped question stays where it was. */
 const faqs = [...document.querySelectorAll('.faq-list details')];
-faqs.forEach((d) => d.addEventListener('toggle', () => {
-  if (d.open) faqs.forEach((o) => { if (o !== d) o.open = false; });
-}));
+const FAQ_MS = reduceMotion ? 0 : 300;
+const closeFaq = (d) => {
+  if (!d.classList.contains('is-open')) return;
+  d.classList.remove('is-open', 'is-settled');
+  clearTimeout(d.faqTimer);
+  d.faqTimer = setTimeout(() => { if (!d.classList.contains('is-open')) d.open = false; }, FAQ_MS);
+};
+const openFaq = (d) => {
+  const i = faqs.indexOf(d);
+  const above = faqs.find((o, n) => n < i && o.classList.contains('is-open'));
+  if (above) {
+    const question = d.querySelector('summary');
+    const before = question.getBoundingClientRect().top;
+    const answer = above.querySelector('.faq-a');
+    answer.style.transition = 'none';
+    above.classList.remove('is-open', 'is-settled');
+    clearTimeout(above.faqTimer);
+    above.open = false;
+    const delta = question.getBoundingClientRect().top - before;
+    if (Math.abs(delta) > 0.5) scrollInstant(window.scrollY + delta);
+    requestAnimationFrame(() => requestAnimationFrame(() => { answer.style.transition = ''; }));
+  }
+  clearTimeout(d.faqTimer);
+  d.open = true;
+  void d.offsetHeight;                           // start from the closed height
+  d.classList.add('is-open');
+  d.faqTimer = setTimeout(() => d.classList.add('is-settled'), FAQ_MS);
+  faqs.forEach((o) => { if (o !== d) closeFaq(o); });
+};
+faqs.forEach((d) => {
+  if (d.open) d.classList.add('is-open', 'is-settled');
+  d.querySelector('summary').addEventListener('click', (e) => {
+    e.preventDefault();
+    if (d.classList.contains('is-open')) closeFaq(d); else openFaq(d);
+  });
+});
 
 /* ---------- Footer year ---------- */
 document.getElementById('year').textContent = new Date().getFullYear();
@@ -279,3 +351,62 @@ if (formFrame) {
     if (iframe) { watch(iframe); obs.disconnect(); }
   }).observe(formFrame, { childList: true, subtree: true });
 }
+
+/* ---------- Appearing on scroll (only when motion is allowed) ----------
+   How to Hire: arrows draw and steps light up. Industries cards, "Why employers choose" cards and
+   fee rows rise in one after another. Each group runs once. */
+if (document.documentElement.classList.contains('js-anim')) {
+  const groups = [...document.querySelectorAll('[data-reveal], .how-steps')];
+  groups.forEach((g) => [...g.children].forEach((child, i) => child.style.setProperty('--i', i)));
+  const appear = new IntersectionObserver((entries) => entries.forEach((e) => {
+    if (!e.isIntersecting) return;
+    e.target.classList.add('is-in');
+    appear.unobserve(e.target);
+  }), { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+  groups.forEach((g) => appear.observe(g));
+}
+
+/* ---------- Recruitment process: a teal line fills down the steps as you scroll ----------
+   Driven from here (not CSS scroll timelines) so it works in every browser. A step counts as
+   reached once it passes 60% of the screen height. With reduced motion it is simply full. */
+const processList = document.querySelector('.process-list');
+if (processList) {
+  const steps = [...processList.children];
+  let processTick = false;
+  const updateProcess = () => {
+    processTick = false;
+    if (!processList.offsetParent) return;        // the section is hidden on phones
+    const r = processList.getBoundingClientRect();
+    const mark = window.innerHeight * 0.6;
+    const progress = reduceMotion ? 1 : Math.min(1, Math.max(0, (mark - r.top) / r.height));
+    processList.style.setProperty('--progress', progress.toFixed(3));
+    steps.forEach((li) => li.classList.toggle('is-reached', reduceMotion || li.getBoundingClientRect().top + 24 < mark));
+  };
+  window.addEventListener('scroll', () => { if (!processTick) { processTick = true; requestAnimationFrame(updateProcess); } }, { passive: true });
+  window.addEventListener('resize', updateProcess);
+  updateProcess();
+}
+
+/* ---------- After a menu jump, the section heading's underline flashes once ---------- */
+const flashHeading = (section) => {
+  const heading = section && section.querySelector('h2');
+  if (!heading || reduceMotion) return;
+  const start = performance.now();
+  let lastTop = -1;
+  let still = 0;
+  const waitForStop = () => {                    // wait until the smooth scroll has finished
+    const y = window.scrollY;
+    still = Math.abs(y - lastTop) < 1 ? still + 1 : 0;
+    lastTop = y;
+    if (still < 4 && performance.now() - start < 3000) { requestAnimationFrame(waitForStop); return; }
+    heading.classList.remove('is-flash');
+    void heading.offsetWidth;                    // restart the animation if it is already there
+    heading.classList.add('is-flash');
+    setTimeout(() => heading.classList.remove('is-flash'), 700);
+  };
+  requestAnimationFrame(waitForStop);
+};
+document.querySelectorAll('a[href^="#"]').forEach((a) => a.addEventListener('click', () => {
+  const target = a.getAttribute('href').length > 1 && document.querySelector(a.getAttribute('href'));
+  if (target && target.tagName === 'SECTION') flashHeading(target);
+}));

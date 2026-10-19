@@ -97,7 +97,6 @@ h3 { font-size: 1.25rem; font-weight: 600; line-height: 1.35; color: var(--depth
   font-weight: 600; font-size: 1rem; line-height: 1; white-space: nowrap;
   border: 2px solid transparent; transition: background .2s, color .2s, border-color .2s, transform .2s, box-shadow .2s;
 }
-.btn:hover { transform: translateY(-1px); }
 .btn-sm { min-height: 42px; padding: 0 20px; font-size: 0.9375rem; }
 .btn-lg { min-height: 56px; padding: 0 32px; font-size: 1.0625rem; }
 
@@ -147,6 +146,14 @@ h3 { font-size: 1.25rem; font-weight: 600; line-height: 1.35; color: var(--depth
   .btn, .btn-sm { min-height: 48px; }
 }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+/* Button feedback (Alex's review, 6.10): every button presses in slightly when tapped (100ms);
+   only the orange button lifts on hover, and only with a mouse (200ms) */
+.btn:active, .round-btn:active { transform: scale(.97); transition-duration: .1s; }
+@media (hover: hover) and (pointer: fine) {
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 14px 26px -10px rgba(194, 65, 12, .6); }
+  .btn-primary:active { transform: translateY(0) scale(.97); }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
