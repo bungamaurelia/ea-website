@@ -339,7 +339,7 @@ details[open] .faq-ico { transform: rotate(45deg); background: var(--frost); }
   display: grid; place-items: center; background: #25d366; color: var(--depth); box-shadow: 0 10px 28px -6px rgba(37, 211, 102, .55);
   transition: transform .2s;
 }
-.wa-float:hover { transform: scale(1.06); }
+@media (hover: hover) and (pointer: fine) { .wa-float:hover { transform: scale(1.06); } }
 .wa-float svg { width: 32px; height: 32px; }
 
 /* =========================================================
@@ -1012,7 +1012,6 @@ html.menu-open { overflow: hidden; }       /* html only: locking body too would 
 }
 /* Links inside a sentence: a taller tap area without moving the text */
 .faq-a a, .form-alt a { padding: 12px 0; margin: -12px 0; }
-.how-note .text-link { min-height: 0; padding: 12px 0; margin: -12px 0; }   /* in a sentence: no tall line */
 .pause-btn, .dots button { min-width: 44px; min-height: 44px; }
 .pause-btn { width: 44px; height: 44px; }
 
@@ -1198,3 +1197,35 @@ h2.is-flash::after {
 .svc-media .media-ph { transition: opacity .5s ease-out; }
 .svc-media .media-ph img { transform: scale(1.04); transition: transform .5s ease-out; }
 .svc-media .media-ph.is-active img { transform: none; }
+
+/* =========================================================
+   Crystal's notes, 19 Oct 2026
+   ========================================================= */
+/* 1. Phone bottom bar like SuperClean's: price on the left, Request a Quote on the right,
+      the round WhatsApp button floating just above the bar (home.js sets html.bar-up and --bar-h) */
+@media (max-width: 600px) {
+  .mobile-cta { align-items: center; justify-content: space-between; gap: 12px; padding: 10px 16px calc(10px + env(safe-area-inset-bottom, 0px)); }
+  .mobile-cta-price { min-width: 0; line-height: 1.2; }
+  .mobile-cta-price span { display: block; font-size: .8125rem; color: var(--marine); }
+  .mobile-cta-price strong { display: block; font-size: 1.375rem; font-weight: 700; color: var(--depth); letter-spacing: -0.01em; }
+  .mobile-cta .btn-primary { flex: none; padding: 0 22px; }
+  .wa-float { display: grid; }
+  .bar-up .wa-float { transform: translateY(calc(-1 * var(--bar-h, 72px))); }
+}
+@media (max-width: 340px) {
+  .mobile-cta-price strong { font-size: 1.125rem; }
+  .mobile-cta .btn-primary { padding: 0 14px; }
+}
+
+/* 2. How to Hire: Apply for a Job on its own line, so it doesn't read as part of the sentence */
+.how-note .text-link { display: flex; width: fit-content; margin: 12px auto 0; }
+@media (max-width: 600px) { .how-note .text-link { margin-left: 0; } }
+
+/* 3. Fees: See all fees is the table's own last row (phones), not a second button above Request a Quote */
+.fee-table-wrap .fee-more {
+  width: 100%; margin: 0; min-width: 0; min-height: 48px; justify-content: center; align-items: center; gap: 6px;
+  border: 0; border-top: 1px solid var(--frost); border-radius: 0; background: var(--frost-soft);
+  color: var(--sea); font-weight: 600; font-size: .9375rem;
+}
+.fee-more .ico { width: 18px; height: 18px; transition: transform .3s ease-out; }
+.fee-more[aria-expanded="true"] .ico { transform: rotate(180deg); }

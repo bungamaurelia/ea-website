@@ -294,7 +294,7 @@ document.querySelectorAll('[data-expand]').forEach((btn) => {
   btn.addEventListener('click', () => {
     const open = section.classList.toggle('is-expanded');
     btn.setAttribute('aria-expanded', String(open));
-    btn.textContent = open ? btn.dataset.less : btn.dataset.more;
+    (btn.querySelector('span') || btn).textContent = open ? btn.dataset.less : btn.dataset.more;
   });
 });
 
@@ -308,8 +308,13 @@ if (mobileCta && heroButtons && formSection) {
   let pastHero = false;
   let formInView = false;
   document.documentElement.classList.add('on-hero');
+  // While the bar shows (html.bar-up), the floating WhatsApp button rides just above it
+  const barHeight = () => document.documentElement.style.setProperty('--bar-h', `${mobileCta.offsetHeight}px`);
+  barHeight();
+  window.addEventListener('resize', barHeight);
   const updateBar = () => {
     mobileCta.classList.toggle('is-hidden', !pastHero || formInView);
+    document.documentElement.classList.toggle('bar-up', pastHero && !formInView);
     document.documentElement.classList.toggle('on-hero', !pastHero);
   };
   new IntersectionObserver(([e]) => { pastHero = !e.isIntersecting && e.boundingClientRect.top < 0; updateBar(); }).observe(heroButtons);

@@ -123,8 +123,8 @@
   ]
 }
   </script>
-  <link rel="stylesheet" href="css/design-system.css?v=63">
-  <link rel="stylesheet" href="css/home.css?v=63">
+  <link rel="stylesheet" href="css/design-system.css?v=64">
+  <link rel="stylesheet" href="css/home.css?v=64">
 </head>
 <body>
 
@@ -515,8 +515,8 @@
           <tr class="fee-extra"><th scope="row">Government charges <small>(levy, security bond, insurance)</small></th><td data-label="Fee (S$)">At cost</td><td data-label="What's included">Paid to MOM or the insurer; not agency fees</td></tr>
         </tbody>
       </table>
+      <button class="fee-more show-more" type="button" data-expand="fees" data-more="See all fees" data-less="Show fewer fees" aria-expanded="false"><span>See all fees</span><svg class="ico" aria-hidden="true"><use href="#i-chevdown"/></svg></button>
     </div>
-    <button class="btn btn-secondary btn-sm show-more" type="button" data-expand="fees" data-more="See all fees" data-less="Show fewer fees" aria-expanded="false">See all fees</button>
     <div class="center-cta"><a class="btn btn-primary btn-lg" data-link="requestWorkers" href="#request-workers">Request a Quote</a></div>
   </div>
 </section>
@@ -704,12 +704,13 @@
   <svg><use href="#i-whatsapp"/></svg>
 </a>
 
-<!-- Phone only: action bar at the bottom of the screen (shows after the hero buttons, hides at the form) -->
+<!-- Phone only: action bar at the bottom of the screen, like SuperClean's (shows after the hero buttons, hides at the form).
+     The floating WhatsApp button sits just above it. -->
 <div class="mobile-cta is-hidden" role="region" aria-label="Quick contact">
+  <p class="mobile-cta-price"><span>Worker placement from</span><strong>S$1,200/worker</strong></p>
   <a class="btn btn-primary" data-link="requestWorkers" href="#request-workers">Request a Quote</a>
-  <a class="btn btn-whatsapp" data-link="whatsapp" href="https://wa.me/6589565188?text=Hi%20Employment%20Agency%20Singapore!%20I%20would%20like%20to%20enquire%20about%20hiring%20foreign%20workers.%0A%0ACompany%20name%3A%20%0ANumber%20of%20workers%3A%20%0ACleaning%20or%20construction%3A%20" target="_blank" rel="noopener"><svg class="ico"><use href="#i-whatsapp"/></svg>WhatsApp</a>
 </div>
 
-<script src="js/home.js?v=63"></script>
+<script src="js/home.js?v=64"></script>
 </body>
 </html>
