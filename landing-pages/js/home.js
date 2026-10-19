@@ -1,48 +1,14 @@
 /* =========================================================
    Employment Agency Singapore — homepage scripts (index.html only)
-   1. Links: WhatsApp number, pre-filled messages, button destinations
+   1. Links: where they live
    2. Interactions: header, menu, reviews, services, testimonials, FAQ
    ========================================================= */
 
-/* ---------- 1. Links ---------- */
-const WHATSAPP_NUMBER = '6589565188'; // +65 8956 5188: country code + number, no "+" or spaces
-
-const waLink = (text) => `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
-
-// Pre-filled WhatsApp messages. The blank lines after each label are for the person to fill in.
-const MSG_EMPLOYER = [
-  'Hi Employment Agency Singapore! I would like to enquire about hiring foreign workers.',
-  '',
-  'Company name: ',
-  'Number of workers: ',
-  'Cleaning or construction: ',
-].join('\n');
-
-const MSG_JOB_SEEKER = [
-  'Hi Employment Agency Singapore! I am looking for a job in Singapore.',
-  '',
-  'Name: ',
-  'Nationality: ',
-  'Cleaning or construction: ',
-  'Years of experience: ',
-  'Worked in Singapore before (yes/no): ',
-].join('\n');
-
-// One page only: Request a Quote and the service/country cards go to the HubSpot form below.
-// Contact scrolls to the form section; Find a Job and the WhatsApp buttons open WhatsApp in a new tab.
-const LINKS = {
-  requestWorkers: '#request-workers',
-  contact: '#request-workers',
-  findJob: waLink(MSG_JOB_SEEKER),
-  whatsapp: waLink(MSG_EMPLOYER),
-};
-
-document.querySelectorAll('[data-link]').forEach((el) => {
-  // Service and country cards scroll to the form (the HubSpot form can't be pre-filled from here)
-  if (el.dataset.link === 'hireForm') { el.setAttribute('href', '#request-workers'); return; }
-  const url = LINKS[el.dataset.link];
-  if (url) el.setAttribute('href', url);
-});
+/* ---------- 1. Links ----------
+   The WhatsApp links (number +65 8956 5188 and the pre-filled employer / job seeker messages) are written
+   straight into index.html, so they work even when this script doesn't load. To change the number or a
+   message, edit every wa.me link in index.html (search "wa.me"). Request a Quote, Contact Us and the
+   service and country cards link to #request-workers. */
 
 /* ---------- 2. Interactions ---------- */
 
@@ -61,26 +27,44 @@ onScroll();
 
 const toggle = document.querySelector('.nav-toggle');
 const nav = document.getElementById('main-nav');
-const setMenu = (open) => {
+const backdrop = document.querySelector('.nav-backdrop');
+// While the menu is open, everything outside it is inert: keyboard focus stays in the menu
+const outsideMenu = [document.getElementById('main'), document.querySelector('.site-footer'), document.querySelector('.logo'),
+  document.querySelector('.skip-link'), document.querySelector('.wa-float'), document.querySelector('.mobile-cta')].filter(Boolean);
+const setMenu = (open, { fromKeyboard = false } = {}) => {
+  const wasOpen = nav.classList.contains('is-open');
   nav.classList.toggle('is-open', open);
-  document.body.classList.toggle('menu-open', open); // hides the floating WhatsApp button and the bottom bar
+  // menu-open: locks the page behind the menu, shows the backdrop, hides the floating WhatsApp button and the bottom bar
+  document.documentElement.classList.toggle('menu-open', open);
+  outsideMenu.forEach((el) => el.toggleAttribute('inert', open));
   toggle.setAttribute('aria-expanded', String(open));
   toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
   toggle.querySelector('use').setAttribute('href', open ? '#i-close' : '#i-menu');
+  if (open && fromKeyboard) nav.querySelector('a').focus();
+  if (!open && wasOpen && nav.contains(document.activeElement)) toggle.focus();
 };
-toggle.addEventListener('click', () => setMenu(!nav.classList.contains('is-open')));
+// detail === 0: the button was pressed with the keyboard, so focus moves into the menu
+toggle.addEventListener('click', (e) => setMenu(!nav.classList.contains('is-open'), { fromKeyboard: e.detail === 0 }));
 nav.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => setMenu(false)));
-document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setMenu(false); });
+backdrop.addEventListener('click', () => setMenu(false));
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && nav.classList.contains('is-open')) setMenu(false); });
+// Older iPhones ignore overflow: hidden, so touches outside the menu can't scroll the page either
+document.addEventListener('touchmove', (e) => {
+  if (nav.classList.contains('is-open') && !nav.contains(e.target)) e.preventDefault();
+}, { passive: false });
 
 /* Highlight the nav link of the section in view */
 const navLinks = [...document.querySelectorAll('.main-nav > a[href^="#"]')];
+const hero = document.querySelector('.hero');
 const spy = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
     if (!entry.isIntersecting) return;
-    navLinks.forEach((a) => a.classList.toggle('is-active', a.getAttribute('href') === '#' + entry.target.id));
+    // back at the top: no section is highlighted
+    navLinks.forEach((a) => a.classList.toggle('is-active', entry.target !== hero && a.getAttribute('href') === '#' + entry.target.id));
   });
 }, { rootMargin: '-45% 0px -50% 0px' });
 navLinks.forEach((a) => { const s = document.querySelector(a.getAttribute('href')); if (s) spy.observe(s); });
+spy.observe(hero);
 
 /* ---------- Google reviews: arrow scrolling ---------- */
 const reviewTrack = document.getElementById('review-track');
@@ -242,14 +226,56 @@ document.querySelectorAll('[data-expand]').forEach((btn) => {
   });
 });
 
-// The bar shows once the hero buttons have scrolled away, and hides while the form is on screen
+// The bar shows once the hero buttons have scrolled away, and hides while the form is on screen.
+// On tablets and short screens the floating WhatsApp button also waits until the hero is passed
+// (html.on-hero), so it never sits over the hero portraits.
 const mobileCta = document.querySelector('.mobile-cta');
 const heroButtons = document.querySelector('.hero .btn-row');
 const formSection = document.getElementById('request-workers');
 if (mobileCta && heroButtons && formSection) {
   let pastHero = false;
   let formInView = false;
-  const updateBar = () => mobileCta.classList.toggle('is-hidden', !pastHero || formInView);
+  document.documentElement.classList.add('on-hero');
+  const updateBar = () => {
+    mobileCta.classList.toggle('is-hidden', !pastHero || formInView);
+    document.documentElement.classList.toggle('on-hero', !pastHero);
+  };
   new IntersectionObserver(([e]) => { pastHero = !e.isIntersecting && e.boundingClientRect.top < 0; updateBar(); }).observe(heroButtons);
   new IntersectionObserver(([e]) => { formInView = e.isIntersecting; updateBar(); }).observe(formSection);
+}
+
+/* ---------- Industries row on phones: one dot per card, tap a dot to go to its card ---------- */
+const countryGrid = document.querySelector('.country-grid');
+const countryDots = document.querySelector('.country-dots');
+if (countryGrid && countryDots) {
+  const cards = [...countryGrid.querySelectorAll('.country-card')];
+  const dots = cards.map((card, i) => {
+    const dot = document.createElement('button');
+    dot.type = 'button';
+    dot.setAttribute('aria-label', `${card.querySelector('h3').textContent} (${i + 1} of ${cards.length})`);
+    dot.addEventListener('click', () => countryGrid.scrollTo({ left: card.offsetLeft - countryGrid.offsetLeft - parseFloat(getComputedStyle(countryGrid).scrollPaddingLeft || 0), behavior: reduceMotion ? 'auto' : 'smooth' }));
+    countryDots.appendChild(dot);
+    return dot;
+  });
+  const setDot = (i) => dots.forEach((d, n) => d.setAttribute('aria-current', String(n === i)));
+  setDot(0);
+  const seen = new IntersectionObserver((entries) => {
+    entries.forEach((e) => { if (e.isIntersecting) setDot(cards.indexOf(e.target)); });
+  }, { root: countryGrid, threshold: 0.6 });
+  cards.forEach((c) => seen.observe(c));
+}
+
+/* ---------- Quote form: light placeholder until HubSpot's form has loaded ---------- */
+const formWrap = document.querySelector('.form-frame-wrap');
+const formFrame = formWrap && formWrap.querySelector('.hs-form-frame');
+if (formFrame) {
+  formWrap.classList.add('is-loading');
+  const done = () => formWrap.classList.remove('is-loading');
+  const watch = (iframe) => iframe.addEventListener('load', done, { once: true });
+  const existing = formFrame.querySelector('iframe');
+  if (existing) watch(existing);
+  else new MutationObserver((list, obs) => {
+    const iframe = formFrame.querySelector('iframe');
+    if (iframe) { watch(iframe); obs.disconnect(); }
+  }).observe(formFrame, { childList: true, subtree: true });
 }

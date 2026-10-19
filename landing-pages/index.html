@@ -19,8 +19,112 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="icon" type="image/svg+xml" href="images/ea-logo.svg">
-  <link rel="stylesheet" href="css/design-system.css?v=50">
-  <link rel="stylesheet" href="css/home.css?v=50">
+  <!-- Structured data for Google. Add address, telephone and the EA licence number once confirmed;
+       keep the FAQ part in step with the FAQ section. -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "EmploymentAgency",
+  "name": "Employment Agency Singapore",
+  "legalName": "Employment Agency Singapore Pte Ltd",
+  "url": "https://employmentagencysingapore.com/",
+  "logo": "https://employmentagencysingapore.com/images/ea-logo.svg",
+  "email": "hello@employmentagencysingapore.com",
+  "description": "MOM-licensed employment agency in Singapore for foreign cleaning and construction workers: candidate sourcing, Work Permit processing and placement.",
+  "areaServed": {
+    "@type": "Country",
+    "name": "Singapore"
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday"
+      ],
+      "opens": "09:00",
+      "closes": "18:00"
+    }
+  ]
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is Employment Agency Singapore a licensed employment agency in Singapore?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. We are an employment agency licensed by the Ministry of Manpower, licence number [licence number]."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which countries can you source cleaners and construction workers from?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Cleaners from Malaysia, Myanmar and PRC (China). Construction workers from Bangladesh, India and PRC. We'll advise which countries fit your sector and quota."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does it take to hire a foreign worker?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Lead time depends on the source country and the Work Permit approval process."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much does an employment agency charge in Singapore?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Our placement fee starts from S$1,200 per worker. Government charges such as levy, security bond and insurance are paid at cost. See our fee table for details."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can you supply cleaners on a contract basis?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. With manpower outsourcing, cleaners stay on our payroll and we deploy them to your site, covering levy and insurance."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you handle Work Permit applications and renewals?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. We handle IPA applications, medical check-up bookings, issuance, renewals and cancellations, including for workers you found yourself."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which employment agency is the best in Singapore?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Look for an agency that is MOM-licensed, clear about fees and experienced in your sector. Check its licence on MOM's EA Directory and read its Google reviews."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is it better to go through a recruitment agency?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For foreign workers, usually yes. An agency handles sourcing, screening and Work Permit paperwork, which saves time and lowers the risk of a rejected application."
+      }
+    }
+  ]
+}
+  </script>
+  <link rel="stylesheet" href="css/design-system.css?v=58">
+  <link rel="stylesheet" href="css/home.css?v=58">
 </head>
 <body>
 
@@ -79,12 +183,12 @@
       <a href="#faq">FAQ</a>
       <a data-link="contact" href="#request-workers">Contact Us</a>
       <div class="nav-ctas-mobile">
-        <a class="btn btn-secondary" data-link="findJob" href="#" target="_blank" rel="noopener">Find a Job</a>
+        <a class="btn btn-secondary" data-link="findJob" href="https://wa.me/6589565188?text=Hi%20Employment%20Agency%20Singapore!%20I%20am%20looking%20for%20a%20job%20in%20Singapore.%0A%0AName%3A%20%0ANationality%3A%20%0ACleaning%20or%20construction%3A%20%0AYears%20of%20experience%3A%20%0AWorked%20in%20Singapore%20before%20(yes%2Fno)%3A%20" target="_blank" rel="noopener">Find a Job</a>
         <a class="btn btn-primary" data-link="requestWorkers" href="#request-workers">Request a Quote</a>
       </div>
     </nav>
     <div class="header-ctas">
-      <a class="btn btn-secondary btn-sm" data-link="findJob" href="#" target="_blank" rel="noopener">Find a Job</a>
+      <a class="btn btn-secondary btn-sm" data-link="findJob" href="https://wa.me/6589565188?text=Hi%20Employment%20Agency%20Singapore!%20I%20am%20looking%20for%20a%20job%20in%20Singapore.%0A%0AName%3A%20%0ANationality%3A%20%0ACleaning%20or%20construction%3A%20%0AYears%20of%20experience%3A%20%0AWorked%20in%20Singapore%20before%20(yes%2Fno)%3A%20" target="_blank" rel="noopener">Find a Job</a>
       <a class="btn btn-primary btn-sm" data-link="requestWorkers" href="#request-workers">Request a Quote</a>
     </div>
     <button class="nav-toggle" aria-controls="main-nav" aria-expanded="false" aria-label="Open menu">
@@ -92,6 +196,8 @@
     </button>
   </div>
 </header>
+<!-- Dimmed page behind the open phone/tablet menu: tapping it closes the menu -->
+<div class="nav-backdrop" aria-hidden="true"></div>
 
 <main id="main">
 
@@ -109,7 +215,7 @@
       </ul>
       <div class="btn-row">
         <a class="btn btn-primary btn-lg" data-link="requestWorkers" href="#request-workers">Request a Quote</a>
-        <a class="btn btn-secondary btn-lg" data-link="findJob" href="#" target="_blank" rel="noopener">Find a Job</a>
+        <a class="text-link hero-job" data-link="findJob" href="https://wa.me/6589565188?text=Hi%20Employment%20Agency%20Singapore!%20I%20am%20looking%20for%20a%20job%20in%20Singapore.%0A%0AName%3A%20%0ANationality%3A%20%0ACleaning%20or%20construction%3A%20%0AYears%20of%20experience%3A%20%0AWorked%20in%20Singapore%20before%20(yes%2Fno)%3A%20" target="_blank" rel="noopener">Find a Job <svg class="ico"><use href="#i-arrow"/></svg></a>
       </div>
     </div>
 
@@ -294,6 +400,7 @@
         <a class="text-link" data-link="hireForm" data-country="Malaysia" href="#request-workers">Hire Malaysian Workers <svg class="ico"><use href="#i-arrow"/></svg></a>
       </article>
     </div>
+    <div class="country-dots" role="group" aria-label="Choose a country card"></div>
     <p class="lead-note">Lead time depends on the source country and the Work Permit approval process.</p>
 
     <div class="job-banner">
@@ -305,7 +412,7 @@
           <figcaption>Ahmad Faizal, Full-Time Office Cleaner</figcaption>
         </figure>
       </div>
-      <a class="btn btn-secondary" data-link="findJob" href="#" target="_blank" rel="noopener">Apply for a Job</a>
+      <a class="btn btn-secondary" data-link="findJob" href="https://wa.me/6589565188?text=Hi%20Employment%20Agency%20Singapore!%20I%20am%20looking%20for%20a%20job%20in%20Singapore.%0A%0AName%3A%20%0ANationality%3A%20%0ACleaning%20or%20construction%3A%20%0AYears%20of%20experience%3A%20%0AWorked%20in%20Singapore%20before%20(yes%2Fno)%3A%20" target="_blank" rel="noopener">Apply for a Job</a>
     </div>
   </div>
 </section>
@@ -358,7 +465,7 @@
         <h3>Interview and confirm</h3>
       </li>
     </ol>
-    <p class="how-note">Looking for work? Send us your details on WhatsApp and we'll contact you when a role matches. <a class="text-link" data-link="findJob" href="#" target="_blank" rel="noopener">Apply for a Job <svg class="ico"><use href="#i-arrow"/></svg></a></p>
+    <p class="how-note">Looking for work? Send us your details on WhatsApp and we'll contact you when a role matches. <a class="text-link" data-link="findJob" href="https://wa.me/6589565188?text=Hi%20Employment%20Agency%20Singapore!%20I%20am%20looking%20for%20a%20job%20in%20Singapore.%0A%0AName%3A%20%0ANationality%3A%20%0ACleaning%20or%20construction%3A%20%0AYears%20of%20experience%3A%20%0AWorked%20in%20Singapore%20before%20(yes%2Fno)%3A%20" target="_blank" rel="noopener">Apply for a Job <svg class="ico"><use href="#i-arrow"/></svg></a></p>
   </div>
 </section>
 
@@ -489,7 +596,7 @@
         <h3>Still have questions?</h3>
         <p>Message our team and we'll help you work out the right hire.</p>
       </div>
-      <a class="btn btn-whatsapp" data-link="whatsapp" href="#" target="_blank" rel="noopener"><svg class="ico"><use href="#i-whatsapp"/></svg>Chat on WhatsApp</a>
+      <a class="btn btn-whatsapp" data-link="whatsapp" href="https://wa.me/6589565188?text=Hi%20Employment%20Agency%20Singapore!%20I%20would%20like%20to%20enquire%20about%20hiring%20foreign%20workers.%0A%0ACompany%20name%3A%20%0ANumber%20of%20workers%3A%20%0ACleaning%20or%20construction%3A%20" target="_blank" rel="noopener"><svg class="ico"><use href="#i-whatsapp"/></svg>Chat on WhatsApp</a>
     </div>
   </div>
 </section>
@@ -527,7 +634,7 @@
       <p class="lead">Hire reliable foreign workers for your cleaning and construction teams.</p>
       <p class="cta-sub">Simply submit this enquiry form to get your quote and levy check.</p>
       <ul class="cta-contact">
-        <li><svg class="ico" aria-hidden="true"><use href="#i-mail"/></svg><a href="mailto:hello@employmentagencysingapore.com">hello@employmentagencysingapore.com</a></li>
+        <li><svg class="ico" aria-hidden="true"><use href="#i-mail"/></svg><a href="mailto:hello@employmentagencysingapore.com">hello@<wbr>employmentagencysingapore.com</a></li>
         <li><svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg><span>+65 [phone number]</span></li>
       </ul>
     </div>
@@ -536,8 +643,12 @@
       <h3 class="form-title">Get Your Quote Today</h3>
       <!-- HubSpot form (portal 242253439). Fields, consent text and the thank-you message are edited in HubSpot. -->
       <script src="https://js-na2.hsforms.net/forms/embed/242253439.js" defer></script>
-      <div class="hs-form-frame" data-region="na2" data-form-id="e3c92672-c496-4e6a-9ed1-6c7eb8611b11" data-portal-id="242253439"></div>
-      <p class="form-alt">Looking for a job? <a data-link="findJob" href="#" target="_blank" rel="noopener">Apply here</a></p>
+      <div class="form-frame-wrap">
+        <div class="form-loading" aria-hidden="true"><span>Loading the enquiry form…</span></div>
+        <div class="hs-form-frame" data-region="na2" data-form-id="e3c92672-c496-4e6a-9ed1-6c7eb8611b11" data-portal-id="242253439"></div>
+      </div>
+      <p class="form-alt">Form not showing? Email <a href="mailto:hello@employmentagencysingapore.com">hello@<wbr>employmentagencysingapore.com</a> or <a data-link="whatsapp" href="https://wa.me/6589565188?text=Hi%20Employment%20Agency%20Singapore!%20I%20would%20like%20to%20enquire%20about%20hiring%20foreign%20workers.%0A%0ACompany%20name%3A%20%0ANumber%20of%20workers%3A%20%0ACleaning%20or%20construction%3A%20" target="_blank" rel="noopener">message us on WhatsApp</a>.</p>
+      <p class="form-alt">Looking for a job? <a data-link="findJob" href="https://wa.me/6589565188?text=Hi%20Employment%20Agency%20Singapore!%20I%20am%20looking%20for%20a%20job%20in%20Singapore.%0A%0AName%3A%20%0ANationality%3A%20%0ACleaning%20or%20construction%3A%20%0AYears%20of%20experience%3A%20%0AWorked%20in%20Singapore%20before%20(yes%2Fno)%3A%20" target="_blank" rel="noopener">Apply here</a></p>
     </div>
   </div>
 </section>
@@ -562,7 +673,7 @@
     <div class="footer-col">
       <h3>Get Started</h3>
       <a data-link="requestWorkers" href="#request-workers">Request a Quote</a>
-      <a data-link="findJob" href="#" target="_blank" rel="noopener">Apply for a Job</a>
+      <a data-link="findJob" href="https://wa.me/6589565188?text=Hi%20Employment%20Agency%20Singapore!%20I%20am%20looking%20for%20a%20job%20in%20Singapore.%0A%0AName%3A%20%0ANationality%3A%20%0ACleaning%20or%20construction%3A%20%0AYears%20of%20experience%3A%20%0AWorked%20in%20Singapore%20before%20(yes%2Fno)%3A%20" target="_blank" rel="noopener">Apply for a Job</a>
       <a data-link="contact" href="#request-workers">Contact Us</a>
     </div>
     <div class="footer-col">
@@ -570,7 +681,7 @@
       <ul class="contact-list">
         <li><svg class="ico"><use href="#i-pin"/></svg>[Address line], Singapore [Postal code]</li>
         <li><svg class="ico"><use href="#i-phone"/></svg>+65 [phone number]</li>
-        <li><svg class="ico"><use href="#i-mail"/></svg><a href="mailto:hello@employmentagencysingapore.com">hello@employmentagencysingapore.com</a></li>
+        <li><svg class="ico"><use href="#i-mail"/></svg><a href="mailto:hello@employmentagencysingapore.com">hello@<wbr>employmentagencysingapore.com</a></li>
         <li><svg class="ico"><use href="#i-clock"/></svg>Monday to Friday, 9am to 6pm</li>
       </ul>
     </div>
@@ -581,16 +692,16 @@
 </footer>
 
 <!-- Floating WhatsApp (TBC: form, contact subpage or WhatsApp) -->
-<a class="wa-float" data-link="whatsapp" href="#" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">
+<a class="wa-float" data-link="whatsapp" href="https://wa.me/6589565188?text=Hi%20Employment%20Agency%20Singapore!%20I%20would%20like%20to%20enquire%20about%20hiring%20foreign%20workers.%0A%0ACompany%20name%3A%20%0ANumber%20of%20workers%3A%20%0ACleaning%20or%20construction%3A%20" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">
   <svg><use href="#i-whatsapp"/></svg>
 </a>
 
 <!-- Phone only: action bar at the bottom of the screen (shows after the hero buttons, hides at the form) -->
 <div class="mobile-cta is-hidden" role="region" aria-label="Quick contact">
   <a class="btn btn-primary" data-link="requestWorkers" href="#request-workers">Request a Quote</a>
-  <a class="btn btn-whatsapp" data-link="whatsapp" href="#" target="_blank" rel="noopener"><svg class="ico"><use href="#i-whatsapp"/></svg>WhatsApp</a>
+  <a class="btn btn-whatsapp" data-link="whatsapp" href="https://wa.me/6589565188?text=Hi%20Employment%20Agency%20Singapore!%20I%20would%20like%20to%20enquire%20about%20hiring%20foreign%20workers.%0A%0ACompany%20name%3A%20%0ANumber%20of%20workers%3A%20%0ACleaning%20or%20construction%3A%20" target="_blank" rel="noopener"><svg class="ico"><use href="#i-whatsapp"/></svg>WhatsApp</a>
 </div>
 
-<script src="js/home.js?v=50"></script>
+<script src="js/home.js?v=58"></script>
 </body>
 </html>
