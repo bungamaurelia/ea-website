@@ -12,11 +12,12 @@ landing-pages/        THE ONLY FOLDER THAT GETS DEPLOYED
   css/home.css          homepage sections only
   js/home.js            homepage scripts: WhatsApp links + interactions
   images/ea-logo.svg    logo mark (also the browser-tab icon)
+  images/og-image.png · images/apple-touch-icon.png · favicon.ico  logo as PNG/ICO: link preview (WhatsApp, LinkedIn), iPhone home screen icon, older browsers
   images/home/*.webp    homepage photos
   sitemap.xml · robots.txt  search engines (update lastmod in sitemap.xml when the page changes)
 process/              design-system.html (internal only, never deployed) + design-system-img/ + snippets/
 scripts/python/       capture.py · mobile_audit.py · ds_shots.py · build_preview.py · strips.py
-output/               backups/v1 … v53 and screenshots: local only, ignored by git
+output/               backups/v1 … v54 and screenshots: local only, ignored by git
 ```
 A new page would go in `landing-pages/<page-slug>/index.html`. Nothing else belongs at the root.
 
@@ -45,7 +46,7 @@ A new page would go in `landing-pages/<page-slug>/index.html`. Nothing else belo
 - The form is the HubSpot embed (portal 242253439). Its fields, consent text and thank-you message are edited in HubSpot. Never submit test entries without asking: they create real leads. It loads in its own iframe, so its font, fields and button style are set in HubSpot, not in our CSS. While it loads, a light placeholder shows ("Loading the enquiry form…"); under it, a fallback line offers email and WhatsApp. It can't load in the claude.ai preview, which shows a placeholder instead.
 - Structured data (JSON-LD in `index.html`): EmploymentAgency details and the FAQ. Keep the FAQ part in step with the FAQ section; add address, telephone and the licence number once confirmed.
 - Industries row on phones: dots under the cards (built in `js/home.js`), one per country card.
-- Images: WebP only (logo SVG), in `images/home/` named `hero-…`, `service-…`, `country-…`. `service-default.webp` (cleaner vacuuming a sofa in an office lounge, 19 Oct 2026: Alex asked for a cleaner at work instead of the disinfection photo; cropped from the top on tablet and phone) is the services photo shown while no service is open (desktop side panel); on tablet and phone it sits above the list. Every `<img>` needs `alt`, `title`, `width` and `height`; below-the-fold photos use `loading="lazy"`. Country cards use worker photos, no flags.
+- Images: WebP only (logo SVG), except the logo copies above: WhatsApp/LinkedIn previews and iPhone icons can't use SVG or WebP (20 Oct 2026). Re-make them from `ea-logo.svg` if the logo changes; in `images/home/` named `hero-…`, `service-…`, `country-…`. `service-default.webp` (cleaner vacuuming a sofa in an office lounge, 19 Oct 2026: Alex asked for a cleaner at work instead of the disinfection photo; cropped from the top on tablet and phone) is the services photo shown while no service is open (desktop side panel); on tablet and phone it sits above the list. Every `<img>` needs `alt`, `title`, `width` and `height`; below-the-fold photos use `loading="lazy"`. Country cards use worker photos, no flags.
 - Hidden with the `hidden` attribute until real content exists: the blog section, Our Clients, the Google reviews (with the "Trusted on Google 5.0" rating), the testimonials and the job seeker quote in the "Looking for work" banner. The reviews and quotes in the code are samples: the agency has no Google Business Profile yet (Crystal, 19 Oct 2026). Show them only with real reviews, never SuperClean SG's.
 - Git: commit and push only when asked. `output/` stays out of the repo.
 
