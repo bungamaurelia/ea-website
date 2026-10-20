@@ -23,7 +23,7 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.86em;bac
 .ds-nav{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid #e3e8e7}
 .ds-nav-inner{max-width:1240px;margin:0 auto;padding:0 24px;display:flex;gap:22px;overflow-x:auto}
 .ds-nav a{flex:none;padding:14px 0 12px;font-size:13px;font-weight:600;color:#333;text-decoration:none;border-bottom:2px solid transparent}
-.ds-nav a:hover{color:#030F18;border-bottom-color:#FF5B04}
+.ds-nav a:hover{color:#030F18;border-bottom-color:#C2410C}
 main{max-width:1240px;margin:0 auto;padding:24px 24px 80px}
 .ds-section{padding:40px 0 24px;border-top:1px solid #e3e8e7;margin-top:24px}
 .ds-section>h2{margin:0 0 8px;font-size:28px;line-height:36px;font-weight:700;color:#030F18;letter-spacing:-.01em}
@@ -78,7 +78,7 @@ table.ds-table{width:100%;border-collapse:collapse;font-size:14px}
 .frames{display:flex;flex-wrap:wrap;gap:20px;align-items:flex-end}
 .frame-box{border:1px solid #cfd8d6;border-radius:10px;position:relative;background:#fff;overflow:hidden}
 .frame-box .cols{position:absolute;inset:8px var(--g);display:grid;gap:var(--gap)}
-.frame-box .cols div{background:rgba(255,91,4,.14);border:1px dashed #FF5B04;border-radius:3px}
+.frame-box .cols div{background:rgba(194,65,12,.12);border:1px dashed #C2410C;border-radius:3px}
 .frame-box .gut{position:absolute;top:0;bottom:0;width:var(--g);background:rgba(29,64,82,.12)}
 .frame-cap{margin-top:8px;font-size:12px;line-height:18px;color:#555}
 .frame-cap b{color:#030F18}
@@ -98,8 +98,8 @@ table.ds-table{width:100%;border-collapse:collapse;font-size:14px}
    SITE TOKENS (copied from landing-pages/css/design-system.css :root)
    ================================================================= */
 :root{
-  --depth:#030f18; --harbor:#1d4052; --marine:#446e87; --glacier:#72a3bf; --frost:#e0e8e6; --sea:#075056; --orange:#ff5b04; --white:#fff;
-  --orange-hover:#e84f00; --frost-soft:#f3f6f5; --frost-line:#d3dedb; --star:#f5b400; --wa:#25d366;
+  --depth:#030f18; --harbor:#1d4052; --marine:#446e87; --glacier:#72a3bf; --frost:#e0e8e6; --sea:#075056; --orange:#c2410c; --white:#fff;
+  --orange-hover:#9a3412; --frost-soft:#f3f6f5; --frost-line:#d3dedb; --star:#f5b400; --wa:#25d366;
   --radius-sm:10px; --radius:16px; --radius-lg:24px;
   --shadow:0 10px 30px -12px rgba(3,15,24,.18); --shadow-lg:0 24px 60px -20px rgba(3,15,24,.28);
 }
@@ -113,19 +113,20 @@ table.ds-table{width:100%;border-collapse:collapse;font-size:14px}
 .x-eyebrow{font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--marine)}
 .x-small{color:var(--marine)}
 .x-btn{white-space:nowrap;display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:999px;font:600 16px/1 Poppins,sans-serif;border:2px solid transparent;padding:0 26px;min-height:48px;text-decoration:none;cursor:pointer;transition:background .2s,color .2s,transform .2s}
-.x-btn:hover{transform:translateY(-1px)}
+.x-btn:active{transform:scale(.97)}
 .x-btn:focus-visible{outline:3px solid var(--glacier);outline-offset:3px}
 .x-btn.lg{min-height:56px;padding:0 32px;font-size:17px}
-.x-btn.sm{min-height:42px;padding:0 20px;font-size:15px}
+.x-btn.sm{min-height:44px;padding:0 20px;font-size:15px}
 .x-btn.m{min-height:46px;font-size:15px;width:100%}
-.x-primary{background:var(--orange);color:#fff;box-shadow:0 8px 20px -8px rgba(255,91,4,.6)}
+.x-primary{background:var(--orange);color:#fff;box-shadow:0 8px 20px -8px rgba(194,65,12,.55)}
+.x-primary.is-hover{transform:translateY(-2px);box-shadow:0 14px 26px -10px rgba(194,65,12,.6)}
 .x-primary:hover,.x-primary.is-hover{background:var(--orange-hover)}
 .x-secondary{background:#fff;color:var(--harbor);border-color:var(--harbor)}
 .x-secondary:hover,.x-secondary.is-hover{background:var(--harbor);color:#fff}
 .x-light{background:var(--frost);color:var(--depth)}
-.x-wa{background:var(--wa);color:#fff}
+.x-wa{background:var(--wa);color:var(--depth)}
 .x-link{display:inline-flex;align-items:center;gap:6px;font-weight:600;color:var(--sea);text-decoration:none;font-size:15px}
-.x-round{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:#fff;color:var(--harbor);border:1px solid var(--frost-line)}
+.x-round{width:48px;height:48px;flex:none;border-radius:50%;display:grid;place-items:center;background:#fff;color:var(--harbor);border:1px solid var(--frost-line)}
 .x-round.dark{background:transparent;color:#fff;border-color:rgba(114,163,191,.4)}
 .x-field{display:grid;gap:6px;width:300px;max-width:100%}
 .x-field label{font-size:14px;font-weight:600}
@@ -150,7 +151,9 @@ table.ds-table{width:100%;border-collapse:collapse;font-size:14px}
 .x-faq.open{border-color:var(--frost-line);box-shadow:var(--shadow)}
 .x-faq-q{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:18px 22px;font-weight:600}
 .x-faq-ico{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;color:var(--harbor)}
-.x-faq.open .x-faq-ico{transform:rotate(45deg);background:var(--frost)}
+.x-faq.open .x-faq-ico{background:var(--frost)}
+.x-bars{display:grid;place-items:center}.x-bars::before,.x-bars::after{content:"";grid-area:1/1;width:14px;height:2px;border-radius:2px;background:currentColor}.x-bars::after{transform:rotate(90deg)}.x-faq.open .x-bars::after{transform:none}
+.x-more{width:520px;max-width:100%;min-height:48px;display:flex;align-items:center;justify-content:center;gap:6px;border:1px dashed var(--frost-line);border-radius:10px;color:var(--sea);font-weight:600;font-size:15px}
 .x-faq-a{padding:0 22px 20px;font-size:15px;opacity:.85}
 .x-country{width:300px;max-width:100%;border:1px solid var(--frost-line);border-radius:24px;overflow:hidden;background:#fff}
 .x-country .ph{aspect-ratio:16/10;position:relative;display:flex;align-items:flex-end;padding:16px;background:linear-gradient(to top,rgba(3,15,24,.85),rgba(3,15,24,.05) 65%),linear-gradient(135deg,var(--marine),var(--glacier))}
@@ -190,8 +193,14 @@ table.ds-table{width:100%;border-collapse:collapse;font-size:14px}
 .x-banner{width:100%;max-width:820px;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:24px 28px;border-radius:24px;background:var(--frost)}
 .x-banner h5{margin:0 0 4px;font-size:20px;font-weight:600}
 .x-banner p{font-size:14px;opacity:.85}
-.x-waf{width:60px;height:60px;border-radius:50%;background:var(--wa);display:grid;place-items:center;color:#fff;box-shadow:0 10px 28px -6px rgba(37,211,102,.55)}
+.x-waf{width:60px;height:60px;border-radius:50%;background:var(--wa);display:grid;place-items:center;color:var(--depth);box-shadow:0 10px 28px -6px rgba(37,211,102,.55)}
 .dark-stage{background:var(--harbor);padding:20px;border-radius:12px}
+.x-bar{width:390px;max-width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 16px;background:#fff;border:1px solid var(--frost-line);border-radius:12px;box-shadow:0 -8px 24px -16px rgba(3,15,24,.35)}
+.x-bar span{display:block;font-size:13px;color:var(--marine)}.x-bar strong{display:block;font-size:22px;font-weight:700;letter-spacing:-.01em;line-height:1.2}
+.x-feemore{display:flex;align-items:center;justify-content:center;gap:6px;min-height:48px;background:var(--frost-soft);border-top:1px solid var(--frost);color:var(--sea);font-weight:600;font-size:15px}
+.motion-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+.motion-card{border:1px solid #e3e8e7;border-radius:10px;padding:14px 16px;font-size:14px;line-height:22px;color:#444}
+.motion-card b{display:block;color:#030F18;margin-bottom:4px}.motion-card code{font-size:12px}
 .depth-stage{background:var(--depth);padding:20px;border-radius:12px}
 </style>
 </head>
@@ -216,10 +225,10 @@ table.ds-table{width:100%;border-collapse:collapse;font-size:14px}
 
 <header class="ds-header">
   <div class="ds-header-inner">
-    <p class="ds-kicker">Employment Agency Singapore · One-page site · v1.1 (14 Oct 2026)</p>
+    <p class="ds-kicker">Employment Agency Singapore · One-page site · v1.2 (20 Oct 2026, after Alex Leong's review)</p>
     <h1>Website Design System</h1>
     <p class="lede">Design system for employmentagencysingapore.com across desktop, tablet and mobile. Every size on this page was measured on the built site at 1440px, 768px and 390px. The code in <code>landing-pages/css/design-system.css</code> and <code>home.css</code> is the source of truth; where this page and the code disagree, the code wins.</p>
-    <div class="bp-pills"><span>Desktop ≥ 901px · design width 1440</span><span>Tablet 601–900px · design width 768</span><span>Mobile ≤ 600px · design width 390</span></div>
+    <div class="bp-pills"><span>Desktop ≥ 901px · design width 1440 (menu button up to 1024px)</span><span>Tablet 601–900px · design width 768</span><span>Mobile ≤ 600px · design width 390</span></div>
   </div>
 </header>
 
@@ -230,6 +239,7 @@ table.ds-table{width:100%;border-collapse:collapse;font-size:14px}
     <a href="#spacing">2.3 Spacing</a>
     <a href="#grid">2.4 Grid</a>
     <a href="#radii">2.5 Radii + Shadows</a>
+    <a href="#motion">2.6 Motion</a>
     <a href="#components">3 Components</a>
     <a href="#patterns">4 Section blocks</a>
     <a href="#recipes">5 Page recipes</a>
@@ -240,7 +250,9 @@ table.ds-table{width:100%;border-collapse:collapse;font-size:14px}
 
 <main>
 
-<div class="notice todo"><strong>Still placeholders on the live build:</strong> client logos, contact details and the Privacy Policy link. Photos and the logo mark are in (14 Oct 2026). The full list is in the EA Website Launch Checklist doc.</div>
+<div class="notice todo"><strong>Still placeholders (20 Oct 2026):</strong> EA licence number, registered address, phone and WhatsApp number, UEN, Privacy Policy and Terms pages, Google Analytics, link preview image. Hidden until real content exists: Google reviews and rating, testimonials, client logos, blog. The full list is in the EA Website Launch Checklist doc.</div>
+
+<div class="notice info"><strong>What changed in v1.2 (Alex Leong's review, 19 Oct 2026):</strong> no SuperClean SG or NEA references; orange darkened to #C2410C and dark text on WhatsApp green for contrast; font sizes in rem, nothing under 13px, phone body text 16px; every tap target at least 44 × 44px; size-matched fallback font; menu button up to 1024px with a scrolling, screen-high menu and a dimmed backdrop; Find a Job is a text link in the hero; new animations (2.6). Crystal's notes: SuperClean-style phone bottom bar, See all fees and More questions inside their lists, Apply for a Job on its own line.</div>
 
 <!-- ============================== 2.1 COLOR ============================== -->
 <section class="ds-section" id="color">
@@ -253,67 +265,68 @@ table.ds-table{width:100%;border-collapse:collapse;font-size:14px}
 <div class="swatch"><div class="sw" style="background:#446E87"></div><div class="meta"><p class="name">Marine</p><p class="hex">#446E87 · --marine</p><p class="note">Eyebrow label, job titles, captions, licence line, card labels</p></div></div>
 <div class="swatch"><div class="sw" style="background:#72A3BF"></div><div class="meta"><p class="name">Glacier</p><p class="hex">#72A3BF · --glacier</p><p class="note">Highlighted H2 line on dark, dotted patterns, focus ring, carousel dots</p></div></div>
 <div class="swatch"><div class="sw" style="background:#E0E8E6"></div><div class="meta"><p class="name">Frost</p><p class="hex">#E0E8E6 · --frost</p><p class="note">Banners (Looking for work, Still have questions), icon tiles, chips, Find a Job on dark</p></div></div>
-<div class="swatch"><div class="sw" style="background:#FF5B04"></div><div class="meta"><p class="name">Blaze Orange</p><p class="hex">#FF5B04 · --orange</p><p class="note">Request a Quote button only (the main conversion), required-field asterisks, nav underline</p></div></div>
+<div class="swatch"><div class="sw" style="background:#C2410C"></div><div class="meta"><p class="name">Burnt Orange</p><p class="hex">#C2410C · --orange</p><p class="note">Request a Quote button only (the main conversion), nav underline. White text on it reads 5.2:1 (was #FF5B04, 3.1:1)</p></div></div>
 <div class="swatch"><div class="sw" style="background:#FFFFFF"></div><div class="meta"><p class="name">White</p><p class="hex">#FFFFFF · --white</p><p class="note">Base surface, cards, form card, Find a Job button on light</p></div></div>
   </div></div>
   <div class="ds-sub"><h3>Supporting colours</h3><div class="swatch-grid">
 <div class="swatch"><div class="sw" style="background:#F3F6F5"></div><div class="meta"><p class="name">Frost Soft</p><p class="hex">#F3F6F5 · --frost-soft</p><p class="note">Alternating section background, input fill, desktop Google rating card</p></div></div>
 <div class="swatch"><div class="sw" style="background:#D3DEDB"></div><div class="meta"><p class="name">Frost Line</p><p class="hex">#D3DEDB · --frost-line</p><p class="note">Card and input borders, header bottom line, dividers</p></div></div>
-<div class="swatch"><div class="sw" style="background:#E84F00"></div><div class="meta"><p class="name">Orange Hover</p><p class="hex">#E84F00 · --orange-hover</p><p class="note">Request a Quote hover state</p></div></div>
-<div class="swatch"><div class="sw" style="background:#F5B400"></div><div class="meta"><p class="name">Star Yellow</p><p class="hex">#F5B400</p><p class="note">Every star rating, including the big desktop star</p></div></div>
-<div class="swatch"><div class="sw" style="background:#25D366"></div><div class="meta"><p class="name">WhatsApp Green</p><p class="hex">#25D366</p><p class="note">Floating WhatsApp button and Chat on WhatsApp button only</p></div></div>
+<div class="swatch"><div class="sw" style="background:#9A3412"></div><div class="meta"><p class="name">Orange Hover</p><p class="hex">#9A3412 · --orange-hover</p><p class="note">Request a Quote hover state</p></div></div>
+<div class="swatch"><div class="sw" style="background:#F5B400"></div><div class="meta"><p class="name">Star Yellow</p><p class="hex">#F5B400</p><p class="note">Star ratings (reviews hidden for now)</p></div></div>
+<div class="swatch"><div class="sw" style="background:#25D366"></div><div class="meta"><p class="name">WhatsApp Green</p><p class="hex">#25D366</p><p class="note">WhatsApp buttons only, always with Depth text and icon (white on it was 2.0:1)</p></div></div>
   </div></div>
   <div class="ds-sub">
     <h3>Colour roles</h3>
     <div class="table-wrap"><table class="ds-table">
       <tr><th>Role</th><th>Colour</th></tr>
-      <tr><td>Section background rhythm</td><td>White → Frost Soft → White, with three dark bands: testimonials on Depth, Request Workers form on Harbor, footer on Depth</td></tr>
+      <tr><td>Section background rhythm</td><td>White → Frost Soft → White, with dark bands: Request Workers form on Harbor, footer on Depth (testimonials on Depth when shown again)</td></tr>
       <tr><td>H1 and H2</td><td><code>#030F18</code> first line; highlighted second line <code>#075056</code> on light, <code>#72A3BF</code> on dark</td></tr>
       <tr><td>Body text</td><td><code>#030F18</code> at 82–85% opacity for paragraphs; white at 80–85% on dark</td></tr>
-      <tr><td>Primary button (Request a Quote)</td><td><code>#FF5B04</code> fill, white text, hover <code>#E84F00</code></td></tr>
-      <tr><td>Secondary button (Find a Job)</td><td>White fill, <code>#1D4052</code> 2px outline and text; hover fills Harbor. On dark: Frost fill, Depth text</td></tr>
+      <tr><td>Primary button (Request a Quote)</td><td><code>#C2410C</code> fill, white text, hover <code>#9A3412</code></td></tr>
+      <tr><td>Secondary button (Find a Job in the header and menu, Apply for a Job)</td><td>White fill, <code>#1D4052</code> 2px outline and text; hover fills Harbor. On dark: Frost fill, Depth text</td></tr>
+      <tr><td>WhatsApp buttons</td><td><code>#25D366</code> fill, <code>#030F18</code> text and icon</td></tr>
       <tr><td>Text links</td><td><code>#075056</code>, 600 weight, arrow icon; on dark <code>#E0E8E6</code></td></tr>
       <tr><td>Icons</td><td><code>#1D4052</code>; inside an active tile, white on Harbor</td></tr>
-      <tr><td>Name initials (avatars)</td><td>Rotate <code>#075056</code>, <code>#FF5B04</code>, <code>#446E87</code> with white letters</td></tr>
+      <tr><td>Name initials (avatars)</td><td>Rotate <code>#075056</code>, <code>#C2410C</code>, <code>#446E87</code> with white letters</td></tr>
       <tr><td>Focus</td><td>Keyboard ring 3px <code>#72A3BF</code>; form fields border <code>#075056</code> + 3px ring at 12%</td></tr>
     </table></div>
   </div>
-  <p class="spec-caption"><strong>Not used:</strong> orange for headings or highlights (it competes with the Request a Quote button and fails contrast on light grey); pure black; any colour outside this list.</p>
+  <p class="spec-caption"><strong>Not used:</strong> orange for headings or highlights (it competes with the Request a Quote button); white text on WhatsApp green; pure black; any colour outside this list. Every text colour pair meets 4.5:1.</p>
   <span class="source-label">landing-pages/css/design-system.css :root tokens</span>
 </section>
 
 <!-- ============================== 2.2 TYPE ============================== -->
 <section class="ds-section" id="type">
   <h2>2.2 Typography</h2>
-  <p class="section-note">Poppins for all text, weights 400, 500, 600 and 700. Each role has one size per breakpoint. Samples are shown at the real size: <b>D</b> desktop 1440, <b>T</b> tablet 768, <b>M</b> mobile 390. Sizes marked ≈ are fluid (they scale with screen width between the limits shown).</p>
+  <p class="section-note">Poppins for all text, weights 400, 500, 600 and 700, with a size-matched Arial fallback ("Poppins Fallback") so nothing moves when Poppins arrives. All sizes are set in rem, so the browser's text size setting works. Each role has one size per breakpoint. Samples are shown at the real size: <b>D</b> desktop 1440, <b>T</b> tablet 768, <b>M</b> mobile 390. Sizes marked ≈ are fluid (they scale with screen width between the limits shown).</p>
   <div class="specimen x">
-    <div class="ramp-row"><div class="ramp-meta"><span class="role">H1 hero</span><span class="vals"><b>D</b>56 / 64, 700, −0.02em<br><b>T</b>≈35 / 41 (30–38)<br><b>M</b>≈28 / 32 (26–30)</span></div>
+    <div class="ramp-row"><div class="ramp-meta"><span class="role">H1 hero</span><span class="vals"><b>D</b>56 / 64, 700, −0.02em; ≈44 on screens up to 860px tall<br><b>T</b>≈35 / 41 (30–38)<br><b>M</b>≈28 / 32 (26–30); 28 on phones held sideways</span></div>
       <div class="ramp-samples"><div><span class="vlabel">Desktop</span><p class="x-h1" style="font-size:56px">Employment Agency <span class="x-accent" style="display:inline">Foreign</span></p></div><div><span class="vlabel">Tablet</span><p class="x-h1" style="font-size:35px">Employment Agency Singapore</p></div><div><span class="vlabel">Mobile</span><p class="x-h1" style="font-size:28px">Employment Agency Singapore</p></div></div></div>
     <div class="ramp-row"><div class="ramp-meta"><span class="role">H2 section</span><span class="vals"><b>D</b>44 / 51, 700, −0.02em<br><b>T</b>≈29 / 34 (24–30)<br><b>M</b>≈23 / 27 (22–25)</span></div>
       <div class="ramp-samples"><div><span class="vlabel">Desktop</span><p class="x-h2" style="font-size:44px">How to Hire<span class="x-accent">Foreign Workers</span></p></div><div><span class="vlabel">Tablet</span><p class="x-h2" style="font-size:29px">How to Hire<span class="x-accent">Foreign Workers</span></p></div><div><span class="vlabel">Mobile</span><p class="x-h2" style="font-size:23px">How to Hire<span class="x-accent">Foreign Workers</span></p></div></div></div>
-    <div class="ramp-row"><div class="ramp-meta"><span class="role">H3 card / item title</span><span class="vals"><b>D</b>20 / 27, 600<br><b>T</b>17 / 23<br><b>M</b>16 / 22 (Why Choose items 14.5)</span></div>
-      <div class="ramp-samples"><div><span class="vlabel">Desktop</span><p class="x-h3" style="font-size:20px">Backed by SuperClean SG</p></div><div><span class="vlabel">Tablet</span><p class="x-h3" style="font-size:17px">Backed by SuperClean SG</p></div><div><span class="vlabel">Mobile</span><p class="x-h3" style="font-size:16px">Backed by SuperClean SG</p></div></div></div>
-    <div class="ramp-row"><div class="ramp-meta"><span class="role">Lead (under H2)</span><span class="vals"><b>D</b>18 / 30, 400<br><b>T</b>16 / 26<br><b>M</b>15 / 25</span></div>
-      <div class="ramp-samples"><div><span class="vlabel">Desktop</span><p style="font-size:18px;line-height:30px;opacity:.85">From your first message to workers on site, we keep it simple.</p></div><div><span class="vlabel">Tablet</span><p style="font-size:16px;line-height:26px;opacity:.85">From your first message to workers on site, we keep it simple.</p></div><div><span class="vlabel">Mobile</span><p style="font-size:15px;line-height:25px;opacity:.85">From your first message to workers on site.</p></div></div></div>
-    <div class="ramp-row"><div class="ramp-meta"><span class="role">Body</span><span class="vals"><b>D</b>16 / 26, 400<br><b>T</b>15 / 25<br><b>M</b>14.5 / 24 (cards 12.5–13.5)</span></div>
-      <div class="ramp-samples"><div><span class="vlabel">Desktop</span><p style="font-size:16px;line-height:26px;opacity:.85">As cleaning operators, we screen every candidate against our own hiring standards.</p></div><div><span class="vlabel">Tablet</span><p style="font-size:15px;line-height:25px;opacity:.85">As cleaning operators, we screen every candidate against our own hiring standards.</p></div><div><span class="vlabel">Mobile</span><p style="font-size:14.5px;line-height:24px;opacity:.85">We screen every candidate against our own standards.</p></div></div></div>
-    <div class="ramp-row"><div class="ramp-meta"><span class="role">Eyebrow (hero only)</span><span class="vals"><b>D</b>13, 600, +0.12em, uppercase<br><b>T</b>13<br><b>M</b>11</span></div>
-      <div class="ramp-samples"><div><span class="vlabel">Desktop</span><p class="x-eyebrow" style="font-size:13px">MOM-licensed employment agency</p></div><div><span class="vlabel">Tablet</span><p class="x-eyebrow" style="font-size:13px">MOM-licensed employment agency</p></div><div><span class="vlabel">Mobile</span><p class="x-eyebrow" style="font-size:11px">MOM-licensed employment agency</p></div></div></div>
-    <div class="ramp-row"><div class="ramp-meta"><span class="role">Small / licence line</span><span class="vals"><b>D</b>13, 400, Marine<br><b>T</b>12<br><b>M</b>11.5</span></div>
-      <div class="ramp-samples"><div><span class="vlabel">Desktop</span><p class="x-small" style="font-size:13px">Part of SuperClean SG · NEA Licensed Company</p></div><div><span class="vlabel">Tablet</span><p class="x-small" style="font-size:12px">Part of SuperClean SG · NEA Licensed Company</p></div><div><span class="vlabel">Mobile</span><p class="x-small" style="font-size:11.5px">Part of SuperClean SG · NEA Licensed Company</p></div></div></div>
+    <div class="ramp-row"><div class="ramp-meta"><span class="role">H3 card / item title</span><span class="vals"><b>D</b>20 / 27, 600<br><b>T</b>17 / 23 (How to Hire 16)<br><b>M</b>17 / 23</span></div>
+      <div class="ramp-samples"><div><span class="vlabel">Desktop</span><p class="x-h3" style="font-size:20px">Sector Specialists</p></div><div><span class="vlabel">Tablet</span><p class="x-h3" style="font-size:17px">Sector Specialists</p></div><div><span class="vlabel">Mobile</span><p class="x-h3" style="font-size:17px">Sector Specialists</p></div></div></div>
+    <div class="ramp-row"><div class="ramp-meta"><span class="role">Lead (under H2)</span><span class="vals"><b>D</b>18 / 30, 400<br><b>T</b>16 / 26<br><b>M</b>16 / 26</span></div>
+      <div class="ramp-samples"><div><span class="vlabel">Desktop</span><p style="font-size:18px;line-height:30px;opacity:.85">From your first message to workers on site, we keep it simple.</p></div><div><span class="vlabel">Tablet</span><p style="font-size:16px;line-height:26px;opacity:.85">From your first message to workers on site, we keep it simple.</p></div><div><span class="vlabel">Mobile</span><p style="font-size:16px;line-height:26px;opacity:.85">From your first message to workers on site.</p></div></div></div>
+    <div class="ramp-row"><div class="ramp-meta"><span class="role">Body</span><span class="vals"><b>D</b>16 / 26, 400<br><b>T</b>14–15 / 23–25<br><b>M</b>16 / 26 everywhere: cards, FAQ answers, fee rows, footer</span></div>
+      <div class="ramp-samples"><div><span class="vlabel">Desktop</span><p style="font-size:16px;line-height:26px;opacity:.85">We recruit only for cleaning and construction, so we know the roles, passes and checks each one needs.</p></div><div><span class="vlabel">Tablet</span><p style="font-size:15px;line-height:25px;opacity:.85">We recruit only for cleaning and construction, so we know the roles, passes and checks each one needs.</p></div><div><span class="vlabel">Mobile</span><p style="font-size:16px;line-height:26px;opacity:.85">We recruit only for cleaning and construction.</p></div></div></div>
+    <div class="ramp-row"><div class="ramp-meta"><span class="role">Eyebrow (hero only)</span><span class="vals"><b>D</b>13, 600, +0.12em, uppercase<br><b>T</b>13<br><b>M</b>13 (two lines)</span></div>
+      <div class="ramp-samples"><div><span class="vlabel">Desktop</span><p class="x-eyebrow" style="font-size:13px">MOM-licensed employment agency · EA licence no. [licence number]</p></div><div><span class="vlabel">Tablet</span><p class="x-eyebrow" style="font-size:13px">MOM-licensed employment agency · EA licence no. [licence number]</p></div><div><span class="vlabel">Mobile</span><p class="x-eyebrow" style="font-size:13px">MOM-licensed employment agency · EA licence no. [licence number]</p></div></div></div>
+    <div class="ramp-row"><div class="ramp-meta"><span class="role">Small labels</span><span class="vals">13, 400, Marine at every size (the smallest text allowed): chips, portrait tags, country codes, copyright</span></div>
+      <div class="ramp-samples"><div><span class="vlabel">Desktop</span><p class="x-small" style="font-size:13px">Lead time depends on the source country</p></div><div><span class="vlabel">Tablet</span><p class="x-small" style="font-size:13px">Lead time depends on the source country</p></div><div><span class="vlabel">Mobile</span><p class="x-small" style="font-size:13px">Cleaning contractors</p></div></div></div>
     <div class="ramp-row"><div class="ramp-meta"><span class="role">Button</span><span class="vals"><b>D</b>16, 600 (large 17, header 15)<br><b>T</b>15 (large 16)<br><b>M</b>15</span></div>
       <div class="ramp-samples"><div><span class="vlabel">Desktop</span><p style="font-size:17px;font-weight:600">Request a Quote</p></div><div><span class="vlabel">Tablet</span><p style="font-size:16px;font-weight:600">Request a Quote</p></div><div><span class="vlabel">Mobile</span><p style="font-size:15px;font-weight:600">Request a Quote</p></div></div></div>
-    <div class="ramp-row"><div class="ramp-meta"><span class="role">Accordion / FAQ question</span><span class="vals"><b>D</b>16 / 26, 600 (service title 19)<br><b>T</b>15 (service 16)<br><b>M</b>14 (service 15)</span></div>
-      <div class="ramp-samples"><div><span class="vlabel">Desktop</span><p style="font-size:16px;font-weight:600">How long does it take to hire a foreign worker?</p></div><div><span class="vlabel">Tablet</span><p style="font-size:15px;font-weight:600">How long does it take to hire a foreign worker?</p></div><div><span class="vlabel">Mobile</span><p style="font-size:14px;font-weight:600">How long does it take to hire?</p></div></div></div>
-    <div class="ramp-row"><div class="ramp-meta"><span class="role">Form label / input</span><span class="vals">Label <b>D</b>14 <b>T</b>13 <b>M</b>12.5, 600<br>Input text 16 at every size (stops iPhones zooming in)</span></div>
-      <div class="ramp-samples"><div><span class="vlabel">Desktop</span><p style="font-size:14px;font-weight:600">Company name <span style="color:#ff5b04">*</span></p></div><div><span class="vlabel">Tablet</span><p style="font-size:13px;font-weight:600">Company name <span style="color:#ff5b04">*</span></p></div><div><span class="vlabel">Mobile</span><p style="font-size:12.5px;font-weight:600">Company name <span style="color:#ff5b04">*</span></p></div></div></div>
+    <div class="ramp-row"><div class="ramp-meta"><span class="role">Accordion / FAQ question</span><span class="vals"><b>D</b>16 / 26, 600 (service title 19)<br><b>T</b>15 (service 16)<br><b>M</b>16 (service 17)</span></div>
+      <div class="ramp-samples"><div><span class="vlabel">Desktop</span><p style="font-size:16px;font-weight:600">How long does it take to hire a foreign worker?</p></div><div><span class="vlabel">Tablet</span><p style="font-size:15px;font-weight:600">How long does it take to hire a foreign worker?</p></div><div><span class="vlabel">Mobile</span><p style="font-size:16px;font-weight:600">How long does it take to hire?</p></div></div></div>
+    <div class="ramp-row"><div class="ramp-meta"><span class="role">Form label / input</span><span class="vals">Set in HubSpot (the form sits in a HubSpot frame). Labels at least 13; input text 16 at every size (stops iPhones zooming in)</span></div>
+      <div class="ramp-samples"><div><span class="vlabel">Desktop</span><p style="font-size:14px;font-weight:600">Company name <span style="color:#c2410c">*</span></p></div><div><span class="vlabel">Tablet</span><p style="font-size:13px;font-weight:600">Company name <span style="color:#c2410c">*</span></p></div><div><span class="vlabel">Mobile</span><p style="font-size:13px;font-weight:600">Company name <span style="color:#c2410c">*</span></p></div></div></div>
     <div class="ramp-row"><div class="ramp-meta"><span class="role">Step numbers</span><span class="vals">How to Hire <b>D</b>88 <b>T</b>60 <b>M</b>44, 700 italic<br>Process <b>D</b>40 <b>T</b>28 <b>M</b>22, 500</span></div>
       <div class="ramp-samples"><div><span class="vlabel">Desktop</span><p style="display:flex;gap:24px;align-items:center"><b style="font-size:88px;font-style:italic;color:#075056;line-height:1">1</b><span class="x-pnum">01</span></p></div><div><span class="vlabel">Tablet</span><p style="display:flex;gap:20px;align-items:center"><b style="font-size:60px;font-style:italic;color:#075056;line-height:1">1</b><span class="x-pnum" style="font-size:28px">01</span></p></div><div><span class="vlabel">Mobile</span><p style="display:flex;gap:16px;align-items:center"><b style="font-size:44px;font-style:italic;color:#075056;line-height:1">1</b><span class="x-pnum" style="font-size:22px">01</span></p></div></div></div>
-    <div class="ramp-row"><div class="ramp-meta"><span class="role">Logo wordmark</span><span class="vals"><b>D</b>19, 700 (16 between 901–1280)<br><b>T</b>17<br><b>M</b>15</span></div>
+    <div class="ramp-row"><div class="ramp-meta"><span class="role">Logo wordmark</span><span class="vals"><b>D</b>19, 700 (16 between 901–1280)<br><b>T</b>17<br><b>M</b>15; wraps to two lines at 340px and narrower</span></div>
       <div class="ramp-samples"><div><span class="vlabel">Desktop</span><p class="x-logo"><span class="x-mark"></span>Employment Agency Singapore</p></div><div><span class="vlabel">Tablet</span><p class="x-logo" style="font-size:17px"><span class="x-mark" style="width:26px;height:26px"></span>Employment Agency Singapore</p></div><div><span class="vlabel">Mobile</span><p class="x-logo" style="font-size:15px"><span class="x-mark" style="width:22px;height:22px"></span>Employment Agency Singapore</p></div></div></div>
   </div>
-  <p class="spec-caption"><strong>Heading rules:</strong> in every two-colour H2 the highlighted phrase sits on its own second line at every size (except one-line headings like "Our Clients"). H2s are centred on all sizes, except the recruitment process and the Request Workers form, which sit left of their content on desktop and tablet. On mobile every H2 is centred. Nothing smaller than 11.5px; form inputs always 16px.</p>
-  <span class="source-label">Measured on the built site at 1440 / 768 / 390, 13 Oct 2026</span>
+  <p class="spec-caption"><strong>Heading rules:</strong> in every two-colour H2 the highlighted phrase sits on its own second line at every size (except one-line headings like "Our Clients"). H2s are centred on all sizes, except the recruitment process and the Request Workers form, which sit left of their content on desktop and tablet. On mobile every H2 is centred. Nothing smaller than 13px; body text 16px on phones (buttons 15px); form inputs always 16px.</p>
+  <span class="source-label">Measured on the built site at 1440 / 768 / 390, 20 Oct 2026</span>
 </section>
 
 <!-- ============================== 2.3 SPACING ============================== -->
@@ -365,25 +378,28 @@ table.ds-table{width:100%;border-collapse:collapse;font-size:14px}
       <tr><td>1181–1280px</td><td>Logo 16px, menu 14px with 16px gaps</td></tr>
       <tr><td>901–1180px</td><td>Google reviews show 2 cards next to the rating card instead of 3</td></tr>
       <tr><td>≤ 1080px</td><td>Find a Job leaves the header (it stays in the hero, banner, menu and footer)</td></tr>
-      <tr><td>≤ 900px · tablet</td><td>Menu button replaces the menu; compact type scale; sections stack where needed</td></tr>
+      <tr><td>≤ 1024px</td><td>Menu button replaces the menu (the full menu did not fit at 840–920px, e.g. Android held sideways)</td></tr>
+      <tr><td>≤ 900px · tablet</td><td>Compact type scale; sections stack where needed</td></tr>
       <tr><td>601–900px</td><td>Tablet-only layout: hero two columns, country cards 3 + 2, Why Choose 2 × 2, How to Hire 3 across, process two columns</td></tr>
-      <tr><td>≤ 600px · mobile</td><td>One column, swipe rows, hero picture hidden, fee rows stacked, 16px gutter</td></tr>
+      <tr><td>≤ 600px · mobile</td><td>One column, swipe rows with dots, fee rows stacked, 16px gutter, bottom bar</td></tr>
+      <tr><td>≤ 340px</td><td>Logo name wraps to two lines so the menu button (always 44px) stays on screen</td></tr>
+      <tr><td>Height ≤ 860px / ≤ 500px</td><td>Short screens (laptops 720px tall, phones held sideways): smaller hero heading so Request a Quote shows on the first screen</td></tr>
     </table></div>
   </div>
   <div class="ds-sub"><h3>Columns per section</h3>
     <div class="table-wrap"><table class="ds-table">
       <tr><th>Section</th><th>Desktop</th><th>Tablet</th><th>Mobile</th></tr>
-      <tr><td>Hero</td><td>2 columns (text 1.05 : picture 1)</td><td>2 columns (1.25 : 0.75), picture 300px</td><td>1 column, picture hidden</td></tr>
+      <tr><td>Hero</td><td>2 columns (text 1.05 : picture 1)</td><td>2 columns (1.25 : 0.75), picture 300px</td><td>1 column, picture 230px below the buttons</td></tr>
       <tr><td>Our Clients logos</td><td>5 × 2</td><td>3 × 2</td><td>2 × 2</td></tr>
-      <tr><td>Google reviews</td><td>Rating card 300px + 3 cards (2 at 901–1180)</td><td>Rating card above, 2 cards per view</td><td>Rating card above, 1 card per view (90%)</td></tr>
-      <tr><td>Services</td><td>Accordion + sticky photo</td><td>Accordion, photo inside the open item</td><td>Accordion, no photo</td></tr>
-      <tr><td>Industries</td><td>3 + 2 centred</td><td>3 + 2 centred</td><td>Swipe row, card 78%</td></tr>
+      <tr><td>Google reviews (hidden for now)</td><td>Rating card 260px + 2 cards</td><td>Rating card above, 2 cards per view</td><td>Rating card above, 1 card per view (90%)</td></tr>
+      <tr><td>Services</td><td>Accordion + sticky photo</td><td>Default photo above, photo inside the open item</td><td>Same as tablet, no icon tiles</td></tr>
+      <tr><td>Industries</td><td>3 + 2 centred</td><td>3 + 2 centred</td><td>Swipe row, card 78%, dots underneath</td></tr>
       <tr><td>Why Choose</td><td>2 × 2, icon left</td><td>2 × 2, icon left</td><td>2 × 2, icon on top</td></tr>
       <tr><td>How to Hire</td><td>3 across with curved arrows</td><td>3 across, no arrows</td><td>List, number left</td></tr>
-      <tr><td>Recruitment process</td><td>Heading left (sticky) + list right</td><td>Same, 0.9 : 1.1</td><td>1 column, centred heading</td></tr>
-      <tr><td>Fees</td><td>3-column table</td><td>3-column table</td><td>Stacked rows: service + price, what's included below</td></tr>
-      <tr><td>Testimonials</td><td>Centred card 720px</td><td>Card 660px</td><td>Card 335px</td></tr>
-      <tr><td>FAQ</td><td>One centred column, 880px</td><td>Same</td><td>Full width</td></tr>
+      <tr><td>Recruitment process</td><td>Heading left (sticky) + list right with a progress line</td><td>Same, 0.9 : 1.1</td><td>Hidden</td></tr>
+      <tr><td>Fees</td><td>3-column table</td><td>3-column table</td><td>Stacked rows: service + price, what's included below; 3 rows + See all fees row</td></tr>
+      <tr><td>Testimonials (hidden for now)</td><td>Centred card 720px</td><td>Card 660px</td><td>Card 335px</td></tr>
+      <tr><td>FAQ</td><td>One centred column, 880px</td><td>Same</td><td>Full width; 5 questions + More questions row</td></tr>
       <tr><td>Request Workers form</td><td>Heading left, form right</td><td>Stacked</td><td>Stacked, centred heading</td></tr>
       <tr><td>Footer</td><td>4 columns</td><td>2 columns</td><td>2 columns, On This Page hidden</td></tr>
     </table></div>
@@ -407,33 +423,53 @@ table.ds-table{width:100%;border-collapse:collapse;font-size:14px}
       <div class="shadow-item"><div class="box" style="border:1px solid #D3DEDB"></div><span class="val">none + 1px border</span>Cards at rest (default, flat)</div>
       <div class="shadow-item"><div class="box" style="box-shadow:var(--shadow)"></div><span class="val">--shadow</span>0 10 30 −12 · 18%: open service, open FAQ, form card, mobile rating card</div>
       <div class="shadow-item"><div class="box" style="box-shadow:var(--shadow-lg)"></div><span class="val">--shadow-lg</span>0 24 60 −20 · 28%: card hover (desktop)</div>
-      <div class="shadow-item"><div class="box" style="box-shadow:0 8px 20px -8px rgba(255,91,4,.6)"></div><span class="val">orange glow</span>Request a Quote button</div>
+      <div class="shadow-item"><div class="box" style="box-shadow:0 8px 20px -8px rgba(194,65,12,.55)"></div><span class="val">orange glow</span>Request a Quote button (deeper on mouse hover)</div>
     </div>
   </div>
+</section>
+
+<!-- ============================== 2.6 MOTION ============================== -->
+<section class="ds-section" id="motion">
+  <h2>2.6 Motion</h2>
+  <p class="section-note">Calm and precise. Only position (transform) and fade (opacity) move, so nothing pushes the layout around. 150–300ms for taps and hovers, 400–600ms for things appearing, ease-out for things coming in. No parallax or scroll hijacking. Everything switches off for visitors who reduce motion, and anything that starts hidden needs <code>html.js-anim</code>, so without JavaScript the page simply shows. Check every new animation in Chrome, Safari and Firefox.</p>
+  <div class="motion-grid">
+    <div class="motion-card"><b>Services and FAQ panels · 300ms</b>Smooth height (grid-row method). FAQ plus turns into a minus; service arrow rotates. An open panel above the tapped one closes at once with the page shifting to match, so the tapped heading stays put.</div>
+    <div class="motion-card"><b>Phone and tablet menu · 200ms, 30ms apart</b>Backdrop fades in, links slide in one after another, page behind locks.</div>
+    <div class="motion-card"><b>Quote form · 300ms</b>Grey placeholder while HubSpot loads, then the form fades in.</div>
+    <div class="motion-card"><b>Card rows · about 350ms</b>Testimonial cards follow the finger and settle; Industries row snaps, with dots.</div>
+    <div class="motion-card"><b>Recruitment process · follows scroll</b>Thin teal line fills down the steps; each number turns from Marine to Deep Sea when reached.</div>
+    <div class="motion-card"><b>How to Hire · 600ms, 150ms apart</b>In view, the dashed arrows draw left to right and the steps light up in order.</div>
+    <div class="motion-card"><b>Appear on scroll · 450ms, 60ms apart</b>Industries cards, Why cards and fee rows rise 16px and fade in, once (<code>data-reveal</code>).</div>
+    <div class="motion-card"><b>Header · 200ms</b>Desktop: slides up to 64px after 80px of scrolling, logo 92%. Phones: hides on scroll down, returns on the first scroll up.</div>
+    <div class="motion-card"><b>Hero · 400ms, 80ms apart</b>Portraits appear one after another, float once, then stop. The heading is never animated.</div>
+    <div class="motion-card"><b>Small touches</b>Buttons press in (scale 0.97, 100ms); orange lifts 2px on mouse hover; Industries photos zoom 5% on hover (500ms); after a menu jump the heading underline flashes (600ms); services photos crossfade with a 104% → 100% settle (500ms).</div>
+  </div>
+  <span class="source-label">landing-pages/css/home.css → "Alex's review, step 4: animations"</span>
 </section>
 
 <!-- ============================== 3 COMPONENTS ============================== -->
 <section class="ds-section" id="components">
   <h2>3 Components</h2>
-  <p class="section-note">Live specimens built with the site tokens. Desktop size is shown first; the table under each gives the tablet and mobile sizes. All tap targets are at least 44px on mobile, except the 40px arrow buttons and 38px footer links.</p>
+  <p class="section-note">Live specimens built with the site tokens. Desktop size is shown first; the table under each gives the tablet and mobile sizes. Everything tappable is at least 44 × 44px at every size, arrows, dots and links included.</p>
 
   <div class="ds-sub"><h3>3.1 Buttons and links</h3>
     <div class="specimen x">
       <div class="demo-row">
         <div class="demo-col"><span class="vlabel">Primary · Request a Quote</span><a class="x-btn x-primary lg" href="#components">Request a Quote</a><a class="x-btn x-primary lg is-hover" href="#components">Hover</a></div>
-        <div class="demo-col"><span class="vlabel">Secondary · Find a Job</span><a class="x-btn x-secondary lg" href="#components">Find a Job</a><a class="x-btn x-secondary lg is-hover" href="#components">Hover</a></div>
+        <div class="demo-col"><span class="vlabel">Secondary · header, menu, Apply</span><a class="x-btn x-secondary lg" href="#components">Find a Job</a><a class="x-btn x-secondary lg is-hover" href="#components">Hover</a></div>
         <div class="demo-col dark-stage"><span class="vlabel" style="color:#B9CDD8">On dark</span><a class="x-btn x-light lg" href="#components">Find a Job</a><a class="x-btn x-wa" href="#components"><svg width="20" height="20"><use href="#i-whatsapp"/></svg>Chat on WhatsApp</a></div>
         <div class="demo-col"><span class="vlabel">Text link · arrow buttons</span><a class="x-link" href="#components">Hire Indian Workers <svg width="18" height="18"><use href="#i-arrow"/></svg></a><div style="display:flex;gap:10px"><span class="x-round"><svg width="20" height="20"><use href="#i-left"/></svg></span><span class="x-round"><svg width="20" height="20"><use href="#i-right"/></svg></span></div></div>
-        <div class="demo-col" style="width:300px"><span class="vlabel">Mobile · full width</span><a class="x-btn x-primary m" href="#components">Request a Quote</a><a class="x-btn x-secondary m" href="#components">Find a Job</a></div>
+        <div class="demo-col" style="width:300px"><span class="vlabel">Hero · one button + text link</span><a class="x-btn x-primary m" href="#components">Request a Quote</a><a class="x-link" href="#components">Find a Job <svg width="18" height="18"><use href="#i-arrow"/></svg></a></div>
       </div>
       <div class="table-wrap" style="margin-top:18px"><table class="ds-table">
         <tr><th>Button</th><th>Desktop</th><th>Tablet</th><th>Mobile</th></tr>
         <tr><td>Large (hero, fees, form)</td><td>56px, 17px, padding 32</td><td>48px, 16px, padding 24</td><td>46px, 15px, full width in the hero</td></tr>
+        <tr><td>Hero Find a Job</td><td colspan="3">Text link, 16px, 44px tall tap area, beside the button (below it on phones)</td></tr>
         <tr><td>Default</td><td>48px, 16px</td><td>44px, 15px</td><td>44px, 15px</td></tr>
-        <tr><td>Header</td><td>42px, 15px</td><td colspan="2">Moves into the menu panel</td></tr>
-        <tr><td>Arrow buttons</td><td>48px</td><td>42px</td><td>40px</td></tr>
+        <tr><td>Header</td><td>44px, 15px</td><td colspan="2">Moves into the menu panel (up to 1024px)</td></tr>
+        <tr><td>Arrow buttons</td><td>48px</td><td>44px</td><td>44px</td></tr>
       </table></div>
-      <ul class="state-list"><li>Pill shape, 600 weight. Hover lifts 1px; primary darkens to <code>#E84F00</code>, secondary fills Harbor</li><li>Keyboard focus: 3px Glacier ring, 3px offset</li><li>Only Request a Quote is orange. Every other action uses the secondary, light, WhatsApp or text-link style</li></ul>
+      <ul class="state-list"><li>Pill shape, 600 weight. Every button presses in (scale 0.97) when tapped. Only the orange button lifts on hover (2px, mouse only) and darkens to <code>#9A3412</code>; secondary fills Harbor</li><li>WhatsApp buttons: green with Depth text and icon</li><li>Keyboard focus: 3px Glacier ring, 3px offset</li><li>Only Request a Quote is orange. Every other action uses the secondary, light, WhatsApp or text-link style</li></ul>
     </div></div>
 
   <div class="ds-sub"><h3>3.2 Form fields (HubSpot)</h3>
@@ -444,7 +480,7 @@ table.ds-table{width:100%;border-collapse:collapse;font-size:14px}
         <div class="x-field"><label>Source country</label><select class="x-input"><option>Any</option><option>Malaysia</option></select></div>
         <label class="x-consent"><input type="checkbox" checked> <span>I agree that Employment Agency Singapore may collect and use my personal data to contact me about this enquiry, in line with the PDPA and the Privacy Policy.</span></label>
       </div>
-      <ul class="state-list"><li><strong>The live form is the HubSpot embed.</strong> Its fields, fonts, consent text and required fields are set in HubSpot's form editor and are kept as HubSpot has them for now (decided 14 Oct 2026). The spec below describes the site's own field style, for reference if the form is restyled later</li><li>Inputs: Frost Soft fill, 1px Frost Line border, radius 10, text 16px; padding 12 × 14 desktop, 10 × 12 tablet, 9 × 12 mobile</li><li>Focus: white fill, Deep Sea border, 3px ring at 12%</li><li>Two fields per row on desktop and tablet; on mobile one per row, except the short pair Workers needed + Source country</li><li>Required fields marked with an orange asterisk; the submit button uses the primary style, full width</li></ul>
+      <ul class="state-list"><li><strong>The live form is the HubSpot embed, in its own frame.</strong> Its fields, fonts, button, consent text and required fields are set in HubSpot's form editor; Crystal is matching them to the site (font, corner radius, "Send enquiry" button, Full Name required). The spec below is the site's own field style for that</li><li>While HubSpot loads: a Frost Soft placeholder ("Loading the enquiry form…"), then the form fades in. Under the card: "Form not showing? Email … or message us on WhatsApp" and "Looking for a job? Apply here"</li><li>Inputs: Frost Soft fill, 1px Frost Line border, radius 10, text 16px; padding 12 × 14 desktop, 10 × 12 tablet, 9 × 12 mobile</li><li>Focus: white fill, Deep Sea border, 3px ring at 12%</li><li>Two fields per row on desktop and tablet; on mobile one per row, except the short pair Workers needed + Source country</li><li>Required fields marked with an orange asterisk; the submit button uses the primary style, full width</li></ul>
     </div></div>
 
   <div class="ds-sub"><h3>3.3 Service accordion row</h3>
@@ -453,57 +489,66 @@ table.ds-table{width:100%;border-collapse:collapse;font-size:14px}
       <div class="x-svc open"><div class="x-svc-head"><span class="x-svc-ico"><svg width="24" height="24"><use href="#i-helmet"/></svg></span><span class="x-svc-t"><strong>Construction Worker Recruitment</strong><small>New and U-turn workers</small></span><span class="x-chev"><svg width="18" height="18"><use href="#i-chev"/></svg></span></div>
         <div class="x-svc-body"><p>New and U-turn workers from Bangladesh, India and PRC.</p><div style="display:flex;flex-wrap:wrap;gap:8px"><span class="x-chip">Bangladesh</span><span class="x-chip">India</span><span class="x-chip">PRC</span></div><a class="x-btn x-primary sm" href="#components" style="justify-self:start">Request a Quote</a></div></div>
     </div>
-    <ul class="state-list"><li>All rows closed on load; a click opens one and closes the others; clicking an open row closes it. No timer</li><li>Desktop photo panel: a default photo (<code>service-default.webp</code>) while no row is open; opening a row shows that service's photo; closing it brings the default back</li><li>Tablet and phone: the default photo sits above the list (16:9) and stays put; each open row shows its own photo inside the row</li><li>Row header padding 20 × 24 desktop, 16 × 18 tablet, 14 × 16 mobile; icon tile 48 / 40 / hidden on mobile</li><li>The row's Request a Quote button scrolls to the homepage form with that service pre-selected</li></ul></div></div>
+    <ul class="state-list"><li>All rows closed on load; a click opens one and closes the others; clicking an open row closes it. Opens and closes in 300ms; the tapped heading stays where it was. Closed rows are <code>inert</code>, so the keyboard never lands on their buttons</li><li>Desktop photo panel: a default photo (<code>service-default.webp</code>, a cleaner vacuuming an office sofa) while no row is open; opening a row shows that service's photo; closing it brings the default back</li><li>Tablet and phone: the default photo sits above the list (16:9) and stays put; each open row shows its own photo inside the row</li><li>Row header padding 20 × 24 desktop, 16 × 18 tablet, 14 × 16 mobile; icon tile 48 / 40 / hidden on mobile</li><li>The row's Request a Quote button scrolls to the homepage form</li></ul></div></div>
 
   <div class="ds-sub"><h3>3.4 FAQ row</h3>
     <div class="specimen x"><div class="demo-col">
-      <div class="x-faq"><div class="x-faq-q">Can you supply cleaners on a contract basis?<span class="x-faq-ico"><svg width="18" height="18"><use href="#i-plus"/></svg></span></div></div>
-      <div class="x-faq open"><div class="x-faq-q">How long does it take to hire a foreign worker?<span class="x-faq-ico"><svg width="18" height="18"><use href="#i-plus"/></svg></span></div><div class="x-faq-a">Usually 4 to 10 weeks, depending on the source country and Work Permit approval.</div></div>
+      <div class="x-faq"><div class="x-faq-q">Can you supply cleaners on a contract basis?<span class="x-faq-ico x-bars"></span></div></div>
+      <div class="x-faq open"><div class="x-faq-q">How long does it take to hire a foreign worker?<span class="x-faq-ico x-bars"></span></div><div class="x-faq-a">Lead time depends on the source country and the Work Permit approval process.</div></div>
+      <div class="x-more">More questions <svg width="18" height="18"><use href="#i-chev"/></svg></div>
     </div>
-    <ul class="state-list"><li>One open at a time; the plus turns 45° into a cross on a Frost circle</li><li>Question padding 18 × 22 desktop, 14 × 18 tablet, 12 × 14 mobile</li></ul></div></div>
+    <ul class="state-list"><li>One open at a time; opens in 300ms and the plus turns into a minus on a Frost circle</li><li>Question padding 18 × 22 desktop, 14 × 18 tablet, 12 × 14 mobile; question and answer 16px on phones</li><li>Phones: 5 questions, then a dashed "More questions" row as the list's last card (Crystal)</li></ul></div></div>
 
   <div class="ds-sub"><h3>3.5 Country card and job banner</h3>
     <div class="specimen x"><div class="demo-row" style="align-items:center">
-      <div class="x-country"><div class="ph"><span class="code">IN</span><h5>Indian Workers for Cleaning &amp; Construction</h5></div>
-        <dl><div><dt>Sectors</dt><dd>Cleaning, construction</dd></div><div><dt>Roles</dt><dd>Cleaners, general construction workers</dd></div><div><dt>Lead time</dt><dd>6–10 weeks</dd></div></dl>
+      <div class="x-country"><div class="ph"><span class="code">IN</span><h5>Indian Workers for Construction</h5></div>
+        <dl><div><dt>Sector</dt><dd>Construction</dd></div><div><dt>Roles</dt><dd>General construction workers, new or U-turn</dd></div></dl>
         <a class="x-link" href="#components">Hire Indian Workers <svg width="18" height="18"><use href="#i-arrow"/></svg></a></div>
       <div class="x-banner"><div><h5>Looking for work in Singapore?</h5><p>Send us your details and we'll contact you when a cleaning or construction role matches.</p></div><a class="x-btn x-secondary" href="#components">Apply for a Job</a></div>
     </div>
-    <ul class="state-list"><li>Photo 16:10 on desktop, 16:9 on tablet and mobile, with a dark fade for the title; country code pill top-left</li><li>Tablet stacks each label above its value; mobile shows the cards in a swipe row at 78% width</li><li>Hire link scrolls to the homepage form with the country pre-selected</li><li>The banner (also used for "Still have questions?") is Frost, max 960px, centred; stacks on mobile</li></ul></div></div>
+    <ul class="state-list"><li>Photo 16:10 on desktop, 16:9 on tablet and mobile, with a dark fade for the title; country code pill top-left</li><li>Tablet stacks each label above its value; mobile shows the cards in a swipe row at 78% width</li><li>No week ranges on the cards: one line under the row says "Lead time depends on the source country and the Work Permit approval process."</li><li>Hire link scrolls to the homepage form. Photo zooms 5% on mouse hover; cards rise in once on scroll; phones show dots under the row</li><li>The banner (also used for "Still have questions?") is Frost, max 960px, centred; stacks on mobile. Its job seeker quote is hidden until a real one exists</li></ul></div></div>
 
-  <div class="ds-sub"><h3>3.6 Google rating card</h3>
+  <div class="ds-sub"><h3>3.6 Google rating card (hidden for now)</h3>
+    <div class="notice todo" style="margin-top:0">Hidden with the review cards until the agency has its own Google Business Profile with real reviews (Crystal, 19 Oct 2026). Never show SuperClean SG's reviews here.</div>
     <div class="specimen x"><div class="demo-row" style="align-items:center">
       <div class="demo-col"><span class="vlabel">Desktop (≥ 901px)</span><div class="x-rating-d"><span class="t"><svg width="32" height="32"><use href="#i-google"/></svg>Trusted on Google</span><span class="s"><svg width="46" height="46" style="color:#F5B400"><use href="#i-star"/></svg>5.0</span></div></div>
       <div class="demo-col"><span class="vlabel">Tablet and mobile</span><div class="x-rating-m"><span class="t"><svg width="24" height="24"><use href="#i-google"/></svg>Trusted on Google</span><span class="s">5.0 <span class="x-stars"><svg width="18" height="18"><use href="#i-star"/></svg><svg width="18" height="18"><use href="#i-star"/></svg><svg width="18" height="18"><use href="#i-star"/></svg><svg width="18" height="18"><use href="#i-star"/></svg><svg width="18" height="18"><use href="#i-star"/></svg></span></span></div></div>
     </div>
     <ul class="state-list"><li>Desktop follows superclean.sg: Frost Soft square, no border or shadow, as tall as the review cards (top and bottom aligned)</li><li>Tablet and mobile: white card with --shadow, max 460px, centred above the reviews</li><li>No H2 above the reviews section</li></ul></div></div>
 
-  <div class="ds-sub"><h3>3.7 Review card, testimonial card and avatars</h3>
+  <div class="ds-sub"><h3>3.7 Review card, testimonial card and avatars (hidden for now)</h3>
     <div class="specimen x"><div class="demo-row" style="align-items:flex-start">
       <div class="x-review"><header><span class="x-avatar" style="background:#075056">J</span><div><strong>Jason Tan</strong><small>Operations Manager</small></div></header><span class="x-stars"><svg width="18" height="18"><use href="#i-star"/></svg><svg width="18" height="18"><use href="#i-star"/></svg><svg width="18" height="18"><use href="#i-star"/></svg><svg width="18" height="18"><use href="#i-star"/></svg><svg width="18" height="18"><use href="#i-star"/></svg></span><p style="font-size:15px">"We needed 6 cleaners for a new condo contract within a month."</p></div>
-      <div class="depth-stage" style="width:460px;max-width:100%"><div class="x-review" style="width:100%;border:0"><header><span class="x-avatar" style="background:#FF5B04;width:56px;height:56px">S</span><div><strong>Siti Rahmah</strong><small>Housekeeping Manager</small></div><span class="x-stars" style="margin-left:auto"><svg width="18" height="18"><use href="#i-star"/></svg><svg width="18" height="18"><use href="#i-star"/></svg><svg width="18" height="18"><use href="#i-star"/></svg><svg width="18" height="18"><use href="#i-star"/></svg><svg width="18" height="18"><use href="#i-star"/></svg></span></header><p style="font-size:18px;line-height:1.6">"Their cleaners arrive trained and know the job."</p></div>
+      <div class="depth-stage" style="width:460px;max-width:100%"><div class="x-review" style="width:100%;border:0"><header><span class="x-avatar" style="background:#C2410C;width:56px;height:56px">S</span><div><strong>Siti Rahmah</strong><small>Housekeeping Manager</small></div><span class="x-stars" style="margin-left:auto"><svg width="18" height="18"><use href="#i-star"/></svg><svg width="18" height="18"><use href="#i-star"/></svg><svg width="18" height="18"><use href="#i-star"/></svg><svg width="18" height="18"><use href="#i-star"/></svg><svg width="18" height="18"><use href="#i-star"/></svg></span></header><p style="font-size:18px;line-height:1.6">"Their cleaners arrive trained and know the job."</p></div>
         <div style="display:flex;justify-content:space-between;align-items:center;margin-top:16px"><span class="x-round dark"><svg width="20" height="20"><use href="#i-left"/></svg></span><span style="display:flex;gap:8px;align-items:center"><i style="width:10px;height:10px;border-radius:9px;background:rgba(114,163,191,.4)"></i><i style="width:28px;height:10px;border-radius:9px;background:#72A3BF"></i><i style="width:10px;height:10px;border-radius:9px;background:rgba(114,163,191,.4)"></i></span><span class="x-round dark"><svg width="20" height="20"><use href="#i-right"/></svg></span></div></div>
-      <div class="demo-col"><span class="vlabel">Avatar colours</span><div style="display:flex;gap:8px"><span class="x-avatar" style="background:#075056">J</span><span class="x-avatar" style="background:#FF5B04">M</span><span class="x-avatar" style="background:#446E87">A</span></div></div>
+      <div class="demo-col"><span class="vlabel">Avatar colours</span><div style="display:flex;gap:8px"><span class="x-avatar" style="background:#075056">J</span><span class="x-avatar" style="background:#C2410C">M</span><span class="x-avatar" style="background:#446E87">A</span></div></div>
     </div>
-    <ul class="state-list"><li>Review cards: name block a fixed 46px tall so stars line up across cards; long names cut with an ellipsis</li><li>Testimonials: auto-advance every 6s, pause on hover, on focus, when the tab is hidden, or with the pause button; side cards blurred at 35% opacity</li><li>Avatar 44px desktop, 38px tablet and mobile; testimonial avatar 56 / 44 / 38</li></ul></div></div>
+    <ul class="state-list"><li>Review cards: name block a fixed 46px tall so stars line up across cards; long names cut with an ellipsis</li><li>Testimonials: auto-advance every 6s, pause on hover, on focus, when the tab is hidden, or with the pause button; side cards blurred at 35% opacity; on touch screens the card follows the finger</li><li>Avatar 44px desktop, 38px tablet and mobile; testimonial avatar 56 / 44 / 38</li></ul></div></div>
 
   <div class="ds-sub"><h3>3.8 Step markers and fee row</h3>
     <div class="specimen x"><div class="demo-row" style="align-items:center">
       <div class="x-step"><b>2</b><svg width="44" height="44" style="color:#1D4052"><use href="#i-chat"/></svg></div>
       <div style="display:grid;grid-template-columns:76px 1fr;align-items:baseline;width:340px;border-bottom:1px solid #D3DEDB;padding:16px 0"><span class="x-pnum">04</span><span style="font-size:19px;font-weight:500">Work Permit (IPA) application</span></div>
-      <div class="x-fee"><table><thead><tr><th>Service</th><th>Fee (S$)</th><th>What's included</th></tr></thead><tbody><tr><th style="font-weight:600">Replacement</th><td><span class="x-pill">Free within 3 months</span></td><td>One replacement if the worker leaves</td></tr></tbody></table></div>
+      <div class="x-fee"><table><thead><tr><th>Service</th><th>Fee (S$)</th><th>What's included</th></tr></thead><tbody><tr><th style="font-weight:600">Work Permit renewal</th><td>150 per renewal</td><td>Renewal submission and expiry reminders</td></tr></tbody></table><div class="x-feemore">See all fees <svg width="18" height="18"><use href="#i-chev"/></svg></div></div>
     </div>
-    <ul class="state-list"><li>How to Hire: big italic Deep Sea number + Harbor icon; curved dashed arrows between steps on desktop only</li><li>Process: 01–06 numbers in a column, divider between rows</li><li>Fee table header Harbor with white 16px text (14 tablet); on mobile each row becomes service + price on one line, what's included underneath at 75% opacity</li></ul></div></div>
+    <ul class="state-list"><li>How to Hire: big italic Deep Sea number + Harbor icon; curved dashed arrows between steps on desktop only, drawn left to right when the section comes into view</li><li>Process: 01–06 numbers in a column, divider between rows; a teal line fills down as you scroll and each number turns from Marine to Deep Sea when reached</li><li>Fee table header Harbor with white 16px text (14 tablet); on mobile each row becomes service + price on one line, what's included underneath. No replacement row (terms under review)</li><li>Phones: 3 rows, then "See all fees" as the table's own last row (Frost Soft, Deep Sea text, chevron), so only one button sits under the table (Crystal)</li></ul></div></div>
 
   <div class="ds-sub"><h3>3.9 Header and floating WhatsApp</h3>
     <div class="specimen x">
-      <div class="x-header"><span class="x-logo"><span class="x-mark"></span>Employment Agency Singapore</span><span class="x-nav"><span>Services</span><span>Industries</span><span>How to Hire</span><span>Fees</span><span>FAQ</span><span>Contact</span></span><a class="x-btn x-secondary sm" href="#components">Find a Job</a><a class="x-btn x-primary sm" href="#components">Request a Quote</a></div>
+      <div class="x-header"><span class="x-logo"><span class="x-mark"></span>Employment Agency Singapore</span><span class="x-nav"><span>Services</span><span>Industries</span><span>How to Hire</span><span>Fees</span><span>FAQ</span><span>Contact Us</span></span><a class="x-btn x-secondary sm" href="#components">Find a Job</a><a class="x-btn x-primary sm" href="#components">Request a Quote</a></div>
       <div class="demo-row" style="margin-top:16px;align-items:center">
         <div class="x-header" style="width:390px;height:58px;padding:0 16px"><span class="x-logo" style="font-size:15px"><span class="x-mark" style="width:22px;height:22px"></span>Employment Agency Singapore</span><svg width="26" height="26" style="margin-left:auto"><use href="#i-menu"/></svg></div>
         <span class="x-waf"><svg width="32" height="32"><use href="#i-whatsapp"/></svg></span>
       </div>
-      <ul class="state-list"><li>Sticky, white at 96% with blur; a thin Frost Line border and soft shadow appear after scrolling</li><li>Height 76 desktop, 64 tablet, 58 mobile. Active menu link gets an orange underline</li><li>Floating WhatsApp: 60px desktop, 52 tablet, 50 mobile, 16–24px from the bottom right, on every page</li></ul>
+      <ul class="state-list"><li>Sticky, white at 96% with blur; a thin Frost Line border and soft shadow appear after scrolling</li><li>Height 77 desktop (slides up to 64 after 80px of scrolling), 64 tablet, 58 mobile (hides on scroll down, returns on scroll up). Active menu link gets an orange underline; none while the hero is in view</li><li>Menu button up to 1024px, never shrinks. The open menu is never taller than the screen and scrolls on its own; the page behind is locked and dimmed (tap the dim to close); keyboard focus stays in the menu; Escape closes it</li><li>Floating WhatsApp: 60px desktop, 52 tablet, 50 mobile, Depth icon. Hidden over the hero on tablets and short screens and while the menu is open; on phones it floats just above the bottom bar</li></ul>
     </div></div>
+
+  <div class="ds-sub"><h3>3.10 Phone bottom bar</h3>
+    <div class="specimen x"><div class="demo-row" style="align-items:flex-end">
+      <div class="x-bar"><p><span>Worker placement from</span><strong>S$1,200/worker</strong></p><a class="x-btn x-primary" href="#components">Request a Quote</a></div>
+      <span class="x-waf" style="width:50px;height:50px"><svg width="26" height="26"><use href="#i-whatsapp"/></svg></span>
+    </div>
+    <ul class="state-list"><li>Phones only, same layout as superclean.sg (Crystal, 19 Oct 2026): price label 13px Marine + price 22px bold on the left, Request a Quote (48px) on the right. Keep the price in step with the fee table</li><li>Shows once the hero buttons scroll away; hides while the form is on screen or the menu is open. The round WhatsApp button floats 16px above it</li></ul></div></div>
 </section>
 
 <!-- ============================== 4 SECTION BLOCKS ============================== -->
@@ -512,70 +557,70 @@ table.ds-table{width:100%;border-collapse:collapse;font-size:14px}
   <p class="section-note">Every section of the homepage, captured from the built site at desktop 1440, tablet 768 and mobile 390. Scroll inside a tall screenshot to see all of it.</p>
 
   <div class="block" id="b-header"><h4>4.1 Header</h4>
-    <p class="lead-note">Logo, six menu links, Find a Job and Request a Quote. Below 900px the links and buttons move into a drop-down menu.</p>
+    <p class="lead-note">Logo, six menu links, Find a Job and Request a Quote. Up to 1024px the links and buttons move into a drop-down menu over a dimmed page.</p>
     <div class="gallery"><figure class="shot"><div class="scroll"><img src="design-system-img/header-desktop.webp" alt="Header, desktop" loading="lazy"></div><figcaption>Desktop 1440</figcaption></figure><figure class="shot"><div class="scroll"><img src="design-system-img/header-tablet.webp" alt="Header, tablet" loading="lazy"></div><figcaption>Tablet 768</figcaption></figure><figure class="shot"><div class="scroll"><img src="design-system-img/header-mobile.webp" alt="Header, mobile" loading="lazy"></div><figcaption>Mobile 390</figcaption></figure></div></div>
 
   <div class="block" id="b-hero"><h4>4.2 Hero + Our Clients</h4>
-    <p class="lead-note">Eyebrow, H1 with the highlighted second half, three-item checklist, Request a Quote + Find a Job, licence line. Picture: dotted globe with five country portraits, Myanmar in the centre. Our Clients follows in the same band. <strong>Our Clients is hidden for now</strong> (the <code>hidden</code> attribute in index.html) until real client logos exist; while it is hidden, the Google reviews sit 48px below the hero on desktop.</p>
-    <div class="table-wrap bp-table"><table class="ds-table"><tr><th>Desktop</th><th>Tablet</th><th>Mobile</th></tr><tr><td>Two columns; logos 5 × 2</td><td>Two columns, picture 300px; logos 3 × 2</td><td>Text and buttons first, buttons full width; the bubbles picture (300px) sits below the licence line</td></tr></table></div>
+    <p class="lead-note">Eyebrow with the EA licence number, H1 with the highlighted second half, three-item checklist, Request a Quote with a Find a Job text link beside it. Picture: dotted globe with five country portraits, Myanmar in the centre. Our Clients follows in the same band. <strong>Our Clients is hidden for now</strong> (the <code>hidden</code> attribute in index.html) until real client logos exist; while it is hidden, the Google reviews sit 48px below the hero on desktop.</p>
+    <div class="table-wrap bp-table"><table class="ds-table"><tr><th>Desktop</th><th>Tablet</th><th>Mobile</th></tr><tr><td>Two columns; logos 5 × 2</td><td>Two columns, picture 300px; logos 3 × 2</td><td>Text first, Request a Quote full width, Find a Job link under it; the bubbles picture (230px) below</td></tr></table></div>
     <div class="gallery"><figure class="shot"><div class="scroll"><img src="design-system-img/hero-desktop.webp" alt="Hero, desktop" loading="lazy"></div><figcaption>Desktop 1440</figcaption></figure><figure class="shot"><div class="scroll"><img src="design-system-img/hero-tablet.webp" alt="Hero, tablet" loading="lazy"></div><figcaption>Tablet 768</figcaption></figure><figure class="shot"><div class="scroll"><img src="design-system-img/hero-mobile.webp" alt="Hero, mobile" loading="lazy"></div><figcaption>Mobile 390</figcaption></figure></div></div>
 
   <div class="block" id="b-reviews"><h4>4.3 Google reviews</h4>
-    <p class="lead-note">No heading. Rating card plus three review cards with arrow buttons on their own row underneath.</p>
+    <p class="lead-note"><strong>Hidden for now</strong> until the agency has its own Google Business Profile with real reviews. No heading. Rating card plus review cards with arrow buttons on their own row underneath.</p>
     <div class="table-wrap bp-table"><table class="ds-table"><tr><th>Desktop</th><th>Tablet</th><th>Mobile</th></tr><tr><td>Tinted rating square left, cards right; review cards white</td><td>Rating card centred on top, 2 cards per view</td><td>Rating card on top, 1 card per view</td></tr></table></div>
-    <div class="gallery"><figure class="shot"><div class="scroll"><img src="design-system-img/reviews-desktop.webp" alt="Reviews, desktop" loading="lazy"></div><figcaption>Desktop 1440</figcaption></figure><figure class="shot"><div class="scroll"><img src="design-system-img/reviews-tablet.webp" alt="Reviews, tablet" loading="lazy"></div><figcaption>Tablet 768</figcaption></figure><figure class="shot"><div class="scroll"><img src="design-system-img/reviews-mobile.webp" alt="Reviews, mobile" loading="lazy"></div><figcaption>Mobile 390</figcaption></figure></div></div>
+    <div class="gallery"><figure class="shot"><div class="scroll" style="display:grid;place-items:center;min-height:160px;padding:16px;text-align:center;color:#446E87;font-size:14px">Hidden until real reviews exist</div><figcaption>All sizes</figcaption></figure></div></div>
 
   <div class="block" id="b-services"><h4>4.4 Services</h4>
     <p class="lead-note">Frost Soft band. Four accordion rows (component 3.3), all closed on load. Shown here with the first row open.</p>
-    <div class="table-wrap bp-table"><table class="ds-table"><tr><th>Desktop</th><th>Tablet</th><th>Mobile</th></tr><tr><td>Rows left, sticky photo panel right</td><td>One column, photo inside the open row</td><td>One column, no photo, no icon tiles</td></tr></table></div>
+    <div class="table-wrap bp-table"><table class="ds-table"><tr><th>Desktop</th><th>Tablet</th><th>Mobile</th></tr><tr><td>Rows left, sticky photo panel right</td><td>Default photo above the list, photo inside the open row</td><td>Same as tablet, no icon tiles</td></tr></table></div>
     <div class="gallery"><figure class="shot"><div class="scroll"><img src="design-system-img/services-desktop.webp" alt="Services, desktop" loading="lazy"></div><figcaption>Desktop 1440</figcaption></figure><figure class="shot"><div class="scroll"><img src="design-system-img/services-tablet.webp" alt="Services, tablet" loading="lazy"></div><figcaption>Tablet 768</figcaption></figure><figure class="shot"><div class="scroll"><img src="design-system-img/services-mobile.webp" alt="Services, mobile" loading="lazy"></div><figcaption>Mobile 390</figcaption></figure></div></div>
 
   <div class="block" id="b-industries"><h4>4.5 Industries + Looking for work</h4>
-    <p class="lead-note">Five country cards (component 3.5) and the job seeker banner.</p>
-    <div class="table-wrap bp-table"><table class="ds-table"><tr><th>Desktop</th><th>Tablet</th><th>Mobile</th></tr><tr><td>3 + 2, second row centred</td><td>3 + 2, labels stacked</td><td>Swipe row, 78% cards; banner stacked</td></tr></table></div>
+    <p class="lead-note">Five country cards (component 3.5), the lead-time line, and the job seeker banner.</p>
+    <div class="table-wrap bp-table"><table class="ds-table"><tr><th>Desktop</th><th>Tablet</th><th>Mobile</th></tr><tr><td>3 + 2, second row centred</td><td>3 + 2, labels stacked</td><td>Swipe row, 78% cards, dots; banner stacked</td></tr></table></div>
     <div class="gallery"><figure class="shot"><div class="scroll"><img src="design-system-img/industries-desktop.webp" alt="Industries, desktop" loading="lazy"></div><figcaption>Desktop 1440</figcaption></figure><figure class="shot"><div class="scroll"><img src="design-system-img/industries-tablet.webp" alt="Industries, tablet" loading="lazy"></div><figcaption>Tablet 768</figcaption></figure><figure class="shot"><div class="scroll"><img src="design-system-img/industries-mobile.webp" alt="Industries, mobile" loading="lazy"></div><figcaption>Mobile 390</figcaption></figure></div></div>
 
   <div class="block" id="b-why"><h4>4.6 Why Employers Choose Employment Agency Singapore</h4>
-    <p class="lead-note">Frost Soft band, four reasons with icon tiles and an orange dot.</p>
-    <div class="table-wrap bp-table"><table class="ds-table"><tr><th>Desktop</th><th>Tablet</th><th>Mobile</th></tr><tr><td>2 × 2, icon left</td><td>2 × 2, icon left</td><td>2 × 2, icon on top, 12.5px text</td></tr></table></div>
+    <p class="lead-note">Frost Soft band, four reasons with icon tiles and an orange dot: Sector Specialists, MOM Licensed, Job-Ready Workers, Fuss-Free Hiring.</p>
+    <div class="table-wrap bp-table"><table class="ds-table"><tr><th>Desktop</th><th>Tablet</th><th>Mobile</th></tr><tr><td>2 × 2, icon left</td><td>2 × 2, icon left</td><td>2 × 2, icon on top, 16px text</td></tr></table></div>
     <div class="gallery"><figure class="shot"><div class="scroll"><img src="design-system-img/why-desktop.webp" alt="Why choose, desktop" loading="lazy"></div><figcaption>Desktop 1440</figcaption></figure><figure class="shot"><div class="scroll"><img src="design-system-img/why-tablet.webp" alt="Why choose, tablet" loading="lazy"></div><figcaption>Tablet 768</figcaption></figure><figure class="shot"><div class="scroll"><img src="design-system-img/why-mobile.webp" alt="Why choose, mobile" loading="lazy"></div><figcaption>Mobile 390</figcaption></figure></div></div>
 
   <div class="block" id="b-how"><h4>4.7 How to Hire Foreign Workers</h4>
-    <p class="lead-note">Three steps (component 3.8) and a one-line job seeker note with an Apply for a Job link. No button.</p>
+    <p class="lead-note">Three steps (component 3.8) and a job seeker note, with Apply for a Job on its own line underneath (Crystal). No button.</p>
     <div class="table-wrap bp-table"><table class="ds-table"><tr><th>Desktop</th><th>Tablet</th><th>Mobile</th></tr><tr><td>3 across, curved dashed arrows</td><td>3 across, no arrows</td><td>List: number + icon left, text right</td></tr></table></div>
     <div class="gallery"><figure class="shot"><div class="scroll"><img src="design-system-img/how-desktop.webp" alt="How to hire, desktop" loading="lazy"></div><figcaption>Desktop 1440</figcaption></figure><figure class="shot"><div class="scroll"><img src="design-system-img/how-tablet.webp" alt="How to hire, tablet" loading="lazy"></div><figcaption>Tablet 768</figcaption></figure><figure class="shot"><div class="scroll"><img src="design-system-img/how-mobile.webp" alt="How to hire, mobile" loading="lazy"></div><figcaption>Mobile 390</figcaption></figure></div></div>
 
   <div class="block" id="b-process"><h4>4.8 Our Foreign Workers Recruitment Process</h4>
-    <p class="lead-note">Frost Soft band. Heading and Request a Quote on the left, six numbered steps on the right. The one section with a left-aligned H2.</p>
-    <div class="table-wrap bp-table"><table class="ds-table"><tr><th>Desktop</th><th>Tablet</th><th>Mobile</th></tr><tr><td>Two columns, heading sticky</td><td>Two columns</td><td>One column, centred heading, no button</td></tr></table></div>
+    <p class="lead-note">Frost Soft band. Heading and Request a Quote on the left, six numbered steps on the right with a progress line. The one section with a left-aligned H2.</p>
+    <div class="table-wrap bp-table"><table class="ds-table"><tr><th>Desktop</th><th>Tablet</th><th>Mobile</th></tr><tr><td>Two columns, heading sticky</td><td>Two columns</td><td>Hidden</td></tr></table></div>
     <div class="gallery"><figure class="shot"><div class="scroll"><img src="design-system-img/process-desktop.webp" alt="Process, desktop" loading="lazy"></div><figcaption>Desktop 1440</figcaption></figure><figure class="shot"><div class="scroll"><img src="design-system-img/process-tablet.webp" alt="Process, tablet" loading="lazy"></div><figcaption>Tablet 768</figcaption></figure><figure class="shot"><div class="scroll" style="display:grid;place-items:center;min-height:160px;padding:16px;text-align:center;color:#446E87;font-size:14px">Hidden on phones: How to Hire covers the steps</div><figcaption>Mobile 390</figcaption></figure></div></div>
 
   <div class="block" id="b-fees"><h4>4.9 Clear Fees. No Hidden Charges.</h4>
-    <p class="lead-note">Seven fee rows and a centred Request a Quote button.</p>
-    <div class="table-wrap bp-table"><table class="ds-table"><tr><th>Desktop</th><th>Tablet</th><th>Mobile</th></tr><tr><td>Three-column table</td><td>Same, tighter padding</td><td>Rows: service + price, included text below; no header row</td></tr></table></div>
+    <p class="lead-note">Six fee rows and a centred Request a Quote button.</p>
+    <div class="table-wrap bp-table"><table class="ds-table"><tr><th>Desktop</th><th>Tablet</th><th>Mobile</th></tr><tr><td>Three-column table</td><td>Same, tighter padding</td><td>Rows: service + price, included text below; no header row; 3 rows + See all fees row</td></tr></table></div>
     <div class="gallery"><figure class="shot"><div class="scroll"><img src="design-system-img/fees-desktop.webp" alt="Fees, desktop" loading="lazy"></div><figcaption>Desktop 1440</figcaption></figure><figure class="shot"><div class="scroll"><img src="design-system-img/fees-tablet.webp" alt="Fees, tablet" loading="lazy"></div><figcaption>Tablet 768</figcaption></figure><figure class="shot"><div class="scroll"><img src="design-system-img/fees-mobile.webp" alt="Fees, mobile" loading="lazy"></div><figcaption>Mobile 390</figcaption></figure></div></div>
 
   <div class="block" id="b-testimonials"><h4>4.10 What Singapore Employers Say About Us</h4>
-    <p class="lead-note">Depth band. Auto-playing carousel of three testimonials (component 3.7) with arrows, dots and a pause button.</p>
-    <div class="gallery"><figure class="shot"><div class="scroll"><img src="design-system-img/testimonials-desktop.webp" alt="Testimonials, desktop" loading="lazy"></div><figcaption>Desktop 1440</figcaption></figure><figure class="shot"><div class="scroll"><img src="design-system-img/testimonials-tablet.webp" alt="Testimonials, tablet" loading="lazy"></div><figcaption>Tablet 768</figcaption></figure><figure class="shot"><div class="scroll"><img src="design-system-img/testimonials-mobile.webp" alt="Testimonials, mobile" loading="lazy"></div><figcaption>Mobile 390</figcaption></figure></div></div>
+    <p class="lead-note"><strong>Hidden for now</strong> until real client testimonials exist. Depth band. Auto-playing carousel (component 3.7) with arrows, dots and a pause button.</p>
+    <div class="gallery"><figure class="shot"><div class="scroll" style="display:grid;place-items:center;min-height:160px;padding:16px;text-align:center;color:#446E87;font-size:14px">Hidden until real reviews exist</div><figcaption>All sizes</figcaption></figure></div></div>
 
   <div class="block" id="b-faq"><h4>4.11 FAQ + Still have questions?</h4>
-    <p class="lead-note">Frost Soft band, eight questions in one centred column (component 3.4), then the Still have questions banner with Chat on WhatsApp.</p>
+    <p class="lead-note">Frost Soft band, eight questions in one centred column (component 3.4; 5 + More questions on phones), then the Still have questions banner with Chat on WhatsApp.</p>
     <div class="gallery"><figure class="shot"><div class="scroll"><img src="design-system-img/faq-desktop.webp" alt="FAQ, desktop" loading="lazy"></div><figcaption>Desktop 1440</figcaption></figure><figure class="shot"><div class="scroll"><img src="design-system-img/faq-tablet.webp" alt="FAQ, tablet" loading="lazy"></div><figcaption>Tablet 768</figcaption></figure><figure class="shot"><div class="scroll"><img src="design-system-img/faq-mobile.webp" alt="FAQ, mobile" loading="lazy"></div><figcaption>Mobile 390</figcaption></figure></div></div>
 
   <div class="block" id="b-form"><h4>4.12 Request Workers form</h4>
-    <p class="lead-note">Harbor band with dotted circles. Heading, one line of text, email (hello@employmentagencysingapore.com, mailto link) and phone number with Glacier icons, then the licence line on the left; white form card on the right titled "Get Your Quote Today" (same words as the HubSpot button) holding the HubSpot form, with "Looking for a job? Apply here" (WhatsApp) under it. Every Request a Quote button on the homepage scrolls here. The HubSpot embed runs edge to edge inside the card because it brings its own side padding.</p>
+    <p class="lead-note">Harbor band with dotted circles. Heading, one line of text, email (hello@employmentagencysingapore.com, mailto link) and phone number with Glacier icons on the left; white form card on the right titled "Get Your Quote Today" holding the HubSpot form (placeholder while it loads), with the email/WhatsApp fallback line and "Looking for a job? Apply here" (WhatsApp) under it. Every Request a Quote button on the homepage scrolls here. The HubSpot embed runs edge to edge inside the card because it brings its own side padding.</p>
     <div class="table-wrap bp-table"><table class="ds-table"><tr><th>Desktop</th><th>Tablet</th><th>Mobile</th></tr><tr><td>Two columns</td><td>Stacked</td><td>Stacked, centred heading</td></tr></table></div>
     <div class="gallery"><figure class="shot"><div class="scroll"><img src="design-system-img/form-desktop.webp" alt="Request Workers form, desktop" loading="lazy"></div><figcaption>Desktop 1440</figcaption></figure><figure class="shot"><div class="scroll"><img src="design-system-img/form-tablet.webp" alt="Request Workers form, tablet" loading="lazy"></div><figcaption>Tablet 768</figcaption></figure><figure class="shot"><div class="scroll"><img src="design-system-img/form-mobile.webp" alt="Request Workers form, mobile" loading="lazy"></div><figcaption>Mobile 390</figcaption></figure></div></div>
 
   <div class="block" id="b-footer"><h4>4.13 Footer</h4>
-    <p class="lead-note">Depth band: brand and licence, On This Page links, Get Started links, contact details, copyright.</p>
-    <div class="table-wrap bp-table"><table class="ds-table"><tr><th>Desktop</th><th>Tablet</th><th>Mobile</th></tr><tr><td>4 columns</td><td>Brand full width, then 2 columns</td><td>On This Page hidden; extra bottom space for the WhatsApp button</td></tr></table></div>
+    <p class="lead-note">Depth band: brand with "MOM-licensed employment agency · EA licence no.", On This Page links, Get Started links, contact details (address, phone, email, Monday to Friday 9am to 6pm), copyright.</p>
+    <div class="table-wrap bp-table"><table class="ds-table"><tr><th>Desktop</th><th>Tablet</th><th>Mobile</th></tr><tr><td>4 columns</td><td>Brand full width, then 2 columns</td><td>On This Page hidden; extra bottom space for the bottom bar</td></tr></table></div>
     <div class="gallery"><figure class="shot"><div class="scroll"><img src="design-system-img/footer-desktop.webp" alt="Footer, desktop" loading="lazy"></div><figcaption>Desktop 1440</figcaption></figure><figure class="shot"><div class="scroll"><img src="design-system-img/footer-tablet.webp" alt="Footer, tablet" loading="lazy"></div><figcaption>Tablet 768</figcaption></figure><figure class="shot"><div class="scroll"><img src="design-system-img/footer-mobile.webp" alt="Footer, mobile" loading="lazy"></div><figcaption>Mobile 390</figcaption></figure></div></div>
 
-  <div class="notice info"><strong>Phones (max 600px):</strong> to keep the page short, the Recruitment Process section is hidden (How to Hire covers the steps), Fees show the first 3 rows and FAQ the first 5 questions with a "See all fees" / "More questions" button (secondary, small, centred), the line "Hire reliable foreign cleaners…" above the form is hidden, and a white bottom bar with Request a Quote (orange, full width) and WhatsApp (green) replaces the floating WhatsApp button. The bar appears once the hero buttons scroll away and hides while the form is on screen or the menu is open.</div>
+  <div class="notice info"><strong>Phones (max 600px):</strong> to keep the page short, the Recruitment Process section is hidden (How to Hire covers the steps), Fees show the first 3 rows and FAQ the first 5 questions, with "See all fees" / "More questions" as the last row of each list, and the line above the form is hidden. The bottom bar (component 3.10) shows the placement price and Request a Quote, with the round WhatsApp button floating above it. The bar appears once the hero buttons scroll away and hides while the form is on screen or the menu is open.</div>
 
-  <div class="notice info"><strong>Hidden for now:</strong> Further Resources on Hiring Foreign Workers (three blog cards and View all guides). It is in the code with the <code>hidden</code> attribute and comes back once real articles exist.</div>
+  <div class="notice info"><strong>Hidden for now</strong> (in the code with the <code>hidden</code> attribute): Google reviews and testimonials (until real reviews exist), Our Clients (until client logos and permission), Further Resources (until real articles exist).</div>
 </section>
 
 <!-- ============================== 5 RECIPES ============================== -->
@@ -587,30 +632,30 @@ table.ds-table{width:100%;border-collapse:collapse;font-size:14px}
         <tr><th>#</th><th>Section</th><th>Block</th><th>Background</th></tr>
         <tr><td>1</td><td>Header</td><td>4.1</td><td>White, sticky</td></tr>
         <tr><td>2</td><td>Hero + Our Clients (clients hidden for now)</td><td>4.2</td><td>White</td></tr>
-        <tr><td>3</td><td>Google reviews</td><td>4.3</td><td>White</td></tr>
+        <tr><td>–</td><td>Google reviews (hidden)</td><td>4.3</td><td>White</td></tr>
         <tr><td>4</td><td>Foreign Worker Services</td><td>4.4</td><td>Frost Soft</td></tr>
         <tr><td>5</td><td>Industries + Looking for work</td><td>4.5</td><td>White</td></tr>
         <tr><td>6</td><td>Why Employers Choose</td><td>4.6</td><td>Frost Soft</td></tr>
         <tr><td>7</td><td>How to Hire</td><td>4.7</td><td>White</td></tr>
         <tr><td>8</td><td>Recruitment Process</td><td>4.8</td><td>Frost Soft</td></tr>
         <tr><td>9</td><td>Clear Fees</td><td>4.9</td><td>White</td></tr>
-        <tr><td>10</td><td>Testimonials</td><td>4.10</td><td>Depth</td></tr>
+        <tr><td>–</td><td>Testimonials (hidden)</td><td>4.10</td><td>Depth</td></tr>
         <tr><td>11</td><td>FAQ + Still have questions</td><td>4.11</td><td>Frost Soft</td></tr>
         <tr><td>–</td><td>Further Resources (hidden)</td><td>–</td><td>White</td></tr>
         <tr><td>12</td><td>Request Workers form</td><td>4.12</td><td>Harbor</td></tr>
-        <tr><td>13</td><td>Footer + floating WhatsApp</td><td>4.13 / 3.9</td><td>Depth</td></tr>
+        <tr><td>13</td><td>Footer + floating WhatsApp (phones: bottom bar)</td><td>4.13 / 3.9 / 3.10</td><td>Depth</td></tr>
       </table></div></div>
     <div style="flex:1;min-width:300px"><h3 style="margin:0 0 10px;color:#030F18">One page only</h3>
       <p style="margin:0 0 12px">There is no contact page. Quote requests and Contact go to the Request Workers form section at the bottom of the homepage; job enquiries go to WhatsApp +65 8956 5188.</p>
       <div class="table-wrap"><table class="ds-table">
         <tr><th>Link</th><th>Goes to</th></tr>
-        <tr><td>Request a Quote (header, hero, fees, process)</td><td>Homepage form, same page</td></tr>
-        <tr><td>Contact (nav), Contact Us (footer)</td><td>Request a Quote form section, same page</td></tr>
+        <tr><td>Request a Quote (header, hero, fees, process, bottom bar)</td><td>Homepage form, same page</td></tr>
+        <tr><td>Contact Us (menu and footer)</td><td>Request a Quote form section, same page</td></tr>
         <tr><td>Footer phone number</td><td>Placeholder for now (no link), same as the form section</td></tr>
-        <tr><td>Service row Request a Quote</td><td>Homepage form, service pre-selected</td></tr>
-        <tr><td>Hire … Workers (country cards)</td><td>Homepage form, country pre-selected</td></tr>
+        <tr><td>Service row Request a Quote</td><td>Homepage form</td></tr>
+        <tr><td>Hire … Workers (country cards)</td><td>Homepage form</td></tr>
         <tr><td>Find a Job, Apply for a Job</td><td>WhatsApp with a job-seeker message, new tab</td></tr>
-        <tr><td>WhatsApp buttons (FAQ, floating)</td><td>WhatsApp with the employer message, new tab</td></tr>
+        <tr><td>WhatsApp buttons (FAQ, floating, form fallback line)</td><td>WhatsApp with the employer message, new tab. Written into the page, so they work without JavaScript</td></tr>
       </table></div></div>
   </div>
 </section>
@@ -620,15 +665,16 @@ table.ds-table{width:100%;border-collapse:collapse;font-size:14px}
   <h2>6 Imagery and icons</h2>
   <div class="table-wrap"><table class="ds-table">
     <tr><th>Slot</th><th>Ratio and size</th><th>Count</th><th>Notes</th></tr>
-    <tr><td>Hero portraits</td><td>Square 600 × 600, shown in circles: 32% / 18% / 14–16% of the picture</td><td>5</td><td>Head and shoulders on a plain light wall, smiling at the camera. Shown on phones too, at 300px below the buttons. Cleaners in a work uniform (navy, or the green SuperClean SG polo), construction workers in a yellow hard hat and orange vest.</td></tr>
+    <tr><td>Hero portraits</td><td>Square 600 × 600, shown in circles: 32% / 18% / 14–16% of the picture</td><td>5</td><td>Head and shoulders on a plain light wall, smiling at the camera. Shown on phones too, at 300px below the buttons. Cleaners in a plain work uniform (no company logo), construction workers in a yellow hard hat and orange vest.</td></tr>
     <tr><td>Client logos</td><td>Tile 64px tall desktop, 52 tablet, 44 mobile</td><td>10</td><td>Logo centred, max 70% of the tile; grey or full colour, one style for all</td></tr>
-    <tr><td>Service photos</td><td>1200 × 960 (5:4) panel on desktop, cropped to 16:9 inside the open row on tablet and phone</td><td>4</td><td>The work itself: dishwashing, office cleaning, rebar work, documents</td></tr>
+    <tr><td>Service photos</td><td>1200 × 960 (5:4) panel on desktop, cropped to 16:9 inside the open row on tablet and phone</td><td>4</td><td>The work itself: dishwashing, office cleaning, rebar work, documents. Default panel photo: a cleaner at work (vacuuming an office sofa), cropped from the top on tablet and phone</td></tr>
+    <tr><td>Link preview, iPhone icon</td><td>1200 × 630 and 180 × 180</td><td>2</td><td>Still to add; these need PNG/JPG, an exception to WebP only (to be confirmed)</td></tr>
     <tr><td>Country photos</td><td>1200 × 750 (16:10) desktop, 16:9 tablet and mobile</td><td>5</td><td>A worker on the job for that country's main sector. No flags. Bottom 70% darkened (Depth 92% → 0) so the white title reads on any photo</td></tr>
     <tr><td>Blog thumbnails</td><td>16:10, radius 12</td><td>3</td><td>Section hidden for now</td></tr>
   </table></div>
   <ul class="state-list">
     <li>Photos are WebP (quality 80) in <code>landing-pages/images/home/</code>, named <code>hero-…</code>, <code>service-…</code>, <code>country-…</code>, and use <code>object-fit: cover</code>. Every image has alt text and a title; below-the-fold photos load lazily</li>
-    <li>Logo mark: <code>landing-pages/images/ea-logo.svg</code>, a ring in Deep Sea 55%, Blaze Orange 15% and Harbor 30%. Also the browser-tab icon</li>
+    <li>Logo mark: <code>landing-pages/images/ea-logo.svg</code>, a ring in Deep Sea, orange and Harbor. Also the browser-tab icon</li>
     <li>Icons: one inline SVG set, 1.8–2px stroke, rounded ends, Harbor colour; 20px in text, 24–28px in tiles, 44px in How to Hire steps</li>
     <li>Icon tiles: 56px desktop, 46 tablet, 36–40 mobile, white with a Frost border; Why Choose tiles carry a small orange dot</li>
     <li>Decorative dots (hero globe, form band circles): Glacier dots on a 15px grid, faded at the edges</li>
@@ -644,14 +690,17 @@ table.ds-table{width:100%;border-collapse:collapse;font-size:14px}
     <tr><td>Colours, fonts, radii, shadows</td><td><code>landing-pages/css/design-system.css</code> → <code>:root</code></td><td>Tokens listed in 2.1 and 2.5. Shared by every page; loads first</td></tr>
     <tr><td>Base, type scale, buttons, links</td><td><code>landing-pages/css/design-system.css</code></td><td>Includes the tablet and phone sizes for these</td></tr>
     <tr><td>Homepage sections</td><td><code>landing-pages/css/home.css</code> sections 1–13</td><td>One block per section in page order; the tablet and phone blocks come after so they override the desktop rules</td></tr>
-    <tr><td>WhatsApp number, messages, button destinations</td><td><code>landing-pages/js/home.js</code> → part 1, Links</td><td>One setting per link type</td></tr>
+    <tr><td>WhatsApp number and messages</td><td><code>landing-pages/index.html</code>, every <code>wa.me</code> link</td><td>Written into the page so they work without JavaScript; change every one</td></tr>
+    <tr><td>Fonts and fallback</td><td><code>landing-pages/css/design-system.css</code> → "Poppins Fallback"</td><td>Arial resized to Poppins' size; keep it right after Poppins in <code>--font</code></td></tr>
+    <tr><td>Animations</td><td><code>landing-pages/css/home.css</code> → "Alex's review, step 4"; <code>home.js</code> for the scroll-driven parts</td><td>See 2.6</td></tr>
+    <tr><td>Search results data</td><td><code>landing-pages/index.html</code> → JSON-LD in the head</td><td>Agency details and the FAQ; keep the FAQ in step</td></tr>
     <tr><td>Request a Quote form</td><td>HubSpot (portal 242253439, form e3c92672…)</td><td>Fields, consent text, button and thank-you message are edited in HubSpot, not in the code</td></tr>
     <tr><td>Accordion, carousels, menu</td><td><code>landing-pages/js/home.js</code> → part 2, Interactions</td><td>Testimonial timing: 6 seconds</td></tr>
     <tr><td>Images</td><td><code>landing-pages/images/</code></td><td><code>ea-logo.svg</code> and <code>home/*.webp</code></td></tr>
     <tr><td>Browser cache</td><td><code>?v=</code> number on every CSS and JS link</td><td>Raise it after each change so browsers load the new files</td></tr>
     <tr><td>Shareable preview</td><td><code>python scripts/python/build_preview.py</code></td><td>Builds the copy for the claude.ai preview link (the HubSpot form shows as a placeholder there)</td></tr>
     <tr><td>Screenshots on this page</td><td><code>python scripts/python/ds_shots.py</code></td><td>Recaptures every section at 1440 / 768 / 390 (needs the local server running)</td></tr>
-    <tr><td>Mobile checks</td><td><code>python scripts/python/mobile_audit.py http://localhost:8000/landing-pages/</code></td><td>Sideways scrolling, small tap targets, tiny text, zooming inputs</td></tr>
+    <tr><td>Mobile checks</td><td><code>python scripts/python/mobile_audit.py http://localhost:8000/landing-pages/</code></td><td>Sideways scrolling, small tap targets, tiny text, zooming inputs. Check 280, 320, 360, 390, 768, 844 and 915</td></tr>
   </table></div>
 </section>
 

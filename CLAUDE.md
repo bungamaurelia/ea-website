@@ -16,7 +16,7 @@ landing-pages/        THE ONLY FOLDER THAT GETS DEPLOYED
   sitemap.xml · robots.txt  search engines (update lastmod in sitemap.xml when the page changes)
 process/              design-system.html (internal only, never deployed) + design-system-img/ + snippets/
 scripts/python/       capture.py · mobile_audit.py · ds_shots.py · build_preview.py · strips.py
-output/               backups/v1 … v52 and screenshots: local only, ignored by git
+output/               backups/v1 … v53 and screenshots: local only, ignored by git
 ```
 A new page would go in `landing-pages/<page-slug>/index.html`. Nothing else belongs at the root.
 

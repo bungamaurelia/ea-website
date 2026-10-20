@@ -17,16 +17,18 @@ SECTIONS = [
     ("footer", ".site-footer"),
 ]
 WIDTHS = [("desktop", 1440, False), ("tablet", 768, False), ("mobile", 390, True)]
-CLEAN = "html{scroll-behavior:auto!important}.site-header{position:static!important}.wa-float{display:none!important}*{animation:none!important;transition:none!important}"
+# Fixed parts (header, floating button, phone bottom bar) would cover the sections, so they are taken out of the shots
+CLEAN = "html{scroll-behavior:auto!important}.site-header{position:static!important;transform:none!important}.wa-float,.mobile-cta{display:none!important}*{animation:none!important;transition:none!important}"
 
 with sync_playwright() as p:
     b = p.chromium.launch()
     for vname, w, mob in WIDTHS:
-        ctx = b.new_context(viewport={"width": w, "height": 900}, is_mobile=mob, has_touch=mob, device_scale_factor=1 if w > 800 else 2)
-        pg = ctx.new_page(); pg.goto(BASE, wait_until="networkidle"); pg.wait_for_timeout(500)
+        # reduced motion: cards that rise in on scroll are shown straight away
+        ctx = b.new_context(viewport={"width": w, "height": 900}, is_mobile=mob, has_touch=mob, device_scale_factor=1 if w > 800 else 2, reduced_motion="reduce")
+        pg = ctx.new_page(); pg.goto(BASE, wait_until="domcontentloaded"); pg.wait_for_timeout(2500)
         pg.add_style_tag(content=CLEAN)
         pg.click("#svc-tab-0"); pg.wait_for_timeout(300)                      # show one service open
-        pg.evaluate("document.querySelectorAll('.faq-list details')[0].open = true")
+        pg.evaluate("document.querySelector('.faq-list summary').click()"); pg.wait_for_timeout(200)   # first answer open
         pg.evaluate("document.getElementById('testi-pause') && document.getElementById('testi-pause').click()")
         for name, sel in SECTIONS:
             el = pg.locator(sel).first
